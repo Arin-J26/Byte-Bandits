@@ -22,13 +22,17 @@ def llm(request: Request) -> LLM:
 def ai_budget() -> float:
     """Seconds a request may wait for Gemma before answering with deterministic text.
     The model keeps working in the background and caches its answer for the next request."""
-    return float(os.environ.get("SNIFFER_AI_BUDGET", "1.5"))
+    return float(os.environ.get("SNIFFER_AI_BUDGET", "6"))
 
 
-def trust_config(max_depth: int | None = None) -> TrustConfig:
+def default_decay() -> float:
+    return float(os.environ.get("SNIFFER_DECAY", "0.8"))
+
+
+def trust_config(max_depth: int | None = None, decay: float | None = None) -> TrustConfig:
     env = os.environ.get
     return TrustConfig(
-        decay=float(env("SNIFFER_DECAY", "0.8")),
+        decay=float(decay) if decay is not None else default_decay(),
         max_depth=int(max_depth or env("SNIFFER_MAX_DEPTH", "3")),
         allow_threshold=float(env("SNIFFER_ALLOW_THRESHOLD", "0.5")),
         flag_threshold=float(env("SNIFFER_FLAG_THRESHOLD", "-0.5")),

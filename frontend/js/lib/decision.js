@@ -17,11 +17,18 @@ export function decisionStyle(decision) {
   return STYLES[key] || STYLES.REVIEW;
 }
 
-/** Record type -> style (vouch is green/check, denounce is red/cross). */
+/** Record type -> style (vouch is green/check, denounce is red/cross, contest is neutral/return arrow). */
 export function recordTypeStyle(type) {
-  return type === 'denounce'
-    ? { tone: 'bad', icon: '✕', label: 'Denounce' }
-    : { tone: 'ok', icon: '✓', label: 'Vouch' };
+  if (type === 'denounce') return { tone: 'bad', icon: '✕', label: 'Denounce' };
+  if (type === 'contest') return { tone: 'cyan', icon: '↩', label: 'Contest' };
+  return { tone: 'ok', icon: '✓', label: 'Vouch' };
+}
+
+/** Gemma's campaign verdict -> style. */
+export function aiVerdictStyle(verdict) {
+  if (verdict === 'spam') return { tone: 'bad', icon: '✕', label: 'Gemma: spam' };
+  if (verdict === 'legit') return { tone: 'ok', icon: '✓', label: 'Gemma: legit' };
+  return { tone: 'warn', icon: '!', label: 'AI: unclear' };
 }
 
 /** Signature status -> style. */

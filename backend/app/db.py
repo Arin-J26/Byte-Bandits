@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS projects (
   name TEXT NOT NULL,
   public_key TEXT NOT NULL,
   private_key TEXT,               -- simulation/dev only, never returned by the API
-  max_depth INTEGER NOT NULL DEFAULT 3
+  max_depth INTEGER NOT NULL DEFAULT 3,
+  decay REAL                      -- NULL: use the server default
 );
 CREATE TABLE IF NOT EXISTS trust_edges (
   src TEXT NOT NULL,
@@ -74,6 +75,9 @@ class Database:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self.connect() as con:
             con.executescript(SCHEMA)
+            cols = {r["name"] for r in con.execute("PRAGMA table_info(projects)")}
+            if "decay" not in cols:  # databases created before per-project decay existed
+                con.execute("ALTER TABLE projects ADD COLUMN decay REAL")
 
     @contextmanager
     def connect(self) -> Iterator[sqlite3.Connection]:
@@ -89,12 +93,15 @@ class Database:
     # ---------- reads ----------
     def projects(self) -> list[dict]:
         with self.connect() as con:
-            return [dict(r) for r in con.execute("SELECT id, name, public_key, max_depth FROM projects ORDER BY rowid")]
+            return [
+                dict(r)
+                for r in con.execute("SELECT id, name, public_key, max_depth, decay FROM projects ORDER BY rowid")
+            ]
 
     def project(self, project_id: str) -> dict | None:
         with self.connect() as con:
             row = con.execute(
-                "SELECT id, name, public_key, max_depth FROM projects WHERE id = ?", (project_id,)
+                "SELECT id, name, public_key, max_depth, decay FROM projects WHERE id = ?", (project_id,)
             ).fetchone()
             return dict(row) if row else None
 
@@ -126,6 +133,10 @@ class Database:
             return [dict(r) for r in rows]
 
     # ---------- writes ----------
+    def set_project_settings(self, project_id: str, max_depth: int, decay: float | None) -> None:
+        with self._write_lock, self.connect() as con:
+            con.execute("UPDATE projects SET max_depth = ?, decay = ? WHERE id = ?", (max_depth, decay, project_id))
+
     def upsert_edge(self, src: str, dst: str, weight: float) -> None:
         with self._write_lock, self.connect() as con:
             con.execute(
@@ -152,9 +163,9 @@ class Database:
             for table in ("projects", "trust_edges", "records", "pr_events"):
                 con.execute(f"DELETE FROM {table}")  # noqa: S608 - fixed table names, no user input
             con.executemany(
-                "INSERT INTO projects (id, name, public_key, private_key, max_depth) VALUES (?, ?, ?, ?, ?)",
+                "INSERT INTO projects (id, name, public_key, private_key, max_depth, decay) VALUES (?, ?, ?, ?, ?, ?)",
                 [
-                    (p["id"], p["name"], p["public_key"], p.get("private_key"), p.get("max_depth", 3))
+                    (p["id"], p["name"], p["public_key"], p.get("private_key"), p.get("max_depth", 3), p.get("decay"))
                     for p in net["projects"]
                 ],
             )

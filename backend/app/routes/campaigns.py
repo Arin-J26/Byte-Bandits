@@ -57,6 +57,8 @@ def suggest(campaign_id: str, body: SuggestIn | None = None, database: Database 
     if not cluster:
         raise HTTPException(status_code=404, detail=f"Unknown campaign '{campaign_id}'")
     projects = database.projects()
+    if not projects:
+        raise HTTPException(status_code=409, detail="No projects loaded; load or import a network first")
     issuer = (body.issuer if body and body.issuer else None) or (
         "lumen-ui" if any(p["id"] == "lumen-ui" for p in projects) else projects[0]["id"]
     )

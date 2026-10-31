@@ -9,9 +9,9 @@ from pydantic import ValidationError
 
 from ..crypto import RecordRuleError, check_record_rules, verify_record
 from ..db import Database
-from ..models import NetworkIn, Project, SimulateIn, TrustEdge, TrustUpdate
+from ..models import NetworkIn, Project, SimulateIn, TrustEdge, TrustSettings, TrustUpdate
 from ..simulate import generate_network
-from .common import db, require_project
+from .common import db, default_decay, require_project
 
 router = APIRouter(prefix="/api", tags=["network"])
 MAX_IMPORT_BYTES = 5 * 1024 * 1024
@@ -35,6 +35,24 @@ def put_trust(body: TrustUpdate, database: Database = Depends(db)):
         raise HTTPException(status_code=422, detail="A project cannot set trust in itself")
     database.upsert_edge(body.project_id, body.peer_id, body.weight)
     return {"ok": True, "project_id": body.project_id, "peer_id": body.peer_id, "weight": body.weight}
+
+
+@router.get("/trust/settings", response_model=TrustSettings)
+def get_settings(project_id: str, database: Database = Depends(db)):
+    p = require_project(database, project_id)
+    return {
+        "project_id": p["id"],
+        "max_depth": p["max_depth"],
+        "decay": p["decay"] if p["decay"] is not None else default_decay(),
+    }
+
+
+@router.put("/trust/settings", response_model=TrustSettings)
+def put_settings(body: TrustSettings, database: Database = Depends(db)):
+    """How far (max_depth) and how fast (decay) trust travels when this project evaluates someone."""
+    require_project(database, body.project_id)
+    database.set_project_settings(body.project_id, body.max_depth, body.decay)
+    return body
 
 
 def load_simulation(database: Database, params: SimulateIn) -> dict:
@@ -106,6 +124,10 @@ async def import_network(request: Request, database: Database = Depends(db)):
             continue
         rec["signature_valid"] = verify_record(rec, keys[rec["issuer"]])  # verified on import
         records.append(rec)
+    if len({p.id for p in net.projects}) != len(net.projects):
+        problems.append("project ids must be unique")
+    if len({e.id for e in net.pr_events}) != len(net.pr_events):
+        problems.append("pr_event ids must be unique")
     if len({r.id for r in net.records}) != len(net.records):
         problems.append("record ids must be unique")
     if problems:

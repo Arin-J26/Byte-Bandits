@@ -106,6 +106,8 @@ export function evaluate({ edges, records, projectId, handle, options = {} }) {
           ? `beyond depth limit (${opts.maxDepth} hops)`
           : 'not in your trust graph',
       });
+    } else if (r.type === 'contest') {
+      ignored.push({ record_id: r.id, reason: 'contests are only weighed by the live backend' });
     } else usable.push(r);
   }
   const { kept, superseded } = latestPerIssuer(usable);

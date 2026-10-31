@@ -10,45 +10,125 @@ import { fmtWeight, fmtAgo } from '../lib/format.js';
 import { term, openRecordDrawer } from '../ui.js';
 import * as sound from '../sound.js';
 
-/** Cytoscape stylesheet built from the current theme tokens. */
-function buildStyle() {
+/**
+ * Cytoscape stylesheet built from the current theme tokens.
+ * Sizes are divided by ~zoom (semantic zoom, like a map): dots and labels keep roughly the same
+ * size on screen while the distances between them grow as you zoom in.
+ */
+function buildStyle(zoom = 1) {
   const k = colors();
+  const s = 1 / Math.pow(Math.max(0.05, zoom), 0.85);
   const bg = k.dark ? '#0e2a35' : k.surface;
+  const showLabels = zoom >= 0.55 ? 1 : 0;
   return [
     { selector: 'node', style: {
-      'background-color': bg, 'border-color': k.accent, 'border-width': 2, label: 'data(label)',
-      color: k.text, 'font-size': 10, 'font-family': 'ui-monospace, Menlo, monospace', 'text-valign': 'bottom',
-      'text-margin-y': 4, width: 'mapData(deg, 0, 10, 16, 38)', height: 'mapData(deg, 0, 10, 16, 38)',
-      'text-outline-color': k.dark ? '#07090f' : k.surface, 'text-outline-width': 2,
+      'background-color': bg, 'border-color': k.accent, 'border-width': 2 * s, label: 'data(label)',
+      color: k.text, 'font-size': 11 * s, 'font-family': 'ui-monospace, Menlo, monospace', 'text-valign': 'bottom',
+      'text-margin-y': 4 * s, width: `mapData(deg, 0, 10, ${16 * s}, ${36 * s})`, height: `mapData(deg, 0, 10, ${16 * s}, ${36 * s})`,
+      'text-outline-color': k.dark ? '#07090f' : k.surface, 'text-outline-width': 2 * s, 'text-opacity': showLabels,
       'transition-property': 'opacity', 'transition-duration': '150ms',
     } },
     { selector: 'node[?me]', style: {
-      'background-color': k.accent, 'border-color': k.dark ? k.text : k.surface, 'border-width': 3,
-      'underlay-color': k.accent, 'underlay-padding': 10, 'underlay-opacity': 0.22, 'underlay-shape': 'ellipse',
+      'background-color': k.accent, 'border-color': k.dark ? k.text : k.surface, 'border-width': 3 * s,
+      'underlay-color': k.accent, 'underlay-padding': 10 * s, 'underlay-opacity': 0.22, 'underlay-shape': 'ellipse',
     } },
     { selector: 'node[kind="account"]', style: {
-      shape: 'diamond', 'background-color': k.dark ? '#3a0d14' : rgba(k.badRgb, 0.1), 'border-color': k.bad, color: k.bad, width: 20, height: 20,
+      shape: 'diamond', 'background-color': k.dark ? '#3a0d14' : rgba(k.badRgb, 0.1), 'border-color': k.bad, color: k.bad,
+      width: 20 * s, height: 20 * s,
     } },
     { selector: 'edge', style: {
-      width: 'data(width)', opacity: 'data(opacity)', 'line-color': k.accent, 'target-arrow-color': k.accent,
-      'target-arrow-shape': 'triangle', 'curve-style': 'bezier', 'arrow-scale': 0.8,
+      width: `mapData(weight, 0, 1, ${0.8 * s}, ${4 * s})`, opacity: 'data(opacity)', 'line-color': k.accent, 'target-arrow-color': k.accent,
+      'target-arrow-shape': 'triangle', 'curve-style': 'bezier', 'arrow-scale': 0.7,
     } },
-    { selector: 'edge[kind="denounce"]', style: { 'line-color': k.bad, 'target-arrow-color': k.bad, 'line-style': 'dashed' } },
-    { selector: 'edge[kind="campaign"]', style: { 'line-color': k.bad, 'target-arrow-color': k.bad, 'line-style': 'dotted', 'target-arrow-shape': 'tee' } },
+    { selector: 'edge[kind="denounce"]', style: { 'line-color': k.bad, 'target-arrow-color': k.bad, 'line-style': 'dashed', width: 1.5 * s } },
+    { selector: 'edge[kind="campaign"]', style: { 'line-color': k.bad, 'target-arrow-color': k.bad, 'line-style': 'dotted', 'target-arrow-shape': 'tee', width: 1 * s } },
     { selector: '.faded', style: { opacity: 0.12 } },
     { selector: '.dimmed', style: { opacity: 0.1 } },
-    { selector: 'edge.flow', style: { 'line-style': 'dashed', 'line-dash-pattern': [8, 6], opacity: 1, 'line-color': rgba(k.accent2Rgb, 1), 'target-arrow-color': rgba(k.accent2Rgb, 1) } },
-    { selector: 'node.focus', style: { 'underlay-color': rgba(k.accent2Rgb, 1), 'underlay-padding': 8, 'underlay-opacity': 0.25, 'underlay-shape': 'ellipse' } },
-    { selector: 'node.hl', style: { 'border-color': k.warn, 'border-width': 4, 'font-weight': 'bold', 'z-index': 10 } },
-    { selector: 'node:selected', style: { 'border-color': k.dark ? '#ffffff' : k.text, 'border-width': 4, 'overlay-opacity': 0 } },
+    { selector: 'edge.flow', style: { 'line-style': 'dashed', 'line-dash-pattern': [8 * s, 6 * s], opacity: 1, 'line-color': rgba(k.accent2Rgb, 1), 'target-arrow-color': rgba(k.accent2Rgb, 1) } },
+    { selector: 'node.focus', style: { 'underlay-color': rgba(k.accent2Rgb, 1), 'underlay-padding': 8 * s, 'underlay-opacity': 0.25, 'underlay-shape': 'ellipse' } },
+    { selector: 'node.hl', style: { 'border-color': k.warn, 'border-width': 4 * s, 'font-weight': 'bold', 'z-index': 10 } },
+    { selector: 'node:selected', style: { 'border-color': k.dark ? '#ffffff' : k.text, 'border-width': 4 * s, 'overlay-opacity': 0 } },
+    // Important nodes keep their label even when zoomed far out.
+    { selector: 'node[?me], node:selected, node.hl, node.focus', style: { 'text-opacity': 1 } },
     { selector: 'edge.hl', style: { opacity: 1 } },
   ];
+}
+
+const MIN_ZOOM = 0.15;
+const MAX_ZOOM = 4;
+
+/**
+ * Map-style zoom: wheel / pinch / double-click / +- keys ease smoothly toward the cursor,
+ * and the stylesheet is rebuilt (once per frame at most) so nodes keep a steady on-screen size.
+ */
+function smoothZoom(cy, box) {
+  cy.userZoomingEnabled(false);
+  let target = cy.zoom();
+  let anchor = { x: box.clientWidth / 2, y: box.clientHeight / 2 };
+  let raf = 0;
+  let styleRaf = 0;
+  let styledAt = cy.zoom();
+  let ours = false;
+  const clamp = (z) => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, z));
+
+  const restyle = () => {
+    styleRaf = 0;
+    if (Math.abs(cy.zoom() / styledAt - 1) < 0.015) return;
+    styledAt = cy.zoom();
+    cy.style(buildStyle(styledAt));
+  };
+  cy.on('zoom', () => {
+    if (!ours) target = cy.zoom(); // fit / animate / programmatic zoom
+    if (!styleRaf) styleRaf = requestAnimationFrame(restyle);
+  });
+
+  const step = () => {
+    const z = cy.zoom();
+    const next = z + (target - z) * 0.2; // ease-out toward the target
+    ours = true;
+    cy.zoom({ level: Math.abs(target - next) / target < 0.002 ? target : next, renderedPosition: anchor });
+    ours = false;
+    raf = cy.zoom() === target ? 0 : requestAnimationFrame(step);
+  };
+  const zoomTo = (level, at) => {
+    target = clamp(level);
+    if (at) anchor = at;
+    if (reducedMotion()) {
+      ours = true; cy.zoom({ level: target, renderedPosition: anchor }); ours = false;
+      return;
+    }
+    if (!raf) raf = requestAnimationFrame(step);
+  };
+  const local = (e) => { const r = box.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+  const centre = () => ({ x: box.clientWidth / 2, y: box.clientHeight / 2 });
+
+  const onWheel = (e) => {
+    e.preventDefault();
+    const dy = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaMode === 2 ? e.deltaY * 400 : e.deltaY;
+    // Pinch on a trackpad arrives as ctrl+wheel with small deltas: zoom faster for those.
+    zoomTo(target * Math.exp(-dy * (e.ctrlKey ? 0.012 : 0.0022)), local(e));
+  };
+  box.addEventListener('wheel', onWheel, { passive: false });
+  cy.on('dbltap', (e) => zoomTo(target * (e.originalEvent?.shiftKey ? 0.5 : 2), e.renderedPosition));
+  box.tabIndex = 0;
+  const onKey = (e) => {
+    if (e.key === '+' || e.key === '=') { e.preventDefault(); zoomTo(target * 1.5, centre()); }
+    if (e.key === '-' || e.key === '_') { e.preventDefault(); zoomTo(target / 1.5, centre()); }
+  };
+  box.addEventListener('keydown', onKey);
+
+  return {
+    zoomIn: () => zoomTo(target * 1.6, centre()),
+    zoomOut: () => zoomTo(target / 1.6, centre()),
+    restyleNow: () => { styledAt = cy.zoom(); cy.style(buildStyle(styledAt)); },
+    destroy: () => { cancelAnimationFrame(raf); cancelAnimationFrame(styleRaf); box.removeEventListener('wheel', onWheel); box.removeEventListener('keydown', onKey); },
+  };
 }
 
 function layout(cy, randomize = false) {
   cy.layout({
     name: 'cose', animate: !reducedMotion(), animationDuration: 600, randomize, padding: 30,
-    nodeRepulsion: () => 9000, idealEdgeLength: () => 70, gravity: 0.4, numIter: 1200,
+    nodeRepulsion: () => 14000, idealEdgeLength: () => 95, gravity: 0.4, numIter: 1200,
   }).run();
 }
 
@@ -106,7 +186,12 @@ export async function mount(root) {
   canvasBox.setAttribute('aria-label', `Trust graph: ${data.projects.length} projects, ${data.trust_edges.length} trust edges, ${flagged.length} flagged accounts. Use “Jump to node” to inspect with the keyboard.`);
   status.textContent = `${data.projects.length} projects · ${data.trust_edges.length} edges · ${flagged.length} flagged`;
 
-  const cy = window.cytoscape({ container: canvasBox, elements, style: buildStyle(), wheelSensitivity: 0.25, minZoom: 0.2, maxZoom: 3 });
+  const cy = window.cytoscape({ container: canvasBox, elements, style: buildStyle(), minZoom: MIN_ZOOM, maxZoom: MAX_ZOOM });
+  const zoom = smoothZoom(cy, canvasBox);
+  const zoomIn = h('button', { class: 'btn btn-icon map-btn', type: 'button', aria: { label: 'Zoom in (+)' }, on: { click: () => zoom.zoomIn() } }, '+');
+  const zoomOut = h('button', { class: 'btn btn-icon map-btn', type: 'button', aria: { label: 'Zoom out (−)' }, on: { click: () => zoom.zoomOut() } }, '−');
+  canvasBox.parentElement.append(h('div', { class: 'map-controls', role: 'group', aria: { label: 'Zoom' } }, zoomIn, zoomOut),
+    h('p', { class: 'map-hint hint' }, 'Scroll or pinch to zoom · double-click to zoom in · drag to pan'));
   cy.nodes().forEach((n) => { n.data('deg', n.data('kind') === 'account' ? 2 : n.degree(false)); });
   layout(cy);
 
@@ -123,7 +208,7 @@ export async function mount(root) {
     if (!reducedMotion() && !document.hidden && cy.edges('.flow').length) flowRaf = requestAnimationFrame(flow);
   };
   document.addEventListener('visibilitychange', startFlow);
-  const offTheme = on('theme', () => cy.style(buildStyle()));
+  const offTheme = on('theme', () => zoom.restyleNow());
 
   for (const n of cy.nodes().sort((a, b) => a.data('label').localeCompare(b.data('label')))) {
     jump.append(h('option', { value: n.id() }, n.data('kind') === 'account' ? `◆ ${n.data('handle')} (flagged)` : n.data('label')));
@@ -224,5 +309,5 @@ export async function mount(root) {
     if (e.key === 'Enter') { const hits = runSearch(); if (hits && hits.length) select(hits[0]); }
   });
 
-  return () => { tip.hidden = true; cancelAnimationFrame(flowRaf); offTheme(); document.removeEventListener('visibilitychange', startFlow); cy.destroy(); };
+  return () => { tip.hidden = true; cancelAnimationFrame(flowRaf); offTheme(); zoom.destroy(); document.removeEventListener('visibilitychange', startFlow); cy.destroy(); };
 }

@@ -5,15 +5,24 @@ Plain HTML, CSS and ES modules. No framework, no build step, no `npm install`.
 
 ## Run the frontend
 
-Serve the `frontend/` folder with any static web server. From the repository root:
+Sniffer runs on its backend, which also serves this frontend and talks to the local Gemma model in Ollama.
+From the repository root:
 
 ```bash
-python3 -m http.server 8080 --directory frontend
+ollama pull gemma4:e2b                                                 # once; keep the Ollama app running
+backend/.venv/bin/uvicorn app.main:app --app-dir backend --port 8000
 ```
 
-Then open **http://localhost:8080/?mock=1** (synthetic data), or **http://localhost:8080/** (tries the live backend at `/api`, and falls back to mock data with a banner if it is unreachable).
+Open **http://localhost:8000**. The header shows **Live** and **✦ Gemma** when everything is connected. Setup details are
+in `backend/README.md`.
 
-The badge in the header always shows **Live** or **Mock**. When the backend runs on another port, serve the frontend through the same origin (the backend's static files or a reverse proxy) so `/api` resolves; the page's Content-Security-Policy only allows same-origin API calls.
+- If the backend is not running, the page shows a start screen with these commands and reconnects by itself.
+- If the backend drops mid-session, a banner says "Reconnecting…" and the page recovers when it is back. It never
+  silently switches to fake data.
+- If Ollama is off or the model is not pulled, the chip shows **Ollama off** or **Gemma not pulled**. Decisions still
+  work, and summaries fall back to plain templates until Gemma is back.
+- **Demo data only on request:** `http://localhost:8000/?mock=1` runs on the synthetic files in `frontend/mock/` with no
+  backend and no Gemma (badge: **Demo data**).
 
 Run the tests (Node 18+, no dependencies):
 
@@ -36,7 +45,7 @@ node --test frontend/tests/*.test.js
 | **Simulate** | Load the curated demo network, generate a seeded synthetic network, import a network JSON (max 5 MB, validated), or download the current one. |
 
 **Start demo** in the header runs a guided 8-minute pitch (6 steps) that drives the real UI.
-Use Next/Back, or Esc to exit. It works in mock and live mode.
+Use Next/Back, or Esc to exit. It runs on the live backend (or on demo data with `?mock=1`).
 
 ## Keyboard shortcuts
 
@@ -66,7 +75,7 @@ Mute and volume are in the header and saved in this browser. **Quiet mode** turn
 (no pulses, flashes, typewriter or background animation). The app also respects the operating system's
 "reduce motion" setting.
 
-## How decisions work (mock mode)
+## How decisions work in demo-data mode
 
 `js/lib/trustMath.js` mirrors the backend rules so mock mode is honest:
 
@@ -83,7 +92,7 @@ frontend/
   index.html            app shell
   css/                  base (tokens, layout), components, pages
   js/app.js             router, header, shortcuts
-  js/api.js             the only module that calls the backend; mock fallback
+  js/api.js             the only module that calls the backend; reconnects; demo data only with ?mock=1
   js/sound.js           Web Audio effects
   js/demo.js            guided demo
   js/pages/             one module per page (+ canvas helpers)

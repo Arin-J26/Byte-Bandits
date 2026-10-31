@@ -84,3 +84,10 @@ test('mock evaluate fixtures match what trustMath computes', () => {
     assert.equal(res.score, fx.score, f);
   }
 });
+
+test('mock maths ignores contest records instead of counting them as vouches', () => {
+  const records = [{ id: 'c1', issuer: 'a', subject_handle: 'carl', type: 'contest', signature_valid: true }];
+  const res = evaluate({ edges: chain, records, projectId: 'me', handle: 'carl' });
+  assert.equal(res.decision, 'UNKNOWN');
+  assert.match(res.ignored[0].reason, /contests/);
+});

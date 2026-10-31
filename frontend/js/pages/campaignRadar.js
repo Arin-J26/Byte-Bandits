@@ -3,7 +3,7 @@
 
 import { reducedMotion, on } from '../state.js';
 import { colors, rgba } from '../theme.js';
-import { binEvents, burstBins } from '../lib/campaignStats.js';
+import { binEvents, burstBins, timelineWindow } from '../lib/campaignStats.js';
 import * as sound from '../sound.js';
 
 let C = {};
@@ -22,10 +22,13 @@ export function createRadar(canvas) {
   let projects = [];
   let bins = [];
   let bursts = new Set();
+  let binMs = 300_000;
+  let binLabel = '5 min';
   let replay = null; // { dots, phase, t, label, resolve }
 
   const ms = (t) => Date.parse(t);
-  const geo = () => ({ cx: w / 2, cy: (hgt - TIMELINE_H) / 2 + 4, R: Math.max(40, Math.min(w / 2 - 70, (hgt - TIMELINE_H) / 2 - 26)) });
+  // Leave room around the ring for project labels (up to ~14 monospace characters).
+  const geo = () => ({ cx: w / 2, cy: (hgt - TIMELINE_H) / 2 + 4, R: Math.max(40, Math.min(w / 2 - 110, (hgt - TIMELINE_H) / 2 - 34)) });
   const angleOf = (pid) => (projects.indexOf(pid) / Math.max(1, projects.length)) * Math.PI * 2 - Math.PI / 2;
   const nodePos = (pid) => { const { cx, cy, R } = geo(); const a = angleOf(pid); return { x: cx + Math.cos(a) * R, y: cy + Math.sin(a) * R }; };
 
@@ -38,16 +41,20 @@ export function createRadar(canvas) {
   }
 
   function setData(evts) {
-    events = evts.filter((e) => Number.isFinite(ms(e.timestamp)));
+    // Only the recent window: old records would otherwise stretch the timeline over months.
+    const win = timelineWindow(evts.filter((e) => Number.isFinite(ms(e.timestamp))));
+    events = win ? evts.filter((e) => ms(e.timestamp) >= win.start && ms(e.timestamp) <= win.end) : [];
     projects = [...new Set(events.map((e) => e.project).filter(Boolean))].slice(0, 24);
-    bins = binEvents(events, { binMinutes: 5 });
-    bursts = new Set(burstBins(bins, 2));
+    bins = win ? binEvents(events, { binMinutes: win.binMinutes, start: win.start, end: win.end }) : [];
+    binMs = (win?.binMinutes || 5) * 60_000;
+    binLabel = win && win.binMinutes >= 60 ? `${win.binMinutes / 60} h` : `${win?.binMinutes || 5} min`;
+    bursts = new Set(burstBins(bins, 2, 3));
     draw();
   }
 
   function isBurst(e) {
     if (!bins.length) return false;
-    const i = Math.floor((ms(e.timestamp) - bins[0].start) / 300_000);
+    const i = Math.floor((ms(e.timestamp) - bins[0].start) / binMs);
     return bursts.has(i);
   }
 
@@ -84,18 +91,50 @@ export function createRadar(canvas) {
     }
     ctx.globalAlpha = 1;
     // project nodes
-    ctx.font = '10px ui-monospace, Menlo, monospace';
-    ctx.textAlign = 'center';
     for (const p of projects) {
       const { x, y } = nodePos(p);
       ctx.fillStyle = C.node; ctx.strokeStyle = C.cyan; ctx.lineWidth = 2;
       ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = C.text;
-      const a = angleOf(p);
-      ctx.fillText(p.length > 14 ? `${p.slice(0, 13)}…` : p, x + Math.cos(a) * 26, y + Math.sin(a) * 18 + 3);
     }
+    drawLabels(cx, cy, R);
     drawReplay(cx, cy);
     drawTimeline();
+  }
+
+  /**
+   * Project labels placed radially outside the ring, aligned away from the centre, and pushed
+   * further out when they would overlap a label already placed (greedy collision avoidance).
+   */
+  function drawLabels(cx, cy, R) {
+    ctx.font = '11px ui-monospace, Menlo, monospace';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = C.text;
+    const placed = [];
+    const hit = (b) => placed.some((o) => b.x < o.x + o.w + 4 && b.x + b.w + 4 > o.x && b.y < o.y + o.h && b.y + b.h > o.y);
+    for (const p of projects) {
+      const a = angleOf(p);
+      const cos = Math.cos(a), sin = Math.sin(a);
+      const text = p.length > 14 ? `${p.slice(0, 13)}…` : p;
+      const tw = ctx.measureText(text).width, th = 13;
+      const align = cos > 0.25 ? 'left' : cos < -0.25 ? 'right' : 'center';
+      let box = null;
+      for (let step = 0; step < 6; step++) {
+        const r = R + 14 + step * 13;
+        const ax = cx + cos * r, ay = cy + sin * r + (align === 'center' ? Math.sign(sin) * 4 : 0);
+        const x0 = align === 'left' ? ax : align === 'right' ? ax - tw : ax - tw / 2;
+        box = { x: x0, y: ay - th / 2, w: tw, h: th, ax, ay, step };
+        if (!hit(box)) break;
+      }
+      placed.push(box);
+      if (box.step) { // thin leader line when a label had to move out
+        ctx.strokeStyle = rgba(C.rgb, 0.35); ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(cx + cos * (R + 8), cy + sin * (R + 8)); ctx.lineTo(cx + cos * (R + 8 + box.step * 13), cy + sin * (R + 8 + box.step * 13)); ctx.stroke();
+      }
+      ctx.textAlign = align;
+      ctx.fillText(text, box.ax, box.ay);
+    }
+    ctx.textBaseline = 'alphabetic';
+    ctx.textAlign = 'center';
   }
 
   function drawReplay(cx, cy) {
@@ -120,17 +159,30 @@ export function createRadar(canvas) {
   function drawTimeline() {
     const top = hgt - TIMELINE_H + 10, bh = TIMELINE_H - 28;
     ctx.fillStyle = C.dim; ctx.textAlign = 'left'; ctx.font = '10px ui-monospace, Menlo, monospace';
-    ctx.fillText('PR / record events per 5 min', 8, top - 2);
+    ctx.fillText(`PR / record events per ${binLabel} (last ${bins.length ? Math.round((bins.length * binMs) / 3600_000) || 1 : 0} h)`, 8, top - 2);
     if (!bins.length) return;
     const max = Math.max(...bins.map((b) => b.count), 1);
     const bw = (w - 16) / bins.length;
     bins.forEach((b, i) => {
       const bhh = (b.count / max) * bh;
-      const burst = bursts.has(i);
-      ctx.fillStyle = burst ? C.bad : rgba(C.rgb, 0.55);
+      ctx.fillStyle = bursts.has(i) ? C.bad : rgba(C.rgb, 0.55);
       ctx.fillRect(8 + i * bw + 1, top + 6 + bh - bhh, Math.max(1, bw - 2), bhh);
-      if (burst && !bursts.has(i - 1)) { ctx.fillStyle = C.bad; ctx.textAlign = 'center'; ctx.fillText('! burst', 8 + i * bw + bw / 2, top + 4 + bh - bhh); }
     });
+    // One "! burst" label per run of burst bins, over its tallest bar, never overlapping another label.
+    ctx.fillStyle = C.bad;
+    let lastRight = -Infinity;
+    for (let i = 0; i < bins.length; i++) {
+      if (!bursts.has(i) || bursts.has(i - 1)) continue;
+      let peak = i;
+      for (let j = i; bursts.has(j); j++) if (bins[j].count > bins[peak].count) peak = j;
+      const label = `! burst · ${bins[peak].count}`;
+      const lw = ctx.measureText(label).width;
+      const x = Math.min(w - 8 - lw / 2, Math.max(8 + lw / 2, 8 + peak * bw + bw / 2));
+      if (x - lw / 2 < lastRight + 8) continue;
+      ctx.textAlign = 'center';
+      ctx.fillText(label, x, top + 2 + bh - (bins[peak].count / max) * bh);
+      lastRight = x + lw / 2;
+    }
   }
 
   function loop(ts) {

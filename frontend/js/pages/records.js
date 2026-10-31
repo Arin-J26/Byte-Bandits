@@ -1,7 +1,7 @@
 // Records page: searchable, sortable, filterable, paginated table of signed vouch/denounce records.
 
 import { h, clear, skeleton, errorBox, emptyState, pill, debounce, download, copyText, toast } from '../dom.js';
-import { api } from '../api.js';
+import { api, syncTrustSettings } from '../api.js';
 import { prefs, trustOptions } from '../state.js';
 import { filterRecords, sortRecords, paginate, toCSV, denounceCounts } from '../lib/recordFilter.js';
 import { computeTrust } from '../lib/trustMath.js';
@@ -19,7 +19,7 @@ export async function mount(root) {
   clear(root, h('section', { class: 'page' }, skeleton(8)));
   let records, edges;
   try {
-    [records, edges] = await Promise.all([api.records(), api.trustEdges()]);
+    [records, edges] = await Promise.all([api.records(), api.trustEdges(), syncTrustSettings(prefs.perspective)]);
   } catch (err) {
     clear(root, errorBox(`Could not load records: ${err.message}`, () => mount(root)));
     return null;
@@ -34,7 +34,7 @@ export async function mount(root) {
 
   const q = h('input', { class: 'input', type: 'search', placeholder: 'Search issuer, handle, reason, URL…', 'data-search': '', aria: { label: 'Search records' } });
   const typeSel = h('select', { class: 'input', aria: { label: 'Filter by type' } },
-    [['', 'All types'], ['vouch', '✓ Vouches'], ['denounce', '✕ Denounces']].map(([v, t]) => h('option', { value: v }, t)));
+    [['', 'All types'], ['vouch', '✓ Vouches'], ['denounce', '✕ Denounces'], ['contest', '↩ Contests']].map(([v, t]) => h('option', { value: v }, t)));
   const sigSel = h('select', { class: 'input', aria: { label: 'Filter by signature' } },
     [['', 'Any signature'], ['valid', '✓ Valid'], ['invalid', '✕ Invalid']].map(([v, t]) => h('option', { value: v }, t)));
   const issuerSel = h('select', { class: 'input', aria: { label: 'Filter by issuer' } }, h('option', { value: '' }, 'All issuers'),

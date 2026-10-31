@@ -6,7 +6,7 @@
   "response": {
     "decision": "REVIEW",
     "score": -0.46,
-    "summary": "REVIEW. The score was lowered because the project `aurora-docs` published a denounce record, which has a trust score of 0.48 related to `lumen-ui`.",
+    "summary": "REVIEW. The score was lowered because the project `aurora-docs` published a denounce record, which has a trust of 0.48 related to `lumen-ui`.",
     "path": [
       {
         "project": "aurora-docs",
