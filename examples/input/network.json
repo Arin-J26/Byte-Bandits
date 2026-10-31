@@ -1,0 +1,2211 @@
+{
+  "projects": [
+    {
+      "id": "lumen-ui",
+      "name": "Lumen UI",
+      "public_key": "4c4c17a65898efef0f5232a5d5abd266ebd53867de9b62c0739cd1c0dc4a637d",
+      "max_depth": 3
+    },
+    {
+      "id": "nebula-db",
+      "name": "Nebula DB",
+      "public_key": "e85c0f74e12444fbe6222b7f1e114c60cb936fc5173ce8f843a9ed8c88fff39d",
+      "max_depth": 3
+    },
+    {
+      "id": "pyforge",
+      "name": "PyForge",
+      "public_key": "b1d634e851685f55c7a5d88b8acbdbe79796637c5a0deef9c74665448ccab3ee",
+      "max_depth": 3
+    },
+    {
+      "id": "quasar-cli",
+      "name": "quasar-cli",
+      "public_key": "aec90001ed742d9ee417846f13b6d8122db573474eaac9f8bcbe4a7be8117122",
+      "max_depth": 3
+    },
+    {
+      "id": "orbit-ml",
+      "name": "orbit-ml",
+      "public_key": "c6e274cd4e827103bef768bdd313bf9d5d7ee11215720fff0214643a70780bd0",
+      "max_depth": 3
+    },
+    {
+      "id": "helix-auth",
+      "name": "helix-auth",
+      "public_key": "f94663e596061b0ebd539650209808b213aa33255e8afbca32fc13f43d0fa63e",
+      "max_depth": 3
+    },
+    {
+      "id": "zenith-web",
+      "name": "zenith-web",
+      "public_key": "532b534a27592f3d589bd0b7032837cc8da2da5261e9a4136106d180814916c0",
+      "max_depth": 3
+    },
+    {
+      "id": "shadow-registry",
+      "name": "Shadow Registry",
+      "public_key": "85537e83b6543a97925f305d5c940ab90a793e2bac40c2b6bb4a83a8ea836196",
+      "max_depth": 3
+    },
+    {
+      "id": "aurora-docs",
+      "name": "aurora-docs",
+      "public_key": "74938aaa624d7a8fe4e415f82b40bba3c27d1a70fbec67984dd4af334ba0743f",
+      "max_depth": 3
+    },
+    {
+      "id": "mosaic-css",
+      "name": "mosaic-css",
+      "public_key": "f53e7be7530998f093ba2d386a4666c48f1e1daefc20eaaaa5f28abb977f7e84",
+      "max_depth": 3
+    },
+    {
+      "id": "kepler-maps",
+      "name": "kepler-maps",
+      "public_key": "0201e760b2c4ac1c80311a9e8e304596677471532089c49830b40d480f98ed6c",
+      "max_depth": 3
+    },
+    {
+      "id": "prism-lint",
+      "name": "prism-lint",
+      "public_key": "d755d2931d5f8fc6135302f104248939951501d6a2fb530318761a678a89c848",
+      "max_depth": 3
+    },
+    {
+      "id": "tidal-sched",
+      "name": "tidal-sched",
+      "public_key": "cca5411565a3ad666a723115ecdf2901b7f67a8ed3a65b8e54952cb4cdc98c70",
+      "max_depth": 3
+    },
+    {
+      "id": "jade-logs",
+      "name": "jade-logs",
+      "public_key": "e9ace1029b4ebece7b4be8e56dd10c3f387bd59745c1271104f73dfef920109a",
+      "max_depth": 3
+    },
+    {
+      "id": "ion-tests",
+      "name": "ion-tests",
+      "public_key": "321107abbdcb12bcf4c182061c0587f7c2e18a024a8a935d14873307efaf5a7d",
+      "max_depth": 3
+    },
+    {
+      "id": "krypton-ui",
+      "name": "krypton-ui",
+      "public_key": "a763a6c538f636ab56b918f7ddb44bbb40f80300fb81c97adc948283a305ca81",
+      "max_depth": 3
+    },
+    {
+      "id": "pebble-ui",
+      "name": "pebble-ui",
+      "public_key": "918af3ba1fc64ecce1d0bc01f479a1e84a8c3de469687dc993f0ba479c12ec81",
+      "max_depth": 3
+    },
+    {
+      "id": "meadow-tests",
+      "name": "meadow-tests",
+      "public_key": "2e2b33025a0efbbcbf6f38758a9671d5a5e5048da24317110844c6fdf982341a",
+      "max_depth": 3
+    },
+    {
+      "id": "cobalt-cli",
+      "name": "cobalt-cli",
+      "public_key": "681447a1113e7f72f6a48173bd429abcb61df9beafe059a9789248eaf6b44a98",
+      "max_depth": 3
+    },
+    {
+      "id": "harbor-lang",
+      "name": "harbor-lang",
+      "public_key": "4e80d1cb35e910d936ccb3edab92e2d2ba211cef120af59e506ac842b3934566",
+      "max_depth": 3
+    },
+    {
+      "id": "birch-lang",
+      "name": "birch-lang",
+      "public_key": "93e50fb5a529e85dd2143790b1c992dfe2fc5b824e84cf4c95ffb97adc27680e",
+      "max_depth": 3
+    },
+    {
+      "id": "meadow-router",
+      "name": "meadow-router",
+      "public_key": "7fad2855b4d036efe4ad40f9b4402e623f406d5b681403b1217e8a4b55899dae",
+      "max_depth": 3
+    },
+    {
+      "id": "pebble-logs",
+      "name": "pebble-logs",
+      "public_key": "2f16f527797ae5a5720c3b27b02a1df9848c8fcc82c1233f6cd00d6b0535a6d5",
+      "max_depth": 3
+    },
+    {
+      "id": "willow-http",
+      "name": "willow-http",
+      "public_key": "be3e2d3d87eaf3b1ab3c90bc84e3dd00a4d6beb6e5bd100f0187528cfdce80c8",
+      "max_depth": 3
+    },
+    {
+      "id": "zephyr-shell",
+      "name": "zephyr-shell",
+      "public_key": "f5d7ca7f6025d68534775609735c3da46ed1dc20a7400e378a9164b0d28ce170",
+      "max_depth": 3
+    },
+    {
+      "id": "glacier-http",
+      "name": "glacier-http",
+      "public_key": "e0981ade41c4ae5cdf125ac0ef711f35da058ffc847ff4856188ed5db0b972bf",
+      "max_depth": 3
+    },
+    {
+      "id": "granite-logs",
+      "name": "granite-logs",
+      "public_key": "c8f0d6c7eb9e312dff4d3c05d262571a0e9e195e439c89775fbfae420e4dcda3",
+      "max_depth": 3
+    },
+    {
+      "id": "harbor-db",
+      "name": "harbor-db",
+      "public_key": "c631226a1cfff1340766a9074375094465c04131668ee1bc6bf25690d8a8fc8c",
+      "max_depth": 3
+    },
+    {
+      "id": "birch-queue",
+      "name": "birch-queue",
+      "public_key": "28d9eb54f50ab7ca8d69bae8bfd02733d1ca8e23df7dd2e00362a4fcaa6a26e3",
+      "max_depth": 3
+    },
+    {
+      "id": "nectar-fs",
+      "name": "nectar-fs",
+      "public_key": "4dd86455fb56b83c6e022b83106474dd075db481cd4f48bcb24103ae03eb187d",
+      "max_depth": 3
+    },
+    {
+      "id": "cinder-router",
+      "name": "cinder-router",
+      "public_key": "e8e10524d0b6c6ff41b5d76a79feb1bd08a42857a12ba68e957381ca021168dc",
+      "max_depth": 3
+    },
+    {
+      "id": "haze-shell",
+      "name": "haze-shell",
+      "public_key": "5e4b1c71074d5afd4931da13f37ada03a8f1d83f34eff18d13596e2321a2da30",
+      "max_depth": 3
+    },
+    {
+      "id": "nectar-orm",
+      "name": "nectar-orm",
+      "public_key": "492a2dbdeed7cd4f68ddd2b273779e13532802d970d71d04c4837a38e2d8497c",
+      "max_depth": 3
+    },
+    {
+      "id": "harbor-http",
+      "name": "harbor-http",
+      "public_key": "2a43f98c8442e912af69ee5a26ad3e6ed6d9730737faf6a9e84507c8182e7282",
+      "max_depth": 3
+    },
+    {
+      "id": "pebble-lang",
+      "name": "pebble-lang",
+      "public_key": "88616b7074e72c14ea2a35d894cb4cd6569826825847b9854400b3037dc5943b",
+      "max_depth": 3
+    },
+    {
+      "id": "lumen-kit",
+      "name": "lumen-kit",
+      "public_key": "8a0a1d237c1b6cbe2827acdd5a038ff64b9963f19c93d36d1c4b18e07e8e5029",
+      "max_depth": 3
+    },
+    {
+      "id": "pebble-http",
+      "name": "pebble-http",
+      "public_key": "0310469b98ab2f700792898c39e0abef779edeab8b7f402af7952e923161d11e",
+      "max_depth": 3
+    },
+    {
+      "id": "zephyr-orm",
+      "name": "zephyr-orm",
+      "public_key": "1dfb0e49c69381a944164a8683da6a70eacdda578f909e2bc19d2d4afc8b282d",
+      "max_depth": 3
+    },
+    {
+      "id": "onyx-kit",
+      "name": "onyx-kit",
+      "public_key": "5ca78f1874e0fb6ee7887ad8a684af6c2bced660959644ecdb2a9f132565a9ee",
+      "max_depth": 3
+    },
+    {
+      "id": "drift-ui",
+      "name": "drift-ui",
+      "public_key": "12110a6fe1d1cf8ed2634a3585d9c4e1c34cf203e8938571513ed74e564ec6d5",
+      "max_depth": 3
+    }
+  ],
+  "trust_edges": [
+    {
+      "from": "lumen-ui",
+      "to": "nebula-db",
+      "weight": 1.0
+    },
+    {
+      "from": "lumen-ui",
+      "to": "pyforge",
+      "weight": 0.8
+    },
+    {
+      "from": "lumen-ui",
+      "to": "aurora-docs",
+      "weight": 0.6
+    },
+    {
+      "from": "nebula-db",
+      "to": "quasar-cli",
+      "weight": 1.0
+    },
+    {
+      "from": "pyforge",
+      "to": "orbit-ml",
+      "weight": 0.9
+    },
+    {
+      "from": "aurora-docs",
+      "to": "mosaic-css",
+      "weight": 0.7
+    },
+    {
+      "from": "quasar-cli",
+      "to": "helix-auth",
+      "weight": 1.0
+    },
+    {
+      "from": "orbit-ml",
+      "to": "kepler-maps",
+      "weight": 0.8
+    },
+    {
+      "from": "helix-auth",
+      "to": "zenith-web",
+      "weight": 1.0
+    },
+    {
+      "from": "zenith-web",
+      "to": "tidal-sched",
+      "weight": 0.7
+    },
+    {
+      "from": "mosaic-css",
+      "to": "prism-lint",
+      "weight": 0.6
+    },
+    {
+      "from": "shadow-registry",
+      "to": "meadow-router",
+      "weight": 0.9
+    },
+    {
+      "from": "jade-logs",
+      "to": "zenith-web",
+      "weight": 0.9
+    },
+    {
+      "from": "jade-logs",
+      "to": "harbor-lang",
+      "weight": 0.8
+    },
+    {
+      "from": "jade-logs",
+      "to": "lumen-ui",
+      "weight": 0.7
+    },
+    {
+      "from": "ion-tests",
+      "to": "harbor-db",
+      "weight": 0.9
+    },
+    {
+      "from": "ion-tests",
+      "to": "birch-lang",
+      "weight": 0.8
+    },
+    {
+      "from": "krypton-ui",
+      "to": "quasar-cli",
+      "weight": 0.8
+    },
+    {
+      "from": "krypton-ui",
+      "to": "aurora-docs",
+      "weight": 0.6
+    },
+    {
+      "from": "pebble-ui",
+      "to": "nectar-orm",
+      "weight": 0.7
+    },
+    {
+      "from": "pebble-ui",
+      "to": "helix-auth",
+      "weight": 0.8
+    },
+    {
+      "from": "meadow-tests",
+      "to": "lumen-ui",
+      "weight": 0.5
+    },
+    {
+      "from": "meadow-tests",
+      "to": "cinder-router",
+      "weight": 0.4
+    },
+    {
+      "from": "cobalt-cli",
+      "to": "tidal-sched",
+      "weight": 1.0
+    },
+    {
+      "from": "harbor-lang",
+      "to": "orbit-ml",
+      "weight": 0.7
+    },
+    {
+      "from": "harbor-lang",
+      "to": "glacier-http",
+      "weight": 0.6
+    },
+    {
+      "from": "birch-lang",
+      "to": "lumen-ui",
+      "weight": 0.7
+    },
+    {
+      "from": "birch-lang",
+      "to": "krypton-ui",
+      "weight": 0.9
+    },
+    {
+      "from": "meadow-router",
+      "to": "pyforge",
+      "weight": 1.0
+    },
+    {
+      "from": "meadow-router",
+      "to": "harbor-lang",
+      "weight": 0.7
+    },
+    {
+      "from": "pebble-logs",
+      "to": "helix-auth",
+      "weight": 0.6
+    },
+    {
+      "from": "pebble-logs",
+      "to": "zephyr-shell",
+      "weight": 1.0
+    },
+    {
+      "from": "pebble-logs",
+      "to": "quasar-cli",
+      "weight": 1.0
+    },
+    {
+      "from": "willow-http",
+      "to": "cinder-router",
+      "weight": 0.9
+    },
+    {
+      "from": "willow-http",
+      "to": "pebble-http",
+      "weight": 0.5
+    },
+    {
+      "from": "willow-http",
+      "to": "drift-ui",
+      "weight": 0.5
+    },
+    {
+      "from": "zephyr-shell",
+      "to": "cobalt-cli",
+      "weight": 0.4
+    },
+    {
+      "from": "glacier-http",
+      "to": "aurora-docs",
+      "weight": 1.0
+    },
+    {
+      "from": "glacier-http",
+      "to": "cobalt-cli",
+      "weight": 0.8
+    },
+    {
+      "from": "granite-logs",
+      "to": "birch-lang",
+      "weight": 0.8
+    },
+    {
+      "from": "harbor-db",
+      "to": "cinder-router",
+      "weight": 0.8
+    },
+    {
+      "from": "harbor-db",
+      "to": "lumen-kit",
+      "weight": 0.5
+    },
+    {
+      "from": "harbor-db",
+      "to": "harbor-http",
+      "weight": 0.8
+    },
+    {
+      "from": "birch-queue",
+      "to": "orbit-ml",
+      "weight": 0.8
+    },
+    {
+      "from": "birch-queue",
+      "to": "meadow-router",
+      "weight": 0.7
+    },
+    {
+      "from": "birch-queue",
+      "to": "quasar-cli",
+      "weight": 0.8
+    },
+    {
+      "from": "nectar-fs",
+      "to": "helix-auth",
+      "weight": 0.6
+    },
+    {
+      "from": "nectar-fs",
+      "to": "drift-ui",
+      "weight": 0.8
+    },
+    {
+      "from": "nectar-fs",
+      "to": "meadow-router",
+      "weight": 0.9
+    },
+    {
+      "from": "cinder-router",
+      "to": "nectar-orm",
+      "weight": 0.7
+    },
+    {
+      "from": "cinder-router",
+      "to": "zephyr-orm",
+      "weight": 0.9
+    },
+    {
+      "from": "cinder-router",
+      "to": "zenith-web",
+      "weight": 0.9
+    },
+    {
+      "from": "haze-shell",
+      "to": "jade-logs",
+      "weight": 1.0
+    },
+    {
+      "from": "haze-shell",
+      "to": "zephyr-orm",
+      "weight": 0.9
+    },
+    {
+      "from": "nectar-orm",
+      "to": "lumen-kit",
+      "weight": 0.8
+    },
+    {
+      "from": "harbor-http",
+      "to": "ion-tests",
+      "weight": 0.7
+    },
+    {
+      "from": "pebble-lang",
+      "to": "nectar-orm",
+      "weight": 0.7
+    },
+    {
+      "from": "pebble-lang",
+      "to": "birch-lang",
+      "weight": 0.7
+    },
+    {
+      "from": "lumen-kit",
+      "to": "kepler-maps",
+      "weight": 0.8
+    },
+    {
+      "from": "lumen-kit",
+      "to": "willow-http",
+      "weight": 0.5
+    },
+    {
+      "from": "pebble-http",
+      "to": "granite-logs",
+      "weight": 0.7
+    },
+    {
+      "from": "pebble-http",
+      "to": "pebble-lang",
+      "weight": 0.7
+    },
+    {
+      "from": "pebble-http",
+      "to": "harbor-db",
+      "weight": 0.8
+    },
+    {
+      "from": "zephyr-orm",
+      "to": "mosaic-css",
+      "weight": 0.6
+    },
+    {
+      "from": "onyx-kit",
+      "to": "zephyr-shell",
+      "weight": 0.4
+    },
+    {
+      "from": "drift-ui",
+      "to": "pebble-ui",
+      "weight": 0.7
+    },
+    {
+      "from": "drift-ui",
+      "to": "glacier-http",
+      "weight": 0.7
+    },
+    {
+      "from": "drift-ui",
+      "to": "ion-tests",
+      "weight": 0.5
+    }
+  ],
+  "records": [
+    {
+      "id": "rec-0001",
+      "issuer": "nebula-db",
+      "subject_handle": "ada-commits",
+      "type": "vouch",
+      "reason": "14 merged PRs over 6 months, all with tests",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/412"
+      ],
+      "timestamp": "2026-09-21T12:00:00Z",
+      "signature": "f28791efb0f1cea9f9a625dfda9910d3684b948944e67c472bca93a0c6855530134667dcf84ac18eb1b39ff5e4708903933683f63733f53f2ff56f09cc08890c",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0002",
+      "issuer": "quasar-cli",
+      "subject_handle": "ada-commits",
+      "type": "vouch",
+      "reason": "Fixed a tricky race in the plugin loader",
+      "evidence_urls": [
+        "https://example.com/quasar-cli/pull/88"
+      ],
+      "timestamp": "2026-10-01T12:00:00Z",
+      "signature": "0220cc799d50347bb56951707a5f835aa9f5105d375e338330941982c922e60c34ada060c0ccca6bef97c98294835668bbc643ce45623c75167940b4efdac907",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0003",
+      "issuer": "shadow-registry",
+      "subject_handle": "ada-commits",
+      "type": "denounce",
+      "reason": "Disagreed with our maintainers in review",
+      "evidence_urls": [
+        "https://example.com/shadow-registry/pull/7"
+      ],
+      "timestamp": "2026-10-22T12:00:00Z",
+      "signature": "edc1214fcfc992f35693c5fcbfdf6df40d9bce74d2598ea4cef62472b92216c5116e9f0ee32a0821657f58982bb6f93c65d4c9b77a6ed05a6027cc2472da0204",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0004",
+      "issuer": "zenith-web",
+      "subject_handle": "ada-commits",
+      "type": "vouch",
+      "reason": "Good docs contributions",
+      "evidence_urls": [
+        "https://example.com/zenith-web/pull/31"
+      ],
+      "timestamp": "2026-10-11T12:00:00Z",
+      "signature": "213c75b739da0e86dd01d580e307dc06ec785819ec4eddb6cd0340056b40fae1639a85e1fbc0e42b72ec18cc1fa2b66e0bfcfdd04ed2fcdfe97743213549cc0a",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0005",
+      "issuer": "pyforge",
+      "subject_handle": "borderline-ben",
+      "type": "vouch",
+      "reason": "Two solid merged PRs",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1201"
+      ],
+      "timestamp": "2026-10-16T12:00:00Z",
+      "signature": "76a79c514134baae4651192112ad8505737933bee006480f3c4ca0bc134e1d74b656cbdd992623d0375609ed03513d5aa70995e13db19c7f651baf8329d6ed02",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0006",
+      "issuer": "aurora-docs",
+      "subject_handle": "solo-denounce-sam",
+      "type": "denounce",
+      "reason": "Rude comment in one issue thread",
+      "evidence_urls": [
+        "https://example.com/aurora-docs/pull/64"
+      ],
+      "timestamp": "2026-10-19T12:00:00Z",
+      "signature": "f507e23285ee8bc3d25b7a333cb1cb99297bbc9e442870eea19d190a5c59c487e280a1f739ec64de474d9c45294070689ef7ff5469470bb8934f997dd8c9e10d",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0007",
+      "issuer": "nebula-db",
+      "subject_handle": "ivan-invalid",
+      "type": "vouch",
+      "reason": "Claims to be a long-time contributor (edited after signing)",
+      "evidence_urls": [],
+      "timestamp": "2026-10-23T12:00:00Z",
+      "signature": "f4092bec0e3221a81f108de7bc6e67d8bcc40dddf6f5fe6a3a48f2bac9def5a070e732906055cd62ba97926516b820375aedcf81db980164040e151c8365fb01",
+      "signature_valid": false
+    },
+    {
+      "id": "rec-0008",
+      "issuer": "aurora-docs",
+      "subject_handle": "contested-carl",
+      "type": "denounce",
+      "reason": "Pushed a broken release script",
+      "evidence_urls": [
+        "https://example.com/aurora-docs/pull/70"
+      ],
+      "timestamp": "2026-10-11T12:00:00Z",
+      "signature": "e973d7c65c3e427cacbc34bb69ecd320016f05b960c63755c2f1a3c3dcd082e1558fa228afe417bc8e2eba89f0f775e9400646a759d45d8be37ba3dd5d9a4800",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0009",
+      "issuer": "orbit-ml",
+      "subject_handle": "contested-carl",
+      "type": "denounce",
+      "reason": "Same broken script submitted here",
+      "evidence_urls": [
+        "https://example.com/orbit-ml/pull/140"
+      ],
+      "timestamp": "2026-10-12T12:00:00Z",
+      "signature": "3be86e26de3137ca73e59accc1e98d5bc85cd684599dfd510813ca47115109c16311de27c146acd800d9e7cc0c4e93c95c846cb19b8a2ff8a486a4c8e8304a03",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0010",
+      "issuer": "nebula-db",
+      "subject_handle": "contested-carl",
+      "type": "vouch",
+      "reason": "Long-time maintainer of our CLI",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/300"
+      ],
+      "timestamp": "2026-09-01T12:00:00Z",
+      "signature": "efece4f8abbd3e800e06bc3082ad38407a31ebe60e4a334b0f5b534a3b4a573c50130667fa1d8b57e71d72ad312eb43693a6640c7d14de1f0a588b324c618701",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0011",
+      "issuer": "nebula-db",
+      "subject_handle": "contested-carl",
+      "type": "contest",
+      "reason": "The script bug was ours; Carl reported and fixed it",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/301"
+      ],
+      "timestamp": "2026-10-13T12:00:00Z",
+      "signature": "f3e7bd6b6b734fce4e7f1be17cab89ced894832e8ac7d5039ca4370c3b0b2fa8cdd71c65e25b4b6d3ffa9b22b8d48621f9164e8af7561886d5100ff0c19e2706",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0012",
+      "issuer": "jade-logs",
+      "subject_handle": "dev-4583",
+      "type": "vouch",
+      "reason": "Helpful reviewer",
+      "evidence_urls": [],
+      "timestamp": "2026-09-15T12:00:00Z",
+      "signature": "ec535c2644dd0ea1b4e1469456812bd4d3b070a53211bb960da9a8eadcca8e6a9bbf7702974a0fc6e3cdb32612ceae9d43d9d5633addc8e4fa24a829f7777605",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0013",
+      "issuer": "jade-logs",
+      "subject_handle": "dev-4047",
+      "type": "vouch",
+      "reason": "Great documentation work",
+      "evidence_urls": [],
+      "timestamp": "2026-08-18T12:00:00Z",
+      "signature": "b873cff12d78b48f1bc8c69f01b3d42e65143f9b4e567a0adc094badee4f75706561d636b24cc946069fff26d8ca00394e8ea7485ba5611ded16d42586cc7c0b",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0014",
+      "issuer": "jade-logs",
+      "subject_handle": "dev-7969",
+      "type": "vouch",
+      "reason": "Great documentation work",
+      "evidence_urls": [],
+      "timestamp": "2026-10-06T12:00:00Z",
+      "signature": "aaf8bb2c3c4d65d4a8f3a18f1229f8b604ea2053a624aafc7e6f7769f9add76a51421469f18eaf8c316ccbbd457e1e29a8bbe7c5d7187627660b0f53690ed309",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0015",
+      "issuer": "ion-tests",
+      "subject_handle": "dev-5995",
+      "type": "vouch",
+      "reason": "Helpful reviewer",
+      "evidence_urls": [],
+      "timestamp": "2026-07-30T12:00:00Z",
+      "signature": "4a28602d73d36c98594205a15892417064befd2e3af187566738de336398c799e86ae7aa025583596871363c41a3d481006b7afe8c8222015173505b333e8604",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0016",
+      "issuer": "ion-tests",
+      "subject_handle": "dev-3862",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-06-30T12:00:00Z",
+      "signature": "772bae26771696bae440f28eb05f96a04363ba144209351e2ad8525d8ec5300f6e2e2cf13e7e93bae2d13924a921b8f3602dc8906fef47839fd19ef3a3d0a10d",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0017",
+      "issuer": "krypton-ui",
+      "subject_handle": "dev-7811",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-06-29T12:00:00Z",
+      "signature": "8a1369c4543f5c5a70a412c6e2117f75c0f4baf3fb455105ca981f0fdd2ef8dd28583636d7a8e92df958b2e578c4ce201715a76e0e4896817cb38abca238be0f",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0018",
+      "issuer": "krypton-ui",
+      "subject_handle": "dev-3899",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-06-16T12:00:00Z",
+      "signature": "bb51b6abd779f8d8bac57e9e4736146d12b9fe4fd22c28539af28a0b534338e14391c80bb98990b184494836e6a3b0841c390a62cd50cc100857fbe53c6b4d04",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0019",
+      "issuer": "pebble-ui",
+      "subject_handle": "dev-8284",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-06-14T12:00:00Z",
+      "signature": "811b7b8e863d4d71f2b473d7eafe020484f80e53aea120bda0548544781912fafdcb9fee33cc513fe4f605ba4ca28bc3d64f79dc8ca310291c71bf9a94d9db03",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0020",
+      "issuer": "pebble-ui",
+      "subject_handle": "dev-9596",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-10-02T12:00:00Z",
+      "signature": "e3d6bbd92036d0bd5d1f3fd1babb42d81419986e81ee8cd8466d65cbd5d8c2ed340a2a40490a61ca1e24d5ecffc7c70976fe05b3a443d006f78bc2faf91f140a",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0021",
+      "issuer": "meadow-tests",
+      "subject_handle": "dev-4790",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-10-03T12:00:00Z",
+      "signature": "06323daf63b7d525585f4768a8449e42f7d29b7808b8d9a5cecb6c2ab47a7df391125b74129e356b9603e066ecee034808df8dfeae23972dcd1ba083398a0807",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0022",
+      "issuer": "cobalt-cli",
+      "subject_handle": "dev-6413",
+      "type": "vouch",
+      "reason": "Great documentation work",
+      "evidence_urls": [],
+      "timestamp": "2026-06-09T12:00:00Z",
+      "signature": "ba8da248bce0e52cd29136d168243882534c6093db6ba4412f218c488404b4118953be6e0fda281c449d9f7adff436376d091e31b3144c7b45232af14601cb0d",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0023",
+      "issuer": "cobalt-cli",
+      "subject_handle": "dev-3989",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-07-28T12:00:00Z",
+      "signature": "009c6fce9cbb182f713d85ea8475b2bdb1f848e537e39d5fefdd0b03474f1ded2c300e6f82ace6544e7edd13ec47e7f4287ba05e562959c11151b9ca42f0a70b",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0024",
+      "issuer": "harbor-lang",
+      "subject_handle": "dev-6762",
+      "type": "vouch",
+      "reason": "Helpful reviewer",
+      "evidence_urls": [],
+      "timestamp": "2026-09-28T12:00:00Z",
+      "signature": "536b256e08a0cc022121cb8d9eff4b32a35979d23c7a630b0a9bab98e8c73568dcd1ea41bce1b354c7afde5206271bbdf3d51a1230a8cd6263f8a0d88dbe4805",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0025",
+      "issuer": "birch-lang",
+      "subject_handle": "dev-5595",
+      "type": "vouch",
+      "reason": "Helpful reviewer",
+      "evidence_urls": [],
+      "timestamp": "2026-06-03T12:00:00Z",
+      "signature": "9fb3b865678c83bbdbf6b80fd974af866dc0c55610e88434c19d43575b26cfbc16094fabb9b53c0665280f3108e2d8a72cdacd963f3d085b29bf0e99608a610b",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0026",
+      "issuer": "birch-lang",
+      "subject_handle": "dev-5828",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-05-08T12:00:00Z",
+      "signature": "7a80fce1adcd96fc7891d575534b6e5edd9148b957e9d803ae178e642f6ae623ccf34b5a027d3734b80e88060615781c4451fac8404c741522947bf75a19300d",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0027",
+      "issuer": "birch-lang",
+      "subject_handle": "dev-3172",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-08-20T12:00:00Z",
+      "signature": "aa4b5d38ec6364355066ba3aa56c9b56ed151df9e4831c06f8e43e27e86a02969dd4068f5c4055fa00a544781426651a1eaeba59f010aff46d968c0dbc21ab0a",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0028",
+      "issuer": "meadow-router",
+      "subject_handle": "dev-8144",
+      "type": "vouch",
+      "reason": "Helpful reviewer",
+      "evidence_urls": [],
+      "timestamp": "2026-09-29T12:00:00Z",
+      "signature": "4c68ad9dfa1f52b9246f2f152d56eaeaf488ad506747a2cd263e7448eed4bc04471d6dd1ef3ee9b461dca365fca6263f8720486cb703baaab11023253f183209",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0029",
+      "issuer": "pebble-logs",
+      "subject_handle": "dev-1990",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-04-25T12:00:00Z",
+      "signature": "a5c29eb295e3160e31044f8c4111d7de913c4921fbe08d5ddc875c858eaa22e0eae60d1deca400eb27e9260c607d73a5c4566188b75d245937c5facb2c931b0b",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0030",
+      "issuer": "pebble-logs",
+      "subject_handle": "dev-4039",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-06-19T12:00:00Z",
+      "signature": "aca8e774502e75f7ea38a4b0bb70be694112e95006abf30790d54985c227a94701c3a789a87818a1ccf7d8b8407aa7fe4bab6863c019449255037c1963174b06",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0031",
+      "issuer": "pebble-logs",
+      "subject_handle": "dev-6137",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-05-29T12:00:00Z",
+      "signature": "02dc2ebb72ab8f24fb37efe925ceccad66cd09f4b3eaffa24b61fddbed248394baa34058408bb839121f7b193b3afedcac109ef702d86ed4e0dc49a7d76ad108",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0032",
+      "issuer": "willow-http",
+      "subject_handle": "dev-5768",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-09-15T12:00:00Z",
+      "signature": "1b2ec848526e23d6a5adf55df2a60038ea39edd050d55ff80d1bfd46464772234b5350e312f6998554c4c3bc151c61c711fce02907b7fecd56939fdb0931cc05",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0033",
+      "issuer": "zephyr-shell",
+      "subject_handle": "dev-5196",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-10-23T12:00:00Z",
+      "signature": "ecc61c8423f9f950046d50ebd7959e6a0e2e81d452b0630e5a5c0a7ce9791c146f1277e1b4ebcd18c7321f4d916104b0e0e3820998cb03405e138adf2c18a707",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0034",
+      "issuer": "zephyr-shell",
+      "subject_handle": "dev-7744",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-07-12T12:00:00Z",
+      "signature": "2bf2660f4c8dd2633487bf37427cc980f5a7535c7ad9dc56a3f289f512f36f6315e1578a9caaa80d7de66a30aca870f164cb798a38857fd6b7953f4bd988c80a",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0035",
+      "issuer": "glacier-http",
+      "subject_handle": "dev-1938",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-08-27T12:00:00Z",
+      "signature": "b5ab8df978e6bc6e3e36bb12ef1abb90e834b774845ad14b3fce6dadd860838a380be34d63214d29fdd7a4a0b2b98a0f90332c328bd0b29c488f955a395a6f08",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0036",
+      "issuer": "granite-logs",
+      "subject_handle": "dev-6077",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-10-02T12:00:00Z",
+      "signature": "852e5132730fbffe4e2d31e1b8ce17057f84befb94c3d3b34ca086b7dbc87b9f45f74e91466fd2b2a1e1fe440e84190c1fb928b838d4febd9aa296d0628e090a",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0037",
+      "issuer": "harbor-db",
+      "subject_handle": "dev-6739",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-07-02T12:00:00Z",
+      "signature": "619144ff82812affe515276cab92cb72e024d8b59bf7688c84217e1048369c58ca3d55e54129f3e4410b6755caaf28d81f4331d2e39b271e308ae0ec5871190e",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0038",
+      "issuer": "harbor-db",
+      "subject_handle": "dev-1622",
+      "type": "vouch",
+      "reason": "Great documentation work",
+      "evidence_urls": [],
+      "timestamp": "2026-08-07T12:00:00Z",
+      "signature": "39c9217d26a1e5ba1e0fbe2f859fb791963e09899056a96673099deee0ea4630e0d945ab2eab16224d6da9fbd68f9ded16b4bbd92bdc537ad91dd5bdabbda606",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0039",
+      "issuer": "harbor-db",
+      "subject_handle": "dev-4532",
+      "type": "vouch",
+      "reason": "Great documentation work",
+      "evidence_urls": [],
+      "timestamp": "2026-07-09T12:00:00Z",
+      "signature": "dd0d12b80886f76968c097e41b8dc60af725a873157afaede2fc43d43285003a7b165c941046f1b14a5798cfed068da61897afee852324130242404ba4073100",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0040",
+      "issuer": "birch-queue",
+      "subject_handle": "dev-2956",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-06-20T12:00:00Z",
+      "signature": "885b3cebaa5acc4102ad174a98c08c899d973751e03503aa0aa30196d67f5720d26e5ca07d574b6758d069496716c123be362fe46d067c91f8b4e23d50d4be02",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0041",
+      "issuer": "birch-queue",
+      "subject_handle": "dev-5121",
+      "type": "vouch",
+      "reason": "Great documentation work",
+      "evidence_urls": [],
+      "timestamp": "2026-08-13T12:00:00Z",
+      "signature": "dd856acf4048a5a82af995b40afba71a4a90856c346af54d3eaf63610ae0cf4982fe1432f0e9a0627482ecc9b9703b38c5016d4d35cd241c3f2d5c515a95d606",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0042",
+      "issuer": "birch-queue",
+      "subject_handle": "dev-6837",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-04-21T12:00:00Z",
+      "signature": "7856f3432f7f28ba96a591963de04c91d4ccfe191ce7d402d56591faa3e965346e4ee1581fdebb170c3fc6e2548be6d4f374fc93705dd5bcc6de9596cbbca60c",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0043",
+      "issuer": "nectar-fs",
+      "subject_handle": "dev-8155",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-08-15T12:00:00Z",
+      "signature": "5e64431a1d1d9971589a502a5ccd98d64cbd3954a729ccfa0909d80ae8a99810f7857f5ce39678bba8e1770f67f30ac7049975c59b253ba5d93c795bcac87309",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0044",
+      "issuer": "nectar-fs",
+      "subject_handle": "dev-6415",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-04-23T12:00:00Z",
+      "signature": "2f46bdcc603623a45314674e122eec77fd2a07781bb3676723ee39dff25d37fccb99fdb9c1a935267018c711d4993483b6028d17df68f50fdf2834a8adfb9608",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0045",
+      "issuer": "nectar-fs",
+      "subject_handle": "dev-3004",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-07-12T12:00:00Z",
+      "signature": "3e2a619454f1a24b6c93d00f483163a8f8e2a04719d42050b4ffb01e8c33cc2c8e7313e0c6e4c16c030dd4b8aca4e8163b7a8475d2f8f1c56c15e8842e13ee0c",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0046",
+      "issuer": "cinder-router",
+      "subject_handle": "dev-1332",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-09-06T12:00:00Z",
+      "signature": "b91f56264ed3f7fee04923de05a7869c58c5f5c2270c18c02d7f8cf8703cdee454176e3bedd6a3fbdfaa06a2f5053a74441484e4b80368cc7505953fc1282e04",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0047",
+      "issuer": "cinder-router",
+      "subject_handle": "dev-1919",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-09-15T12:00:00Z",
+      "signature": "6ef76a38eccb8d08a7645e16b9c6e21f44b9cfc27d071684bcf8883523b7ee9da78a31a00c7f5a5ad390d7e31a07b17f88e5159e46c40344789ef3825f03c30f",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0048",
+      "issuer": "haze-shell",
+      "subject_handle": "dev-3010",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-10-17T12:00:00Z",
+      "signature": "0f46bbd40f8dc20364e9e9ea0836b45e775634b7bc9cfa6d88c8286c458d936c626b14e1be4749ea9c96a94d2f6b14856d3ac3d8e464b131a96fe1f09674c80b",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0049",
+      "issuer": "haze-shell",
+      "subject_handle": "dev-3059",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-05-27T12:00:00Z",
+      "signature": "82726cdde18ba52d42868878333a92bdaf7c772db9c343f3e194788c9bbce70089bab1f1c597401844fd18526a53d9aafee95e19473235e4e5ad07750126cb02",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0050",
+      "issuer": "haze-shell",
+      "subject_handle": "dev-5951",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-07-10T12:00:00Z",
+      "signature": "fe5cddf650a5b2b7787dd0c928f9f4d89fa6a133b9c0985710251e96c137fa54cfa371af320fd00af207f32d42f750a9c3b2be73faf0b8f95eb48a91705b7200",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0051",
+      "issuer": "nectar-orm",
+      "subject_handle": "dev-3069",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-07-12T12:00:00Z",
+      "signature": "23e53670654d57a4deaec668bbfcae3420fec157d6ccd0ec9e82ffe971eefd474593057df769de56996c4729e0597386acf4c8753091c185e615d9cc9bb68108",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0052",
+      "issuer": "nectar-orm",
+      "subject_handle": "dev-7293",
+      "type": "vouch",
+      "reason": "Great documentation work",
+      "evidence_urls": [],
+      "timestamp": "2026-08-26T12:00:00Z",
+      "signature": "04b3ab4f34ffb11c9841cdaf553ad3ab2896274b8c390e2f0e214c1cca01880fe5e2bcfbf64d12adf5e56ee580feea7d000c54ead146ee3cfedd8181193fe902",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0053",
+      "issuer": "nectar-orm",
+      "subject_handle": "dev-7897",
+      "type": "vouch",
+      "reason": "Helpful reviewer",
+      "evidence_urls": [],
+      "timestamp": "2026-09-24T12:00:00Z",
+      "signature": "03c0f95c2099fe618c421652f85e28638c8bce6daeaaf6edf5977cff2a5814f2b39480a7f115f629180ad31b4e78a353798b47a3a4e82aea15a409d739649b07",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0054",
+      "issuer": "harbor-http",
+      "subject_handle": "dev-9895",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-05-10T12:00:00Z",
+      "signature": "c7bb34f780e44e6b1e304785417d9bd93b42ae40b4c39ee7491b97f1bca70876cf28bcaa27f414d4bb90da7259c5341f0ee0911a8b0610b09dbab73a38efd50f",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0055",
+      "issuer": "pebble-lang",
+      "subject_handle": "dev-9869",
+      "type": "vouch",
+      "reason": "Great documentation work",
+      "evidence_urls": [],
+      "timestamp": "2026-08-22T12:00:00Z",
+      "signature": "3c9b947369cc247fa1300323c095b70eaefd534776b6d957a70ecc4fbb0b452def5cbb9e062e5f4ce07f5536de6bdfcb2563e8346054ebc6b8656d9959280c0b",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0056",
+      "issuer": "pebble-lang",
+      "subject_handle": "dev-3419",
+      "type": "vouch",
+      "reason": "Helpful reviewer",
+      "evidence_urls": [],
+      "timestamp": "2026-10-21T12:00:00Z",
+      "signature": "42a5b39f97b9e876af05a6a33be9f1132613ec9ed329846039f0a41623f1e9ef12a76698bbcf2f3a90c2bd1534740a20ec5de34a71fa7662128f0e878e4a520f",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0057",
+      "issuer": "pebble-lang",
+      "subject_handle": "dev-1271",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-06-10T12:00:00Z",
+      "signature": "a6dc61df3bd83326f22e3fd418320edfa9807c69aec69e3647270741cf94c3c8d82735016d27c46dfdc3533076f6dfdff86fd190ff543bd44d9f19f2fee37407",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0058",
+      "issuer": "lumen-kit",
+      "subject_handle": "dev-7846",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-08-07T12:00:00Z",
+      "signature": "015bcd316d0f5926b3764383d505b807756709820df8d31ec5f22c57f84dcc2561e0ec84f903454e3fbdc9e49548a69a8e5bff5debba21fd66fd04b60e57c405",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0059",
+      "issuer": "lumen-kit",
+      "subject_handle": "dev-3271",
+      "type": "vouch",
+      "reason": "Several merged PRs with tests",
+      "evidence_urls": [],
+      "timestamp": "2026-09-11T12:00:00Z",
+      "signature": "2a86470a2a68699f779bd6235549be1265c3520026ddf8fdc623a3ea6c40d2dde031032c0bba89b4c5e1e2257b041eae6389045e087109eff2f487394988f30a",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0060",
+      "issuer": "pebble-http",
+      "subject_handle": "dev-1622",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-07-31T12:00:00Z",
+      "signature": "2ee0a690f9b2db85f80e2796f1a46e976fdf3e933debdca9fda191e7caad35c228d26ffc8f827ef0958a80d9078b64051730eee22de14b9dbc2b0c7bc6f63b0d",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0061",
+      "issuer": "pebble-http",
+      "subject_handle": "dev-9527",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-10-12T12:00:00Z",
+      "signature": "e274bb01305cb5a4669e9be59dd502140430c57ca59ad067af2e10b6d5ded9e9a6541205a1356c16686d70c68a6f2340c68a9a53bc35a96f88cf7eb94ef54b08",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0062",
+      "issuer": "pebble-http",
+      "subject_handle": "dev-1186",
+      "type": "vouch",
+      "reason": "Helpful reviewer",
+      "evidence_urls": [],
+      "timestamp": "2026-06-28T12:00:00Z",
+      "signature": "2061bd4be099d740e79942fb311c580da73c83c6595fded0f416469f075e36fe4f76c6133f205c7493946ef375dc0dfefadd614968e0fdd76232cdf9cf5cb90e",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0063",
+      "issuer": "zephyr-orm",
+      "subject_handle": "dev-4634",
+      "type": "vouch",
+      "reason": "Helpful reviewer",
+      "evidence_urls": [],
+      "timestamp": "2026-04-19T12:00:00Z",
+      "signature": "38d9c68139a0d307ba76dbb463153e54c347469f49544e09ab2842d93fc3c5c9b41fd5202d7d3839bd974070e12cb7f31dc08ecefd1e396cae51d7b816ac8a03",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0064",
+      "issuer": "onyx-kit",
+      "subject_handle": "dev-6897",
+      "type": "vouch",
+      "reason": "Helpful reviewer",
+      "evidence_urls": [],
+      "timestamp": "2026-06-05T12:00:00Z",
+      "signature": "96f120deaffa98082c267caa23a3b3204f57b04d5ef6fa0f2e42b218796a1f760bd2b346371ae80a29e297e87df89e365b63cc110e9c40febeeafe06757a600a",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0065",
+      "issuer": "onyx-kit",
+      "subject_handle": "dev-5518",
+      "type": "vouch",
+      "reason": "Fixed a memory leak",
+      "evidence_urls": [],
+      "timestamp": "2026-09-05T12:00:00Z",
+      "signature": "4af32c6739e0639e7543fba891883f1358df1c6de25b8ccabfcc6892358cd1c45f32496ac70a3d3662765354aeb20f05e33d7612600cd7696749c83aac71a106",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0066",
+      "issuer": "drift-ui",
+      "subject_handle": "dev-6883",
+      "type": "vouch",
+      "reason": "Great documentation work",
+      "evidence_urls": [],
+      "timestamp": "2026-05-16T12:00:00Z",
+      "signature": "d01afa05209bdd13ba3d509cfc4cf0f198434e0e12b47a0a5a38e756fc98ce6a136e200275537f5972460d6e21f1899553d628fee4e5d04d5428e96dc3dacf06",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0067",
+      "issuer": "drift-ui",
+      "subject_handle": "dev-8496",
+      "type": "vouch",
+      "reason": "Great documentation work",
+      "evidence_urls": [],
+      "timestamp": "2026-05-07T12:00:00Z",
+      "signature": "7209a3ecef1bfe9969c1674feb1cca411ddeef5a03f9e95a2d50c26a888c82df7dd46bd7357e423cb04a539bf7c163a0c7b75ecd8fb48bfef85f14404b8f2f0c",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0068",
+      "issuer": "nebula-db",
+      "subject_handle": "spam-bot-7731",
+      "type": "denounce",
+      "reason": "Templated README typo PR, part of a burst",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/962"
+      ],
+      "timestamp": "2026-10-31T11:20:00Z",
+      "signature": "b39d85de9961d42aec2ca2c34d0314530db080b410d50418b839f25f9c9050b7c5a752bf7034934903165a98b5e57508ed7ffa32c89e7c4181bc42ca57f8ea0d",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0069",
+      "issuer": "pyforge",
+      "subject_handle": "spam-bot-7731",
+      "type": "denounce",
+      "reason": "Same templated PR opened across many projects",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1317"
+      ],
+      "timestamp": "2026-10-31T11:40:00Z",
+      "signature": "e7d516b7f3314af3b5083060dc4b4a49473099ac522a37b1a413166395489862835ba4d295fd7900b5c995279108b10a7867cf772c03e0b47e1286159e98d408",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0070",
+      "issuer": "nebula-db",
+      "subject_handle": "pr-farm-3088",
+      "type": "denounce",
+      "reason": "Templated README typo PR, part of a burst",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/902"
+      ],
+      "timestamp": "2026-10-31T11:20:00Z",
+      "signature": "4e1d14dd24df58e4178bb9404cbf9fa70aec8ba8c04400613ec431874f9a245a5c6bbc1df18265ebb85fb1d0b71e84c2bf051a95225b218b075fc60c4d1dc90d",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0071",
+      "issuer": "pyforge",
+      "subject_handle": "pr-farm-3088",
+      "type": "denounce",
+      "reason": "Same templated PR opened across many projects",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1361"
+      ],
+      "timestamp": "2026-10-31T11:40:00Z",
+      "signature": "c7f3b01dbe5f5ba547c642b1270838ac1f005a03080a45ba71fda8b2e9e8afea5dd9aeb589aa5bccaa0ddbda971ad99e6d0e6c4cbe58f76784874aac7473be05",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0072",
+      "issuer": "nebula-db",
+      "subject_handle": "readme-rex-6736",
+      "type": "denounce",
+      "reason": "Templated README typo PR, part of a burst",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/946"
+      ],
+      "timestamp": "2026-10-31T11:20:00Z",
+      "signature": "4b8ea833f48994dadf02eaa78dd7c71e4d40dfaeda1dd3500dc8372c2fc7236ffb17f99a3a4bb5f24bea0e82d35bd77d26426f539509aded3a5347c0e085790e",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0073",
+      "issuer": "pyforge",
+      "subject_handle": "readme-rex-6736",
+      "type": "denounce",
+      "reason": "Same templated PR opened across many projects",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1332"
+      ],
+      "timestamp": "2026-10-31T11:40:00Z",
+      "signature": "2659eec0729975a2938ce727163c24d8904a78c8a27c93c131b38cae5043b5b84b6b79dcd31a5d4d2a5f4fe2494b10681995b349f8b989017b37f313d4b19d09",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0074",
+      "issuer": "nebula-db",
+      "subject_handle": "readme-rex-7953",
+      "type": "denounce",
+      "reason": "Templated README typo PR, part of a burst",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/996"
+      ],
+      "timestamp": "2026-10-31T11:20:00Z",
+      "signature": "9eab9108cb9eb6ca07c518e80f3dae0bd4b0288a309f0fec9548020214d480d15fd67453d9d4f6bace4f2b9321de34726ea62bb08ace8c22083082c6685bee00",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0075",
+      "issuer": "pyforge",
+      "subject_handle": "readme-rex-7953",
+      "type": "denounce",
+      "reason": "Same templated PR opened across many projects",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1359"
+      ],
+      "timestamp": "2026-10-31T11:40:00Z",
+      "signature": "df447e8ea1a6646a7b32f2eeb0f6a04f50dc11e9a490f26c1a18dddad003859a40d0e33832072c717551baef6c8b197354a4a24495324a804cdca794f2a60a0c",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0076",
+      "issuer": "nebula-db",
+      "subject_handle": "quickfix-5817",
+      "type": "denounce",
+      "reason": "Templated README typo PR, part of a burst",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/925"
+      ],
+      "timestamp": "2026-10-31T11:20:00Z",
+      "signature": "af0b4521ef846180280351a5248490a46962e6dd187a81c2761f652629a52aea84275f51da5059618347ece20632796520e83997e36f904298e31f23a6717306",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0077",
+      "issuer": "pyforge",
+      "subject_handle": "quickfix-5817",
+      "type": "denounce",
+      "reason": "Same templated PR opened across many projects",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1347"
+      ],
+      "timestamp": "2026-10-31T11:40:00Z",
+      "signature": "49d0bb994c2494a13f1e18e98f911c8e3dc69ed791460be3cb4fc8bc207017f7009940b99a00a9812cf00ea1f19c58f110e293d08a215d7bfb0d72d550c5d70f",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0078",
+      "issuer": "nebula-db",
+      "subject_handle": "gh-user-624",
+      "type": "denounce",
+      "reason": "Templated README typo PR, part of a burst",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/935"
+      ],
+      "timestamp": "2026-10-31T11:20:00Z",
+      "signature": "d31533f7df948024e8b038b3c1e1c195f5dd4095635d791a33caadc9ee8a6441b6072a2aa731b4f2755daec1bf5b310ac4748f5d70ff88e55851ba2cc6e3da00",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0079",
+      "issuer": "pyforge",
+      "subject_handle": "gh-user-624",
+      "type": "denounce",
+      "reason": "Same templated PR opened across many projects",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1365"
+      ],
+      "timestamp": "2026-10-31T11:40:00Z",
+      "signature": "a66e24fe21a7f9dc4737094b0778aa61fd1dd3065bac8c62d5f1ec20729c0fbc75fde394eb2cbb2190b0e06a80f3a2c74bac8e773759a534e797e5cbc9c70001",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0080",
+      "issuer": "nebula-db",
+      "subject_handle": "readme-rex-1389",
+      "type": "denounce",
+      "reason": "Templated README typo PR, part of a burst",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/993"
+      ],
+      "timestamp": "2026-10-31T11:20:00Z",
+      "signature": "4a9c0d84b57a4eaebe7b1e6760c748d2fe68df10102f101dacbf933b85b978f2f7202e19b273abd47e6a167a6655b010924fbb8ab0eea884a12b8cafcb9e740e",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0081",
+      "issuer": "pyforge",
+      "subject_handle": "readme-rex-1389",
+      "type": "denounce",
+      "reason": "Same templated PR opened across many projects",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1351"
+      ],
+      "timestamp": "2026-10-31T11:40:00Z",
+      "signature": "0a6b4f9943c79050a53983ab94b5c41ba2ac4d3582219857a4e91c03ed66abdee32914b24fac309d60550c75fb4c77004d892474897db22b223c934e67292602",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0082",
+      "issuer": "nebula-db",
+      "subject_handle": "pr-farm-6117",
+      "type": "denounce",
+      "reason": "Templated README typo PR, part of a burst",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/938"
+      ],
+      "timestamp": "2026-10-31T11:20:00Z",
+      "signature": "ecd91737a88431ea1170bf7da51e83b113294e4446ac0d6052dabb4d0eb4d5b271e3b9a8e9ee854adb5ec326b7cf6f0665c5c5c476c22ce982a4cc302fb4540e",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0083",
+      "issuer": "pyforge",
+      "subject_handle": "pr-farm-6117",
+      "type": "denounce",
+      "reason": "Same templated PR opened across many projects",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1327"
+      ],
+      "timestamp": "2026-10-31T11:40:00Z",
+      "signature": "db93a7f654858e4200d66017f4ada0088655050d3bb9ab900470b7f7e794e07d6c4762eaba8de26c5a85a0dcc654d8d60431f61e07fe47ae94dda6f6ae512900",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0084",
+      "issuer": "nebula-db",
+      "subject_handle": "pr-farm-2270",
+      "type": "denounce",
+      "reason": "Templated README typo PR, part of a burst",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/974"
+      ],
+      "timestamp": "2026-10-31T11:20:00Z",
+      "signature": "0cae763d5adee30d2da17b446a27752cc54e4734ea7b97476c5b6912216b364dd67fd1c1b165cde09cc407907bb100d6baf33b837d2816aafafb5aa724b0ba0b",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0085",
+      "issuer": "pyforge",
+      "subject_handle": "pr-farm-2270",
+      "type": "denounce",
+      "reason": "Same templated PR opened across many projects",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1306"
+      ],
+      "timestamp": "2026-10-31T11:40:00Z",
+      "signature": "8317e6f6a3b366fec541f26716497e3751014e849767d04e2db58b5fb45b6d4fab3e3d0001e1366349b384ef4b181aca43d7d6060013f64885e4a8748b401b0f",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0086",
+      "issuer": "nebula-db",
+      "subject_handle": "typo-hunter-310",
+      "type": "denounce",
+      "reason": "Templated README typo PR, part of a burst",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/952"
+      ],
+      "timestamp": "2026-10-31T11:20:00Z",
+      "signature": "89705602db9582c999ea37b2d05d76d81aef47c7e4a2710f5ce541099159a5cc768bc4ae889fed21b9771d7b7c92dd8d77cabd1d8197f2f4277fbf3df63eb808",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0087",
+      "issuer": "pyforge",
+      "subject_handle": "typo-hunter-310",
+      "type": "denounce",
+      "reason": "Same templated PR opened across many projects",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1308"
+      ],
+      "timestamp": "2026-10-31T11:40:00Z",
+      "signature": "e14315e2f5467b1a78b0d3895f2ee6ff573ad32c7f452a8bf4a6e23c00d67ee11b6509ebda0570c9ff28040be39fdd2fe1d30d878266ded088c28b7b4faedb01",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0088",
+      "issuer": "nebula-db",
+      "subject_handle": "docbot-9551",
+      "type": "denounce",
+      "reason": "Templated README typo PR, part of a burst",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/992"
+      ],
+      "timestamp": "2026-10-31T11:20:00Z",
+      "signature": "c32e067060a601666b398511145fee3f9dafee8caf240d370a59e94530b6f25a2d99e14ebd7af29edae6a7254257e40487fc12d3cd76afc82a51f33b1d8bfb06",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0089",
+      "issuer": "pyforge",
+      "subject_handle": "docbot-9551",
+      "type": "denounce",
+      "reason": "Same templated PR opened across many projects",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1392"
+      ],
+      "timestamp": "2026-10-31T11:40:00Z",
+      "signature": "233464c4fa5e5e9a5f858b7cfac04d79d9a7484964695d27f74379910f072d03fb96aa6a6581939f902e0a6b0e3eb8477fe9e30324e92b8e44f13ef6e6045903",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0090",
+      "issuer": "nebula-db",
+      "subject_handle": "pr-farm-9391",
+      "type": "denounce",
+      "reason": "Templated README typo PR, part of a burst",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/982"
+      ],
+      "timestamp": "2026-10-31T11:20:00Z",
+      "signature": "0a4aada9a382cc020d4f56e9b1ba0b8a43f9191cf47e60fd45edffb1f981fc422c7cd1f387cd6ec0dd38e58661b0e10780220b15c54b3bf2409bd0e6fae77402",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0091",
+      "issuer": "pyforge",
+      "subject_handle": "pr-farm-9391",
+      "type": "denounce",
+      "reason": "Same templated PR opened across many projects",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1384"
+      ],
+      "timestamp": "2026-10-31T11:40:00Z",
+      "signature": "cab2e23a80048b5a6412ea376c522d9fc214bf59d92f52d1f47e939c576f9bef40c31b16cf69377162b617209f21d7aeb058a9b68f59657714c976f63f787504",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0092",
+      "issuer": "nebula-db",
+      "subject_handle": "quickfix-6453",
+      "type": "denounce",
+      "reason": "Templated README typo PR, part of a burst",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/965"
+      ],
+      "timestamp": "2026-10-31T11:20:00Z",
+      "signature": "4d695697ca4741166841697660c3e3e289a3f6fcb39f49e351c0d0597bc7b71628bcfadf5748fc70ad7559708ed907920f78ab0cdeddf44fb3508af080a7b30b",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0093",
+      "issuer": "pyforge",
+      "subject_handle": "quickfix-6453",
+      "type": "denounce",
+      "reason": "Same templated PR opened across many projects",
+      "evidence_urls": [
+        "https://example.com/pyforge/pull/1387"
+      ],
+      "timestamp": "2026-10-31T11:40:00Z",
+      "signature": "666b0df2626c31af3bf4ad107559e2ab961e8bca4961618f6e3ed0cad8b3023e825ad172131e0e762e4d641281c0f213bf26076fb135df5acea1e5c0d726440b",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-0094",
+      "issuer": "orbit-ml",
+      "subject_handle": "spam-bot-7731",
+      "type": "denounce",
+      "reason": "Bot-like burst of identical PRs",
+      "evidence_urls": [
+        "https://example.com/orbit-ml/pull/77"
+      ],
+      "timestamp": "2026-10-31T11:50:00Z",
+      "signature": "a40ebdc88a9faf01db9e08643e0cb9d645d8412bf652ffd169819bf815622598c17784b9876d23683c19e90954a319a1eeba3477a2f4368e36cb3f37253ca101",
+      "signature_valid": true
+    },
+    {
+      "id": "rec-example-1",
+      "issuer": "nebula-db",
+      "subject_handle": "newbie-nora",
+      "type": "vouch",
+      "reason": "First PR merged with tests",
+      "evidence_urls": [
+        "https://example.com/nebula-db/pull/1001"
+      ],
+      "timestamp": "2026-11-01T09:00:00Z",
+      "signature": "8c960e72d4c03c3094e9cc6817a6f716e10ad637dfc03b2b0c6195f95c504197f12a1048803f7d184a3eb5717965ae031299aa662c8dc84492d39e037533ee0e",
+      "signature_valid": true
+    }
+  ],
+  "pr_events": [
+    {
+      "id": "pr-0049",
+      "project_id": "lumen-ui",
+      "handle": "solo-denounce-sam",
+      "account_age_days": 1118,
+      "title": "Support YAML config files",
+      "body_excerpt": "Routine improvement.",
+      "diff_text": "--- a/src/session_sprint.py\n+++ b/src/session_sprint.py\n@@ -48,6 +10,9 @@\n+def sprint_schema_480(decoder, token=None):\n+    \"\"\"Support YAML config files: promise future worker ledger timezone channel router barrier.\"\"\"\n+    barrier = gradient.allocator(19)\n+    return profiler  # semaphore payload migration font invoice thread\n # worker parser barrier matrix stream allocator font backlog kernel benchmark\n",
+      "created_at": "2026-10-30T07:03:45Z"
+    },
+    {
+      "id": "pr-0047",
+      "project_id": "nebula-db",
+      "handle": "ada-commits",
+      "account_age_days": 1839,
+      "title": "Translate onboarding guide to Hindi",
+      "body_excerpt": "Routine improvement.",
+      "diff_text": "--- a/src/semaphore_schema.py\n+++ b/src/semaphore_schema.py\n@@ -192,6 +44,9 @@\n+def timezone_session_935(handler, schema=None):\n+    \"\"\"Translate onboarding guide to Hindi: buffer layout iterator backlog semaphore iterator invoice thread.\"\"\"\n+    texture = invoice.benchmark(4)\n+    return decoder  # allocator palette locale backlog buffer render\n # sprint sprint gradient index cookie stream schema sprint token session\n",
+      "created_at": "2026-10-30T22:59:51Z"
+    },
+    {
+      "id": "pr-0048",
+      "project_id": "lumen-ui",
+      "handle": "borderline-ben",
+      "account_age_days": 1565,
+      "title": "Translate onboarding guide to Hindi",
+      "body_excerpt": "Routine improvement.",
+      "diff_text": "--- a/src/sprint_buffer.py\n+++ b/src/sprint_buffer.py\n@@ -280,6 +86,9 @@\n+def gradient_handler_74(invoice, backlog=None):\n+    \"\"\"Translate onboarding guide to Hindi: timezone account calendar router font barrier index calendar.\"\"\"\n+    decoder = widget.calendar(50)\n+    return palette  # stream router buffer parser kernel matrix\n # invoice stream texture profiler ticket migration schema router schema invoice\n",
+      "created_at": "2026-10-30T23:13:40Z"
+    },
+    {
+      "id": "pr-0050",
+      "project_id": "quasar-cli",
+      "handle": "contested-carl",
+      "account_age_days": 1029,
+      "title": "Handle empty input in CLI",
+      "body_excerpt": "Routine improvement.",
+      "diff_text": "--- a/src/stream_promise.py\n+++ b/src/stream_promise.py\n@@ -130,6 +122,9 @@\n+def profiler_account_22(thread, matrix=None):\n+    \"\"\"Handle empty input in CLI: router header wallet profiler ledger profiler ledger migration.\"\"\"\n+    header = promise.calendar(1)\n+    return cache  # encoder promise migration iterator palette account\n # socket router benchmark gradient future schema wallet locale benchmark gradient\n",
+      "created_at": "2026-10-31T03:01:19Z"
+    },
+    {
+      "id": "pr-0001",
+      "project_id": "harbor-db",
+      "handle": "spam-bot-7731",
+      "account_age_days": 3,
+      "title": "fix typo in readme",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # harbor-db\n-Teh fast and lightweight library for modern developers.\n+The fast and lightweight library for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:00:48Z"
+    },
+    {
+      "id": "pr-0002",
+      "project_id": "birch-lang",
+      "handle": "pr-farm-3088",
+      "account_age_days": 3,
+      "title": "Fix typo in README.md",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # birch-lang\n-Teh quick and lightweight library for modern developers.\n+The quick and lightweight library for modern developers.\n It is simple to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:03:53Z"
+    },
+    {
+      "id": "pr-0003",
+      "project_id": "cinder-router",
+      "handle": "readme-rex-6736",
+      "account_age_days": 3,
+      "title": "docs: fix typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # cinder-router\n-Teh fast and lightweight package for modern developers.\n+The fast and lightweight package for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:06:14Z"
+    },
+    {
+      "id": "pr-0004",
+      "project_id": "meadow-tests",
+      "handle": "readme-rex-7953",
+      "account_age_days": 3,
+      "title": "Fix typo in README.md",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # meadow-tests\n-Teh quick and lightweight toolkit for modern developers.\n+The quick and lightweight toolkit for modern developers.\n It is easy to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:09:03Z"
+    },
+    {
+      "id": "pr-0005",
+      "project_id": "drift-ui",
+      "handle": "quickfix-5817",
+      "account_age_days": 3,
+      "title": "Fix typo in README.md",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # drift-ui\n-Teh quick and lightweight toolkit for modern developers.\n+The quick and lightweight toolkit for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:12:53Z"
+    },
+    {
+      "id": "pr-0006",
+      "project_id": "orbit-ml",
+      "handle": "gh-user-624",
+      "account_age_days": 3,
+      "title": "Fix typo in README.md",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # orbit-ml\n-Teh quick and lightweight toolkit for modern developers.\n+The quick and lightweight toolkit for modern developers.\n It is simple to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:14:55Z"
+    },
+    {
+      "id": "pr-0007",
+      "project_id": "krypton-ui",
+      "handle": "readme-rex-1389",
+      "account_age_days": 3,
+      "title": "docs: fix typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # krypton-ui\n-Teh fast and lightweight toolkit for modern developers.\n+The fast and lightweight toolkit for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:17:32Z"
+    },
+    {
+      "id": "pr-0008",
+      "project_id": "ion-tests",
+      "handle": "pr-farm-6117",
+      "account_age_days": 3,
+      "title": "docs: fix typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # ion-tests\n-Teh quick and lightweight library for modern developers.\n+The quick and lightweight library for modern developers.\n It is easy to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:21:29Z"
+    },
+    {
+      "id": "pr-0046",
+      "project_id": "cinder-router",
+      "handle": "newcomer-krypton",
+      "account_age_days": 9,
+      "title": "Add example for custom themes",
+      "body_excerpt": "First contribution: add example for custom themes.",
+      "diff_text": "--- a/src/palette_mutex.py\n+++ b/src/palette_mutex.py\n@@ -267,6 +161,9 @@\n+def worker_cookie_247(session, channel=None):\n+    \"\"\"Add example for custom themes: shader promise account cache decoder wallet timezone schema.\"\"\"\n+    timezone = thread.ledger(47)\n+    return semaphore  # layout account token invoice schema palette\n # vector semaphore thread semaphore socket semaphore kernel vector parser router\n",
+      "created_at": "2026-10-31T09:23:35Z"
+    },
+    {
+      "id": "pr-0009",
+      "project_id": "aurora-docs",
+      "handle": "pr-farm-2270",
+      "account_age_days": 3,
+      "title": "Fix typo in README.md",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # aurora-docs\n-Teh quick and lightweight toolkit for modern developers.\n+The quick and lightweight toolkit for modern developers.\n It is simple to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:24:19Z"
+    },
+    {
+      "id": "pr-0010",
+      "project_id": "lumen-ui",
+      "handle": "typo-hunter-310",
+      "account_age_days": 3,
+      "title": "fix typo in readme",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # lumen-ui\n-Teh fast and lightweight toolkit for modern developers.\n+The fast and lightweight toolkit for modern developers.\n It is simple to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:27:10Z"
+    },
+    {
+      "id": "pr-0011",
+      "project_id": "nectar-fs",
+      "handle": "docbot-9551",
+      "account_age_days": 3,
+      "title": "Fixed a typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # nectar-fs\n-Teh quick and lightweight package for modern developers.\n+The quick and lightweight package for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:29:42Z"
+    },
+    {
+      "id": "pr-0012",
+      "project_id": "pebble-ui",
+      "handle": "pr-farm-9391",
+      "account_age_days": 3,
+      "title": "Update README.md (typo fix)",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # pebble-ui\n-Teh quick and lightweight library for modern developers.\n+The quick and lightweight library for modern developers.\n It is easy to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:33:07Z"
+    },
+    {
+      "id": "pr-0013",
+      "project_id": "quasar-cli",
+      "handle": "quickfix-6453",
+      "account_age_days": 3,
+      "title": "fix typo in readme",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # quasar-cli\n-Teh speedy and lightweight toolkit for modern developers.\n+The speedy and lightweight toolkit for modern developers.\n It is simple to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:35:56Z"
+    },
+    {
+      "id": "pr-0014",
+      "project_id": "meadow-router",
+      "handle": "spam-bot-7731",
+      "account_age_days": 3,
+      "title": "docs: fix typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # meadow-router\n-Teh quick and lightweight library for modern developers.\n+The quick and lightweight library for modern developers.\n It is easy to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:38:14Z"
+    },
+    {
+      "id": "pr-0015",
+      "project_id": "pyforge",
+      "handle": "pr-farm-3088",
+      "account_age_days": 3,
+      "title": "docs: fix typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # pyforge\n-Teh speedy and lightweight package for modern developers.\n+The speedy and lightweight package for modern developers.\n It is easy to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:41:11Z"
+    },
+    {
+      "id": "pr-0039",
+      "project_id": "glacier-http",
+      "handle": "newbie-nora",
+      "account_age_days": 6,
+      "title": "Add dark-mode toggle to settings",
+      "body_excerpt": "First contribution: add dark-mode toggle to settings.",
+      "diff_text": "--- a/src/font_payload.py\n+++ b/src/font_payload.py\n@@ -93,6 +40,9 @@\n+def benchmark_encoder_369(invoice, semaphore=None):\n+    \"\"\"Add dark-mode toggle to settings: migration future handler timezone timezone matrix backlog socket.\"\"\"\n+    wallet = layout.cache(59)\n+    return router  # layout shader locale timezone worker locale\n # layout mutex session channel iterator font worker invoice profiler payload\n",
+      "created_at": "2026-10-31T09:43:38Z"
+    },
+    {
+      "id": "pr-0016",
+      "project_id": "tidal-sched",
+      "handle": "readme-rex-6736",
+      "account_age_days": 3,
+      "title": "Fixed a typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # tidal-sched\n-Teh fast and lightweight toolkit for modern developers.\n+The fast and lightweight toolkit for modern developers.\n It is simple to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:44:04Z"
+    },
+    {
+      "id": "pr-0045",
+      "project_id": "drift-ui",
+      "handle": "newcomer-zephyr",
+      "account_age_days": 13,
+      "title": "Speed up startup by lazy-loading plugins",
+      "body_excerpt": "First contribution: speed up startup by lazy-loading plugins.",
+      "diff_text": "--- a/src/wallet_timezone.py\n+++ b/src/wallet_timezone.py\n@@ -172,6 +79,9 @@\n+def thread_closure_988(header, gradient=None):\n+    \"\"\"Speed up startup by lazy-loading plugins: router payload iterator palette allocator router vector router.\"\"\"\n+    locale = payload.kernel(5)\n+    return font  # router wallet migration texture render channel\n # thread account gradient account matrix gradient timezone cache font layout\n",
+      "created_at": "2026-10-31T09:46:09Z"
+    },
+    {
+      "id": "pr-0017",
+      "project_id": "birch-queue",
+      "handle": "readme-rex-7953",
+      "account_age_days": 3,
+      "title": "Update README.md (typo fix)",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # birch-queue\n-Teh quick and lightweight library for modern developers.\n+The quick and lightweight library for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:47:34Z"
+    },
+    {
+      "id": "pr-0040",
+      "project_id": "nectar-orm",
+      "handle": "newcomer-cinder",
+      "account_age_days": 9,
+      "title": "Improve error message for missing config",
+      "body_excerpt": "First contribution: improve error message for missing config.",
+      "diff_text": "--- a/src/ticket_closure.py\n+++ b/src/ticket_closure.py\n@@ -283,6 +79,9 @@\n+def calendar_render_156(closure, queue=None):\n+    \"\"\"Improve error message for missing config: worker semaphore barrier semaphore benchmark ledger index semaphore.\"\"\"\n+    benchmark = buffer.session(38)\n+    return barrier  # migration worker session calendar allocator decoder\n # worker palette schema migration allocator index future migration profiler queue\n",
+      "created_at": "2026-10-31T09:49:40Z"
+    },
+    {
+      "id": "pr-0018",
+      "project_id": "willow-http",
+      "handle": "quickfix-5817",
+      "account_age_days": 3,
+      "title": "fix typo in readme",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # willow-http\n-Teh quick and lightweight library for modern developers.\n+The quick and lightweight library for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:50:09Z"
+    },
+    {
+      "id": "pr-0041",
+      "project_id": "kepler-maps",
+      "handle": "newcomer-yarrow",
+      "account_age_days": 9,
+      "title": "Add unit tests for date parser",
+      "body_excerpt": "First contribution: add unit tests for date parser.",
+      "diff_text": "--- a/src/cache_header.py\n+++ b/src/cache_header.py\n@@ -278,6 +48,9 @@\n+def widget_locale_373(palette, profiler=None):\n+    \"\"\"Add unit tests for date parser: promise kernel queue payload queue iterator locale buffer.\"\"\"\n+    gradient = parser.index(12)\n+    return decoder  # account iterator allocator barrier barrier handler\n # encoder future cache schema locale render barrier stream shader benchmark\n",
+      "created_at": "2026-10-31T09:51:58Z"
+    },
+    {
+      "id": "pr-0042",
+      "project_id": "nectar-fs",
+      "handle": "newcomer-pebble",
+      "account_age_days": 4,
+      "title": "Fix off-by-one in pagination",
+      "body_excerpt": "First contribution: fix off-by-one in pagination.",
+      "diff_text": "--- a/src/widget_benchmark.py\n+++ b/src/widget_benchmark.py\n@@ -82,6 +275,9 @@\n+def font_layout_382(shader, closure=None):\n+    \"\"\"Fix off-by-one in pagination: shader palette tensor iterator layout header backlog promise.\"\"\"\n+    texture = invoice.wallet(61)\n+    return stream  # layout promise render thread future stream\n # decoder iterator profiler ticket allocator schema thread migration layout sprint\n",
+      "created_at": "2026-10-31T09:52:01Z"
+    },
+    {
+      "id": "pr-0019",
+      "project_id": "granite-logs",
+      "handle": "gh-user-624",
+      "account_age_days": 3,
+      "title": "Fixed a typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # granite-logs\n-Teh quick and lightweight package for modern developers.\n+The quick and lightweight package for modern developers.\n It is simple to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:53:15Z"
+    },
+    {
+      "id": "pr-0043",
+      "project_id": "cobalt-cli",
+      "handle": "newcomer-ember",
+      "account_age_days": 1,
+      "title": "Translate onboarding guide to Hindi",
+      "body_excerpt": "First contribution: translate onboarding guide to hindi.",
+      "diff_text": "--- a/src/invoice_queue.py\n+++ b/src/invoice_queue.py\n@@ -138,6 +148,9 @@\n+def sprint_backlog_809(promise, tensor=None):\n+    \"\"\"Translate onboarding guide to Hindi: vector parser gradient timezone palette session decoder font.\"\"\"\n+    worker = socket.mutex(18)\n+    return invoice  # widget decoder palette matrix wallet backlog\n # account index allocator benchmark invoice payload future handler profiler stream\n",
+      "created_at": "2026-10-31T09:55:19Z"
+    },
+    {
+      "id": "pr-0020",
+      "project_id": "onyx-kit",
+      "handle": "readme-rex-1389",
+      "account_age_days": 3,
+      "title": "Update README.md (typo fix)",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # onyx-kit\n-Teh fast and lightweight package for modern developers.\n+The fast and lightweight package for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:55:56Z"
+    },
+    {
+      "id": "pr-0021",
+      "project_id": "zephyr-orm",
+      "handle": "pr-farm-6117",
+      "account_age_days": 3,
+      "title": "Update README.md (typo fix)",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # zephyr-orm\n-Teh quick and lightweight library for modern developers.\n+The quick and lightweight library for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T09:58:23Z"
+    },
+    {
+      "id": "pr-0022",
+      "project_id": "pebble-logs",
+      "handle": "pr-farm-2270",
+      "account_age_days": 3,
+      "title": "Update README.md (typo fix)",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # pebble-logs\n-Teh speedy and lightweight package for modern developers.\n+The speedy and lightweight package for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:01:56Z"
+    },
+    {
+      "id": "pr-0023",
+      "project_id": "harbor-lang",
+      "handle": "typo-hunter-310",
+      "account_age_days": 3,
+      "title": "docs: fix typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # harbor-lang\n-Teh fast and lightweight toolkit for modern developers.\n+The fast and lightweight toolkit for modern developers.\n It is simple to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:04:49Z"
+    },
+    {
+      "id": "pr-0024",
+      "project_id": "haze-shell",
+      "handle": "docbot-9551",
+      "account_age_days": 3,
+      "title": "Fix typo in README.md",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # haze-shell\n-Teh quick and lightweight package for modern developers.\n+The quick and lightweight package for modern developers.\n It is easy to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:07:33Z"
+    },
+    {
+      "id": "pr-0025",
+      "project_id": "nebula-db",
+      "handle": "pr-farm-9391",
+      "account_age_days": 3,
+      "title": "docs: fix typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # nebula-db\n-Teh speedy and lightweight toolkit for modern developers.\n+The speedy and lightweight toolkit for modern developers.\n It is easy to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:09:29Z"
+    },
+    {
+      "id": "pr-0026",
+      "project_id": "nectar-orm",
+      "handle": "quickfix-6453",
+      "account_age_days": 3,
+      "title": "docs: fix typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # nectar-orm\n-Teh quick and lightweight toolkit for modern developers.\n+The quick and lightweight toolkit for modern developers.\n It is simple to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:12:52Z"
+    },
+    {
+      "id": "pr-0027",
+      "project_id": "mosaic-css",
+      "handle": "spam-bot-7731",
+      "account_age_days": 3,
+      "title": "Fix typo in README.md",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # mosaic-css\n-Teh fast and lightweight package for modern developers.\n+The fast and lightweight package for modern developers.\n It is easy to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:15:46Z"
+    },
+    {
+      "id": "pr-0028",
+      "project_id": "cobalt-cli",
+      "handle": "pr-farm-3088",
+      "account_age_days": 3,
+      "title": "Fixed a typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # cobalt-cli\n-Teh quick and lightweight library for modern developers.\n+The quick and lightweight library for modern developers.\n It is easy to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:19:08Z"
+    },
+    {
+      "id": "pr-0029",
+      "project_id": "pebble-http",
+      "handle": "readme-rex-6736",
+      "account_age_days": 3,
+      "title": "docs: fix typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # pebble-http\n-Teh quick and lightweight package for modern developers.\n+The quick and lightweight package for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:22:14Z"
+    },
+    {
+      "id": "pr-0030",
+      "project_id": "jade-logs",
+      "handle": "readme-rex-7953",
+      "account_age_days": 3,
+      "title": "docs: fix typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # jade-logs\n-Teh speedy and lightweight library for modern developers.\n+The speedy and lightweight library for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:24:30Z"
+    },
+    {
+      "id": "pr-0031",
+      "project_id": "zephyr-shell",
+      "handle": "quickfix-5817",
+      "account_age_days": 3,
+      "title": "Fix typo in README.md",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # zephyr-shell\n-Teh fast and lightweight toolkit for modern developers.\n+The fast and lightweight toolkit for modern developers.\n It is easy to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:27:59Z"
+    },
+    {
+      "id": "pr-0044",
+      "project_id": "harbor-lang",
+      "handle": "newcomer-lumen",
+      "account_age_days": 9,
+      "title": "Support YAML config files",
+      "body_excerpt": "First contribution: support yaml config files.",
+      "diff_text": "--- a/src/barrier_mutex.py\n+++ b/src/barrier_mutex.py\n@@ -51,6 +142,9 @@\n+def timezone_barrier_544(cookie, buffer=None):\n+    \"\"\"Support YAML config files: stream account buffer token timezone texture ledger socket.\"\"\"\n+    matrix = semaphore.sprint(73)\n+    return palette  # ticket gradient calendar cache queue payload\n # worker cache socket vector stream schema calendar handler cache buffer\n",
+      "created_at": "2026-10-31T10:29:52Z"
+    },
+    {
+      "id": "pr-0032",
+      "project_id": "kepler-maps",
+      "handle": "gh-user-624",
+      "account_age_days": 3,
+      "title": "fix typo in readme",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # kepler-maps\n-Teh speedy and lightweight package for modern developers.\n+The speedy and lightweight package for modern developers.\n It is easy to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:31:09Z"
+    },
+    {
+      "id": "pr-0033",
+      "project_id": "helix-auth",
+      "handle": "readme-rex-1389",
+      "account_age_days": 3,
+      "title": "Fix typo in README.md",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # helix-auth\n-Teh speedy and lightweight toolkit for modern developers.\n+The speedy and lightweight toolkit for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:33:41Z"
+    },
+    {
+      "id": "pr-0034",
+      "project_id": "zenith-web",
+      "handle": "pr-farm-6117",
+      "account_age_days": 3,
+      "title": "docs: fix typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # zenith-web\n-Teh speedy and lightweight library for modern developers.\n+The speedy and lightweight library for modern developers.\n It is easy to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:36:18Z"
+    },
+    {
+      "id": "pr-0035",
+      "project_id": "harbor-http",
+      "handle": "pr-farm-2270",
+      "account_age_days": 3,
+      "title": "Update README.md (typo fix)",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # harbor-http\n-Teh fast and lightweight library for modern developers.\n+The fast and lightweight library for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:38:27Z"
+    },
+    {
+      "id": "pr-0036",
+      "project_id": "prism-lint",
+      "handle": "typo-hunter-310",
+      "account_age_days": 3,
+      "title": "fix typo in readme",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # prism-lint\n-Teh quick and lightweight package for modern developers.\n+The quick and lightweight package for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:42:25Z"
+    },
+    {
+      "id": "pr-0037",
+      "project_id": "pebble-lang",
+      "handle": "docbot-9551",
+      "account_age_days": 3,
+      "title": "Fixed a typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # pebble-lang\n-Teh quick and lightweight package for modern developers.\n+The quick and lightweight package for modern developers.\n It is simple to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:44:43Z"
+    },
+    {
+      "id": "pr-0038",
+      "project_id": "lumen-kit",
+      "handle": "pr-farm-9391",
+      "account_age_days": 3,
+      "title": "Fixed a typo in README",
+      "body_excerpt": "Small fix to improve the documentation.",
+      "diff_text": "--- a/README.md\n+++ b/README.md\n@@ -1,8 +1,8 @@\n # lumen-kit\n-Teh quick and lightweight library for modern developers.\n+The quick and lightweight library for modern developers.\n It is straightforward to install, configure and extend with plugins.\n ## Getting started\n Run the installer and follow the prompts in your terminal.\n Contributions are welcome, please read CONTRIBUTING.md first.\n",
+      "created_at": "2026-10-31T10:47:29Z"
+    }
+  ]
+}

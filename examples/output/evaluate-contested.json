@@ -1,0 +1,60 @@
+{
+  "request": {
+    "project_id": "lumen-ui",
+    "handle": "contested-carl"
+  },
+  "response": {
+    "decision": "REVIEW",
+    "score": 0.34,
+    "summary": "REVIEW. The score reflects a positive vouch from `nebula-db` (trust 0.8) and a contest record from `nebula-db` (trust 0.8), balanced by a denounce from `aurora-docs` (trust 0.48) and a denounce from `orbit-ml` (trust 0.46).",
+    "path": [
+      {
+        "project": "nebula-db",
+        "via": [
+          "lumen-ui",
+          "nebula-db"
+        ],
+        "weight": 0.8,
+        "record_id": "rec-0010",
+        "effect": 0.8,
+        "type": "vouch"
+      },
+      {
+        "project": "nebula-db",
+        "via": [
+          "lumen-ui",
+          "nebula-db"
+        ],
+        "weight": 0.8,
+        "record_id": "rec-0011",
+        "effect": 0.31,
+        "type": "contest"
+      },
+      {
+        "project": "aurora-docs",
+        "via": [
+          "lumen-ui",
+          "aurora-docs"
+        ],
+        "weight": 0.48,
+        "record_id": "rec-0008",
+        "effect": -0.27,
+        "type": "denounce"
+      },
+      {
+        "project": "orbit-ml",
+        "via": [
+          "lumen-ui",
+          "pyforge",
+          "orbit-ml"
+        ],
+        "weight": 0.46,
+        "record_id": "rec-0009",
+        "effect": -0.19,
+        "type": "denounce"
+      }
+    ],
+    "ignored": [],
+    "ai": true
+  }
+}

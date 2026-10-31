@@ -1,0 +1,49 @@
+{
+  "request": {
+    "project_id": "lumen-ui",
+    "handle": "spam-bot-7731"
+  },
+  "response": {
+    "decision": "FLAG",
+    "score": -1.0,
+    "summary": "FLAG. The score of -1.0 was determined by a denounce record from project `nebula-db` (trust 0.8), a denounce record from project `pyforge` (trust 0.64), and a denounce record from project `orbit-ml` (trust 0.46). These records resulted in a total score reduction of -1.0.",
+    "path": [
+      {
+        "project": "nebula-db",
+        "via": [
+          "lumen-ui",
+          "nebula-db"
+        ],
+        "weight": 0.8,
+        "record_id": "rec-0068",
+        "effect": -1.0,
+        "type": "denounce"
+      },
+      {
+        "project": "pyforge",
+        "via": [
+          "lumen-ui",
+          "pyforge"
+        ],
+        "weight": 0.64,
+        "record_id": "rec-0069",
+        "effect": -0.5,
+        "type": "denounce"
+      },
+      {
+        "project": "orbit-ml",
+        "via": [
+          "lumen-ui",
+          "pyforge",
+          "orbit-ml"
+        ],
+        "weight": 0.46,
+        "record_id": "rec-0094",
+        "effect": -0.35,
+        "type": "denounce"
+      }
+    ],
+    "ignored": [],
+    "ai": true
+  }
+}
