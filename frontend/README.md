@@ -21,6 +21,7 @@ in `backend/README.md`.
   silently switches to fake data.
 - If Ollama is off or the model is not pulled, the chip shows **Ollama off** or **Gemma not pulled**. Decisions still
   work, and summaries fall back to plain templates until Gemma is back.
+- **Real data:** the Simulate page loads the 10 real GitHub repositories (live backend only). Trust edges and records are synthetic; see `backend/README.md`.
 - **Demo data only on request:** `http://localhost:8000/?mock=1` runs on the synthetic files in `frontend/mock/` with no
   backend and no Gemma (badge: **Demo data**).
 

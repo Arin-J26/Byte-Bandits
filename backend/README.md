@@ -103,6 +103,36 @@ signed vouches and denounces, honest newcomers, about 38 lightly reworded README
 about 40 projects within 2 hours, a lone mistaken denounce, a denounce from untrusted Shadow Registry, one record with
 an invalid signature, a contested denounce, and a contributor vouched through a trusted peer.
 
+## Real test network (GitHub)
+
+The default network on a fresh database is **10 real open-source repositories**:
+oppia, Rocket.Chat, meshery, PictoPy, apps-android-commons, openfoodfacts-androidapp, zulip, p5.js, metacall/core
+and scummvm. Load it with `POST /api/simulate/load {"preset": "github"}`, or the **Load 10 real GitHub repos**
+button on the Simulate page.
+
+| | Source |
+|---|---|
+| Repositories, pull requests (title, body excerpt, diff excerpt, timestamps) | **Real**, read from the GitHub API |
+| Author account creation dates (so account age is real) | **Real** |
+| Trust edges between repositories | **Synthetic**: a fixed governance graph chosen for the test |
+| Signed vouch and denounce records | **Synthetic**, only about fictional `demo-*` handles, with `example.com` evidence |
+
+No record is about a real person, so every real author is **UNKNOWN** (no history, not blocked). That is the
+honest answer until real projects publish signed records.
+
+Rebuild the file (about 6 minutes, roughly 700 read-only API calls, needs `gh auth login`):
+
+```bash
+backend/.venv/bin/python backend/scripts/fetch_github.py          # writes examples/input/github-real.json
+```
+
+What the real data showed:
+- **0 campaigns.** 17 groups of similar titles exist with the campaign filters switched off: Dependabot bumps and
+  repeated titles inside one project from old accounts. The rules correctly ignore them.
+- Dependabot and other bots author 34 of the 299 PRs and are not treated as a special case.
+
+The synthetic demo network (seed 2026, with the spam wave) is still available as `"preset": "demo"`.
+
 ## Layout
 
 ```

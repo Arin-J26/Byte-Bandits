@@ -31,7 +31,9 @@ def same_shape(expected: dict, actual: dict, where: str):
 @pytest.fixture()
 def client(tmp_path):
     app = create_app(db_path=tmp_path / "api.db", llm=LLM(host="http://127.0.0.1:9"))
-    return TestClient(app)
+    c = TestClient(app)
+    c.post("/api/simulate/load", json={"preset": "demo"})  # these tests describe the synthetic demo network
+    return c
 
 
 def test_health(client):

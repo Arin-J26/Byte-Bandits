@@ -158,6 +158,7 @@ const mock = {
     return { projects: s.projects, trust_edges: s.trust_edges, records: s.records, campaigns: s.campaigns, events: s.events };
   },
   async 'POST /api/simulate/load'(params = {}) {
+    if (params.preset === 'github') throw new Error('The real GitHub network needs the live backend.');
     // preset "demo" restores the curated mock files; otherwise generate from the seed.
     store = null;
     if (params.preset === 'demo') await loadStore();

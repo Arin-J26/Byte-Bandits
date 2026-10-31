@@ -327,7 +327,7 @@
       "spam-bot-7731",
       "typo-hunter-310"
     ],
-    "evidence_summary": "A suspected spam campaign involved 13 accounts, with the youngest account being 3 days old and hitting 38 projects within a 107-minute window. The campaign showed near-identical pull requests, with 38 instances exhibiting a Jaccard similarity of 0.6 or higher based on MinHash LSH comparison of character 5-gram shingles from the title and diff.",
+    "evidence_summary": "A suspected spam campaign involved 13 accounts, with the youngest account being 3 days old and hitting 38 projects within a 107-minute window. The campaign showed near-identical pull requests, with 38 instances exhibiting a Jaccard similarity of 0.6 or higher based on MinHash LSH on character 5-gram shingles of the title plus difference. Sample titles suggest repetitive, minor fixes to README files.",
     "ai_verdict": "spam",
     "ai_reason": "The pull requests exhibit near-identical titles and diffs, suggesting automated or coordinated submission.",
     "ai": true

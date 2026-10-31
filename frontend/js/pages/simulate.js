@@ -32,7 +32,8 @@ export async function mount(root) {
   const newcomers = numberField('sim-new', 'Honest newcomers', 0, 30, 8, 'First-time contributors with no history. They must come out UNKNOWN, never blocked.');
   const campaign = numberField('sim-camp', 'Spam PRs', 0, 60, 38, 'Near-identical PRs in the coordinated wave, about 3 per account (0 = no campaign; detection needs 5 or more).');
   const seed = h('input', { class: 'input mono', id: 'sim-seed', type: 'number', value: '2026', min: '1', max: '999999' });
-  const demoBtn = h('button', { class: 'btn btn-primary', type: 'button', id: 'sim-demo' }, '★ Load demo network');
+  const realBtn = h('button', { class: 'btn btn-primary', type: 'button', id: 'sim-real' }, '◉ Load 10 real GitHub repos');
+  const demoBtn = h('button', { class: 'btn', type: 'button', id: 'sim-demo' }, '★ Synthetic demo network');
   const genBtn = h('button', { class: 'btn', type: 'button', id: 'sim-gen' }, '⚙ Generate network');
   const fileIn = h('input', { type: 'file', accept: 'application/json,.json', class: 'sr-only', id: 'sim-file' });
   const importBtn = h('label', { class: 'btn', for: 'sim-file', tabindex: '0', role: 'button' }, '⇧ Import JSON');
@@ -48,6 +49,9 @@ export async function mount(root) {
       h('div', { class: 'panel stack' },
         projects.el, newcomers.el, campaign.el,
         h('div', { class: 'field' }, h('label', { for: 'sim-seed' }, 'Random seed'), seed, h('p', { class: 'hint' }, 'Same seed, same network: handy for repeatable demos.')),
+        h('div', { class: 'row' }, realBtn),
+        h('p', { class: 'hint' }, 'Real: the 10 repositories and their recent pull requests from GitHub, with real author account ages. ' +
+          'Trust edges and records are synthetic (no one publishes trust about real people), so only demo-* handles have decisions.'),
         h('div', { class: 'row' }, demoBtn, genBtn),
         h('div', { class: 'row' }, importBtn, fileIn, exportBtn),
         progress, progressText,
@@ -73,12 +77,13 @@ export async function mount(root) {
   }
 
   async function load(params) {
-    for (const b of [demoBtn, genBtn]) b.disabled = true;
+    for (const b of [realBtn, demoBtn, genBtn]) b.disabled = true;
     try {
       setProgress(15, status.mode === 'live' ? 'Asking the backend to load the network…' : 'Generating locally…');
       await api.simulateLoad(params);
       setProgress(70, 'Loading the new network…');
-      await showSummary(params.preset === 'demo' ? 'Demo network loaded' : 'Synthetic network generated');
+      await showSummary(params.preset === 'github' ? 'Real GitHub network loaded'
+        : params.preset === 'demo' ? 'Demo network loaded' : 'Synthetic network generated');
       setProgress(100, 'Done.');
       sound.allow();
       toast('Network loaded.', 'ok');
@@ -86,11 +91,15 @@ export async function mount(root) {
       setProgress(null);
       clear(summary, errorBox(`Could not load the network: ${err.message}`, () => load(params)));
     } finally {
-      for (const b of [demoBtn, genBtn]) b.disabled = false;
+      for (const b of [realBtn, demoBtn, genBtn]) b.disabled = false;
       setTimeout(() => setProgress(null), 1500);
     }
   }
 
+  realBtn.addEventListener('click', () => {
+    if (status.mode !== 'live') { toast('The real GitHub network needs the live backend (start it, then reload).', 'warn', 6000); return; }
+    load({ preset: 'github' });
+  });
   demoBtn.addEventListener('click', () => load({ preset: 'demo' }));
   genBtn.addEventListener('click', () => load({
     projectCount: projects.get(), newcomers: newcomers.get(), campaignSize: campaign.get(), seed: Number(seed.value) || 1,
