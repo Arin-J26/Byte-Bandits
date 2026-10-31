@@ -1,0 +1,409 @@
+[
+  {
+    "id": "rec-001",
+    "issuer": "nebula-db",
+    "subject_handle": "ada-commits",
+    "type": "vouch",
+    "reason": "14 merged PRs over 6 months, all with tests",
+    "evidence_urls": [
+      "https://github.com/example/nebula-db/pull/412",
+      "https://github.com/example/nebula-db/pull/455"
+    ],
+    "timestamp": "2026-10-30T06:30:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-002",
+    "issuer": "quasar-cli",
+    "subject_handle": "ada-commits",
+    "type": "vouch",
+    "reason": "Fixed a tricky race in the plugin loader",
+    "evidence_urls": [
+      "https://github.com/example/quasar-cli/pull/88"
+    ],
+    "timestamp": "2026-10-29T02:50:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-003",
+    "issuer": "shadow-registry",
+    "subject_handle": "ada-commits",
+    "type": "denounce",
+    "reason": "Disagreed with our maintainers in review",
+    "evidence_urls": [],
+    "timestamp": "2026-10-31T09:03:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-004",
+    "issuer": "zenith-web",
+    "subject_handle": "ada-commits",
+    "type": "vouch",
+    "reason": "Good docs contributions",
+    "evidence_urls": [
+      "https://github.com/example/zenith-web/pull/31"
+    ],
+    "timestamp": "2026-10-29T22:10:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-005",
+    "issuer": "pyforge",
+    "subject_handle": "borderline-ben",
+    "type": "vouch",
+    "reason": "Two solid merged PRs",
+    "evidence_urls": [
+      "https://github.com/example/pyforge/pull/1201"
+    ],
+    "timestamp": "2026-10-30T16:40:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-006",
+    "issuer": "nebula-db",
+    "subject_handle": "spam-bot-7731",
+    "type": "denounce",
+    "reason": "Mass README typo PRs, no real change",
+    "evidence_urls": [
+      "https://github.com/example/nebula-db/pull/980"
+    ],
+    "timestamp": "2026-10-31T03:21:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-007",
+    "issuer": "pyforge",
+    "subject_handle": "spam-bot-7731",
+    "type": "denounce",
+    "reason": "Same templated PR opened 6 times",
+    "evidence_urls": [
+      "https://github.com/example/pyforge/pull/1302"
+    ],
+    "timestamp": "2026-10-31T04:28:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-008",
+    "issuer": "orbit-ml",
+    "subject_handle": "spam-bot-7731",
+    "type": "denounce",
+    "reason": "Bot-like burst of identical PRs",
+    "evidence_urls": [
+      "https://github.com/example/orbit-ml/pull/77"
+    ],
+    "timestamp": "2026-10-31T05:35:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-009",
+    "issuer": "aurora-docs",
+    "subject_handle": "solo-denounce-sam",
+    "type": "denounce",
+    "reason": "Rude comment in one issue thread",
+    "evidence_urls": [
+      "https://github.com/example/aurora-docs/pull/64"
+    ],
+    "timestamp": "2026-10-31T20:20:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-010",
+    "issuer": "nebula-db",
+    "subject_handle": "ivan-invalid",
+    "type": "vouch",
+    "reason": "Claims to be a long-time contributor",
+    "evidence_urls": [],
+    "timestamp": "2026-10-31T15:45:00.000Z",
+    "signature_valid": false
+  },
+  {
+    "id": "rec-011",
+    "issuer": "mosaic-css",
+    "subject_handle": "grace-hopper-fan",
+    "type": "vouch",
+    "reason": "Rewrote the grid docs",
+    "evidence_urls": [
+      "https://github.com/example/mosaic-css/pull/210"
+    ],
+    "timestamp": "2026-10-29T12:00:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-012",
+    "issuer": "pyforge",
+    "subject_handle": "grace-hopper-fan",
+    "type": "vouch",
+    "reason": "Helpful reviewer",
+    "evidence_urls": [],
+    "timestamp": "2026-10-28T08:20:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-013",
+    "issuer": "cobalt-router",
+    "subject_handle": "linus-lite",
+    "type": "vouch",
+    "reason": "Maintainer-level contributions",
+    "evidence_urls": [
+      "https://github.com/example/cobalt-router/pull/5"
+    ],
+    "timestamp": "2026-10-27T04:40:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-014",
+    "issuer": "drift-sync",
+    "subject_handle": "linus-lite",
+    "type": "vouch",
+    "reason": "Fixed sync conflicts",
+    "evidence_urls": [
+      "https://github.com/example/drift-sync/pull/19"
+    ],
+    "timestamp": "2026-10-26T00:00:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-015",
+    "issuer": "harbor-ci",
+    "subject_handle": "pipeline-pat",
+    "type": "vouch",
+    "reason": "Improved CI caching",
+    "evidence_urls": [
+      "https://github.com/example/harbor-ci/pull/45"
+    ],
+    "timestamp": "2026-10-28T18:30:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-016",
+    "issuer": "ion-stream",
+    "subject_handle": "pipeline-pat",
+    "type": "vouch",
+    "reason": "Backpressure fix",
+    "evidence_urls": [
+      "https://github.com/example/ion-stream/pull/302"
+    ],
+    "timestamp": "2026-10-27T14:50:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-017",
+    "issuer": "granite-fs",
+    "subject_handle": "spam-bot-7731",
+    "type": "denounce",
+    "reason": "Templated typo PR",
+    "evidence_urls": [
+      "https://github.com/example/granite-fs/pull/66"
+    ],
+    "timestamp": "2026-10-31T06:42:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-018",
+    "issuer": "fable-lang",
+    "subject_handle": "hx-dev-4821",
+    "type": "denounce",
+    "reason": "Part of a typo-PR burst",
+    "evidence_urls": [
+      "https://github.com/example/fable-lang/pull/400"
+    ],
+    "timestamp": "2026-10-31T07:49:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-019",
+    "issuer": "jade-tests",
+    "subject_handle": "hx-dev-4821",
+    "type": "denounce",
+    "reason": "Duplicate PR from campaign",
+    "evidence_urls": [
+      "https://github.com/example/jade-tests/pull/51"
+    ],
+    "timestamp": "2026-10-31T08:56:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-020",
+    "issuer": "kepler-maps",
+    "subject_handle": "map-maker-mo",
+    "type": "vouch",
+    "reason": "Added projection tests",
+    "evidence_urls": [
+      "https://github.com/example/kepler-maps/pull/12"
+    ],
+    "timestamp": "2026-10-26T10:10:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-021",
+    "issuer": "orbit-ml",
+    "subject_handle": "tensor-tess",
+    "type": "vouch",
+    "reason": "Benchmarks and fixes",
+    "evidence_urls": [
+      "https://github.com/example/orbit-ml/pull/140"
+    ],
+    "timestamp": "2026-10-25T06:30:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-022",
+    "issuer": "lattice-crypto",
+    "subject_handle": "tensor-tess",
+    "type": "denounce",
+    "reason": "Submitted code copied without licence",
+    "evidence_urls": [
+      "https://github.com/example/lattice-crypto/pull/9"
+    ],
+    "timestamp": "2026-10-26T20:20:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-023",
+    "issuer": "nova-queue",
+    "subject_handle": "queue-quinn",
+    "type": "vouch",
+    "reason": "Steady contributor",
+    "evidence_urls": [],
+    "timestamp": "2026-10-25T16:40:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-024",
+    "issuer": "opal-logs",
+    "subject_handle": "queue-quinn",
+    "type": "vouch",
+    "reason": "Log rotation feature",
+    "evidence_urls": [
+      "https://github.com/example/opal-logs/pull/33"
+    ],
+    "timestamp": "2026-10-24T02:50:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-025",
+    "issuer": "prism-lint",
+    "subject_handle": "lint-lena",
+    "type": "vouch",
+    "reason": "Wrote three new rules",
+    "evidence_urls": [
+      "https://github.com/example/prism-lint/pull/77"
+    ],
+    "timestamp": "2026-10-24T12:00:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-026",
+    "issuer": "rune-shell",
+    "subject_handle": "shell-sid",
+    "type": "vouch",
+    "reason": "Completion scripts",
+    "evidence_urls": [
+      "https://github.com/example/rune-shell/pull/21"
+    ],
+    "timestamp": "2026-10-24T22:10:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-027",
+    "issuer": "tidal-sched",
+    "subject_handle": "shell-sid",
+    "type": "denounce",
+    "reason": "Force-pushed over a maintainer branch",
+    "evidence_urls": [],
+    "timestamp": "2026-10-23T08:20:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-028",
+    "issuer": "helix-auth",
+    "subject_handle": "auth-ari",
+    "type": "vouch",
+    "reason": "Security fix, responsibly disclosed",
+    "evidence_urls": [
+      "https://github.com/example/helix-auth/pull/8"
+    ],
+    "timestamp": "2026-10-23T18:30:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-029",
+    "issuer": "ember-cache",
+    "subject_handle": "cache-cam",
+    "type": "vouch",
+    "reason": "Eviction policy rewrite",
+    "evidence_urls": [
+      "https://github.com/example/ember-cache/pull/61"
+    ],
+    "timestamp": "2026-10-22T14:50:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-030",
+    "issuer": "shadow-registry",
+    "subject_handle": "newbie-nora-friend",
+    "type": "denounce",
+    "reason": "Unspecified",
+    "evidence_urls": [],
+    "timestamp": "2026-10-21T00:00:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-031",
+    "issuer": "aurora-docs",
+    "subject_handle": "doc-dana",
+    "type": "vouch",
+    "reason": "Translated the guide to Hindi",
+    "evidence_urls": [
+      "https://github.com/example/aurora-docs/pull/99"
+    ],
+    "timestamp": "2026-10-21T10:10:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-032",
+    "issuer": "cobalt-router",
+    "subject_handle": "spam-bot-7731",
+    "type": "denounce",
+    "reason": "Typo-PR spam",
+    "evidence_urls": [],
+    "timestamp": "2026-10-31T02:14:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-033",
+    "issuer": "zenith-web",
+    "subject_handle": "web-wes",
+    "type": "vouch",
+    "reason": "Accessibility fixes",
+    "evidence_urls": [
+      "https://github.com/example/zenith-web/pull/4"
+    ],
+    "timestamp": "2026-10-21T20:20:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-034",
+    "issuer": "quasar-cli",
+    "subject_handle": "cli-cora",
+    "type": "vouch",
+    "reason": "Shell completion",
+    "evidence_urls": [
+      "https://github.com/example/quasar-cli/pull/140"
+    ],
+    "timestamp": "2026-10-20T06:30:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "rec-035",
+    "issuer": "harbor-ci",
+    "subject_handle": "<img src=x onerror=alert(1)>",
+    "type": "denounce",
+    "reason": "<script>alert(\"xss test\")</script>",
+    "evidence_urls": [
+      "javascript:alert(1)"
+    ],
+    "timestamp": "2026-10-20T16:40:00.000Z",
+    "signature_valid": true
+  }
+]

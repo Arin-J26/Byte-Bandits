@@ -1,0 +1,334 @@
+[
+  {
+    "id": "pr-c1-12",
+    "handle": "pr-farm-03",
+    "project": "orbit-ml",
+    "title": "Update README.md (typo fix)",
+    "timestamp": "2026-10-31T10:16:30.000Z",
+    "similarity": 0.9099999999999999,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c1-11",
+    "handle": "tweak-tom-0",
+    "project": "pyforge",
+    "title": "Fixed typo in README",
+    "timestamp": "2026-10-31T10:15:00.000Z",
+    "similarity": 0.9299999999999999,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c1-10",
+    "handle": "docbot-2026",
+    "project": "nebula-db",
+    "title": "fix typo in readme",
+    "timestamp": "2026-10-31T10:13:30.000Z",
+    "similarity": 0.95,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "ev-rec-001",
+    "kind": "vouch",
+    "handle": "ada-commits",
+    "project": "nebula-db",
+    "title": "14 merged PRs over 6 months, all with tests",
+    "record_id": "rec-001",
+    "timestamp": "2026-10-31T10:13:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c1-9",
+    "handle": "gh-user-31337",
+    "project": "kepler-maps",
+    "title": "Fix typo in README.md",
+    "timestamp": "2026-10-31T10:12:00.000Z",
+    "similarity": 0.97,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c1-8",
+    "handle": "fresh-acct-55",
+    "project": "mosaic-css",
+    "title": "Update README.md (typo fix)",
+    "timestamp": "2026-10-31T10:10:30.000Z",
+    "similarity": 0.9099999999999999,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c1-7",
+    "handle": "readme-rex",
+    "project": "cobalt-router",
+    "title": "Fixed typo in README",
+    "timestamp": "2026-10-31T10:09:00.000Z",
+    "similarity": 0.9299999999999999,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c1-6",
+    "handle": "typo-hunter-x",
+    "project": "jade-tests",
+    "title": "fix typo in readme",
+    "timestamp": "2026-10-31T10:07:30.000Z",
+    "similarity": 0.95,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c1-5",
+    "handle": "quickfix-99",
+    "project": "fable-lang",
+    "title": "Fix typo in README.md",
+    "timestamp": "2026-10-31T10:06:00.000Z",
+    "similarity": 0.97,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c1-4",
+    "handle": "pr-farm-02",
+    "project": "granite-fs",
+    "title": "Update README.md (typo fix)",
+    "timestamp": "2026-10-31T10:04:30.000Z",
+    "similarity": 0.9099999999999999,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c1-3",
+    "handle": "pr-farm-01",
+    "project": "orbit-ml",
+    "title": "Fixed typo in README",
+    "timestamp": "2026-10-31T10:03:00.000Z",
+    "similarity": 0.9299999999999999,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c1-2",
+    "handle": "hx-dev-4821",
+    "project": "pyforge",
+    "title": "fix typo in readme",
+    "timestamp": "2026-10-31T10:01:30.000Z",
+    "similarity": 0.95,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c1-1",
+    "handle": "spam-bot-7731",
+    "project": "nebula-db",
+    "title": "Fix typo in README.md",
+    "timestamp": "2026-10-31T10:00:00.000Z",
+    "similarity": 0.97,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "ev-rec-002",
+    "kind": "vouch",
+    "handle": "ada-commits",
+    "project": "quasar-cli",
+    "title": "Fixed a tricky race in the plugin loader",
+    "record_id": "rec-002",
+    "timestamp": "2026-10-31T09:56:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-n6",
+    "kind": "pr",
+    "handle": "borderline-ben",
+    "project": "lumen-ui",
+    "title": "Refactor button styles",
+    "timestamp": "2026-10-31T09:40:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "ev-rec-003",
+    "kind": "denounce",
+    "handle": "ada-commits",
+    "project": "shadow-registry",
+    "title": "Disagreed with our maintainers in review",
+    "record_id": "rec-003",
+    "timestamp": "2026-10-31T09:39:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "ev-rec-004",
+    "kind": "vouch",
+    "handle": "ada-commits",
+    "project": "zenith-web",
+    "title": "Good docs contributions",
+    "record_id": "rec-004",
+    "timestamp": "2026-10-31T09:22:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-n1",
+    "kind": "pr",
+    "handle": "newbie-nora",
+    "project": "lumen-ui",
+    "title": "Add dark-mode toggle to settings",
+    "timestamp": "2026-10-31T09:20:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "ev-rec-005",
+    "kind": "vouch",
+    "handle": "borderline-ben",
+    "project": "pyforge",
+    "title": "Two solid merged PRs",
+    "record_id": "rec-005",
+    "timestamp": "2026-10-31T09:05:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-n7",
+    "kind": "pr",
+    "handle": "solo-denounce-sam",
+    "project": "lumen-ui",
+    "title": "Update contribution guide",
+    "timestamp": "2026-10-31T09:00:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "ev-rec-006",
+    "kind": "denounce",
+    "handle": "spam-bot-7731",
+    "project": "nebula-db",
+    "title": "Mass README typo PRs, no real change",
+    "record_id": "rec-006",
+    "timestamp": "2026-10-31T08:48:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "ev-rec-007",
+    "kind": "denounce",
+    "handle": "spam-bot-7731",
+    "project": "pyforge",
+    "title": "Same templated PR opened 6 times",
+    "record_id": "rec-007",
+    "timestamp": "2026-10-31T08:31:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-n2",
+    "kind": "pr",
+    "handle": "ada-commits",
+    "project": "nebula-db",
+    "title": "Speed up index rebuild",
+    "timestamp": "2026-10-31T08:25:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "ev-rec-008",
+    "kind": "denounce",
+    "handle": "spam-bot-7731",
+    "project": "orbit-ml",
+    "title": "Bot-like burst of identical PRs",
+    "record_id": "rec-008",
+    "timestamp": "2026-10-31T08:14:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "ev-rec-009",
+    "kind": "denounce",
+    "handle": "solo-denounce-sam",
+    "project": "aurora-docs",
+    "title": "Rude comment in one issue thread",
+    "record_id": "rec-009",
+    "timestamp": "2026-10-31T07:57:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-n3",
+    "kind": "pr",
+    "handle": "tensor-tess",
+    "project": "orbit-ml",
+    "title": "Add ONNX export test",
+    "timestamp": "2026-10-31T07:50:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "ev-rec-010",
+    "kind": "vouch",
+    "handle": "ivan-invalid",
+    "project": "nebula-db",
+    "title": "Claims to be a long-time contributor",
+    "record_id": "rec-010",
+    "timestamp": "2026-10-31T07:40:00.000Z",
+    "signature_valid": false
+  },
+  {
+    "id": "pr-c2-4",
+    "handle": "badge-bru",
+    "project": "opal-logs",
+    "title": "Add Hacktoberfest badge to README",
+    "timestamp": "2026-10-31T07:36:00.000Z",
+    "similarity": 0.99,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c2-3",
+    "handle": "badge-bix",
+    "project": "nova-queue",
+    "title": "Add Hacktoberfest badge to README",
+    "timestamp": "2026-10-31T07:24:00.000Z",
+    "similarity": 0.99,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c2-2",
+    "handle": "badge-bo",
+    "project": "ion-stream",
+    "title": "Add Hacktoberfest badge to README",
+    "timestamp": "2026-10-31T07:12:00.000Z",
+    "similarity": 0.99,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-c2-1",
+    "handle": "badge-bea",
+    "project": "harbor-ci",
+    "title": "Add Hacktoberfest badge to README",
+    "timestamp": "2026-10-31T07:00:00.000Z",
+    "similarity": 0.99,
+    "kind": "pr",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-n4",
+    "kind": "pr",
+    "handle": "doc-dana",
+    "project": "aurora-docs",
+    "title": "Fix broken links in FAQ",
+    "timestamp": "2026-10-31T06:40:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-n5",
+    "kind": "pr",
+    "handle": "map-maker-mo",
+    "project": "kepler-maps",
+    "title": "Support Robinson projection",
+    "timestamp": "2026-10-31T05:50:00.000Z",
+    "signature_valid": true
+  },
+  {
+    "id": "pr-n8",
+    "kind": "pr",
+    "handle": "cli-cora",
+    "project": "quasar-cli",
+    "title": "Add --json flag",
+    "timestamp": "2026-10-31T05:00:00.000Z",
+    "signature_valid": true
+  }
+]
