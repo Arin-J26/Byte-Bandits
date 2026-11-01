@@ -20,21 +20,25 @@ Projects keep public vouch and denounce records, share them with projects they c
 
 ## Models used
 
-| Model | How it is run | Planned role in the product |
+| Model | How it is run | Role in the product |
 |---|---|---|
-| `gemma4:e4b` | Locally through Ollama (`http://localhost:11434`) | Language judgement and explanation (see below) |
+| `gemma4:e2b` | Locally through Ollama (`http://localhost:11434`) | Labels every pull request spam or genuine with a reason, gives the verdict and summary for each detected campaign, summarises a contributor's public GitHub activity, and explains each trust decision in plain English |
+
+This is the only model the code calls (`backend/app/llm.py`, `DEFAULT_MODEL = "gemma4:e2b"`). `GET /api/health`
+reports it, and `examples/output/health.json` shows it running.
 
 ### Why this model
 
-- **Open-weight and local.** Gemma runs on our own laptops, so there are no cloud AI APIs, no API keys and no secrets in the repository.
-- **Good fit for text judgement.** The model does language work that fixed rules handle badly: recognising reworded spam templates, rating whether a denouncement gives concrete evidence, assessing pull request quality, and writing plain-English explanations for maintainers.
-- **Runs on ordinary laptops.** The `e4b` size works on most laptops. If a laptop is short on memory we will switch to `gemma4:e2b` and update this file.
+- **Open-weight and local.** Gemma runs on our own laptops, so there are no cloud AI APIs, no API keys and no secrets in the repository. The app uses the internet only for public GitHub data, never for AI.
+- **Good fit for text judgement.** Spam PRs are reworded templates that fixed rules miss. Gemma reads the title, body and diff and returns a strict JSON verdict with a one-line reason.
+- **Runs on ordinary laptops.** We planned `gemma4:e4b`, but switched to the smaller `gemma4:e2b` so it runs within our laptops' memory alongside the app.
 
 ### What the model does and does not decide
 
-- The model produces signals (confidence scores and one-line reasons). Ordinary code handles trust propagation between projects and makes the final decision.
-- A contributor with no records is treated as **unknown**, never as suspicious, whatever the model says.
-- The tool keeps working with rule-based fallbacks if the model is unavailable.
+- Gemma labels PRs and writes summaries. Ordinary code (`backend/app/trust.py`) turns those labels into vouch and denounce records, propagates trust between projects and makes the final decision (ALLOW / REVIEW / UNKNOWN / FLAG).
+- Campaign detection itself is deterministic (MinHash similarity, time window, account age); Gemma reviews each detected cluster.
+- A contributor with no records is **UNKNOWN** and is never blocked, whatever the model says.
+- If Gemma is not running, the app says so, leaves PRs unclassified and uses template text for summaries. It never guesses a label.
 
 ## AI tools used during development (not part of the product)
 
