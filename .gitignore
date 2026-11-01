@@ -1,0 +1,8 @@
+# Local instructions for AI coding assistants
+CLAUDE.md
+.DS_Store
+.ruff_cache/
+# Stray nested clone, never part of the product
+/Byte-Bandits/
+backend/demo_credentials.json
+*.db
