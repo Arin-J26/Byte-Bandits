@@ -106,12 +106,15 @@ def main() -> None:
     call("POST", "/api/network/import", network)
     save(EX_OUT / "health.json", health)
     write_api_docs(calls, outputs)
+    make_github_examples()
     print(f"Wrote examples/ and docs/API.md (ollama_available={health['ollama_available']}, model={health['model']})")
 
 
 DOC_NOTES = {
     "GET /api/health": "Liveness plus whether the local Ollama server answers.",
-    "POST /api/simulate/load": "Replace all data with a seeded synthetic network. Body fields are optional. "
+    "POST /api/simulate/load": 'Replace all data. `{"preset": "github"}` loads the 10 real GitHub repositories '
+    "(real PRs; synthetic trust and records, see backend/README.md). "
+    "Otherwise a seeded synthetic network. Body fields are optional. "
     "Accepts `projects` (20-50), `newcomers`, `campaign_size` (number of spam PRs), `seed`, or the frontend's "
     '`projectCount`/`campaignSize`, or `{"preset": "demo"}`.',
     "GET /api/projects": "All projects. Keys are never returned.",
@@ -189,6 +192,29 @@ def write_api_docs(calls, outputs) -> None:
         ]
     (ROOT / "docs").mkdir(exist_ok=True)
     (ROOT / "docs" / "API.md").write_text("\n".join(lines))
+
+
+def make_github_examples() -> None:
+    """Outputs for the real GitHub network: real campaign check and decisions on real authors."""
+    from app.routes.network import GITHUB_NETWORK
+
+    if not GITHUB_NETWORK.is_file():
+        print("skipped real examples: run scripts/fetch_github.py first")
+        return
+    app = create_app(db_path=Path(tempfile.mkdtemp(prefix="sniffer-gh-")) / "gh.db", seed_demo=False)
+    c = TestClient(app)
+    c.post("/api/simulate/load", json={"preset": "github"})
+    events = [e for e in c.get("/api/events").json() if e["kind"] == "pr"]
+    authors = sorted({e["handle"] for e in events if not e["handle"].endswith("[bot]")})[:2]
+    out = {
+        "campaigns": c.get("/api/campaigns").json(),
+        "evaluate": {
+            h: c.post("/api/evaluate", json={"project_id": "oppia-oppia", "handle": h}).json()
+            for h in [*authors, "demo-vouched-contributor", "demo-flagged-account", "demo-lone-denounce"]
+        },
+    }
+    save(EX_OUT / "github-real-results.json", out)
+    print("wrote examples/output/github-real-results.json")
 
 
 if __name__ == "__main__":

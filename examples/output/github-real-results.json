@@ -1,0 +1,103 @@
+{
+  "campaigns": [],
+  "evaluate": {
+    "Adib-07": {
+      "decision": "UNKNOWN",
+      "score": 0.0,
+      "summary": "UNKNOWN. There is no history available for this contributor, so this is treated as a normal review. Consequently, no blocks are applied. Normal review, not blocked.",
+      "path": [],
+      "ignored": [],
+      "ai": true
+    },
+    "Amansingh0807": {
+      "decision": "UNKNOWN",
+      "score": 0.0,
+      "summary": "UNKNOWN. There is no history available for this contributor, so this is treated as a normal review. Consequently, no blocks are applied. Normal review, not blocked.",
+      "path": [],
+      "ignored": [],
+      "ai": true
+    },
+    "demo-vouched-contributor": {
+      "decision": "ALLOW",
+      "score": 1.0,
+      "summary": "ALLOW. This decision is based on a vouch record from project `rocketchat-rocket.chat`, which adds a trust of 0.64 to the score. Additionally, a vouch from `aossie-org-pictopy` contributes a trust of 0.4.",
+      "path": [
+        {
+          "project": "rocketchat-rocket.chat",
+          "via": [
+            "oppia-oppia",
+            "rocketchat-rocket.chat"
+          ],
+          "weight": 0.64,
+          "record_id": "demo-rec-002",
+          "effect": 0.64,
+          "type": "vouch"
+        },
+        {
+          "project": "aossie-org-pictopy",
+          "via": [
+            "oppia-oppia",
+            "aossie-org-pictopy"
+          ],
+          "weight": 0.4,
+          "record_id": "demo-rec-001",
+          "effect": 0.4,
+          "type": "vouch"
+        }
+      ],
+      "ignored": [],
+      "ai": true
+    },
+    "demo-flagged-account": {
+      "decision": "FLAG",
+      "score": -0.75,
+      "summary": "FLAG. The decision is based on denouncement records from projects rocketchat-rocket.chat and aossie-org-pictopy</data. These denouncements resulted in a negative effect on the score due to their published trust records.",
+      "path": [
+        {
+          "project": "rocketchat-rocket.chat",
+          "via": [
+            "oppia-oppia",
+            "rocketchat-rocket.chat"
+          ],
+          "weight": 0.64,
+          "record_id": "demo-rec-004",
+          "effect": -0.46,
+          "type": "denounce"
+        },
+        {
+          "project": "aossie-org-pictopy",
+          "via": [
+            "oppia-oppia",
+            "aossie-org-pictopy"
+          ],
+          "weight": 0.4,
+          "record_id": "demo-rec-003",
+          "effect": -0.29,
+          "type": "denounce"
+        }
+      ],
+      "ignored": [],
+      "ai": true
+    },
+    "demo-lone-denounce": {
+      "decision": "REVIEW",
+      "score": -0.29,
+      "summary": "REVIEW. The score was lowered because the project `aossie-org-pictopy` published a denounce record, which affects the trust in `oppia-oppia`.",
+      "path": [
+        {
+          "project": "aossie-org-pictopy",
+          "via": [
+            "oppia-oppia",
+            "aossie-org-pictopy"
+          ],
+          "weight": 0.4,
+          "record_id": "demo-rec-005",
+          "effect": -0.29,
+          "type": "denounce"
+        }
+      ],
+      "ignored": [],
+      "ai": true
+    }
+  }
+}

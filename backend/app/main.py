@@ -17,7 +17,7 @@ from .db import Database
 from .llm import LLM
 from .models import SimulateIn
 from .routes import campaigns, network, records
-from .routes.network import load_simulation
+from .routes.network import GITHUB_NETWORK, load_simulation
 
 FRONTEND_DIR = Path(os.environ.get("SNIFFER_FRONTEND", Path(__file__).resolve().parents[2] / "frontend"))
 
@@ -28,7 +28,9 @@ def create_app(db_path: str | Path | None = None, llm: LLM | None = None, seed_d
     app.state.db = database
     app.state.llm = llm or LLM(cache=database)
     if seed_demo and database.is_empty():
-        load_simulation(database, SimulateIn(preset="demo"))  # so a fresh checkout has data to show
+        # A fresh checkout shows the 10 real repositories; the synthetic demo is the fallback.
+        preset = "github" if GITHUB_NETWORK.is_file() else "demo"
+        load_simulation(database, SimulateIn(preset=preset))
 
     @app.middleware("http")
     async def no_stale_frontend(request: Request, call_next):

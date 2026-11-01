@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import os
+from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import ValidationError
@@ -12,6 +14,8 @@ from ..db import Database
 from ..models import NetworkIn, Project, SimulateIn, TrustEdge, TrustSettings, TrustUpdate
 from ..simulate import generate_network
 from .common import db, default_decay, require_project
+
+ROOT = Path(__file__).resolve().parents[3]
 
 router = APIRouter(prefix="/api", tags=["network"])
 MAX_IMPORT_BYTES = 5 * 1024 * 1024
@@ -55,7 +59,27 @@ def put_settings(body: TrustSettings, database: Database = Depends(db)):
     return body
 
 
+GITHUB_NETWORK = Path(os.environ.get("SNIFFER_GITHUB_NETWORK", ROOT / "examples" / "input" / "github-real.json"))
+
+
+def load_github_network(database: Database) -> dict:
+    """Replace the synthetic network with the 10 real GitHub repositories (see scripts/fetch_github.py)."""
+    if not GITHUB_NETWORK.is_file():
+        raise HTTPException(
+            status_code=404,
+            detail="The real GitHub network file is missing. Run scripts/fetch_github.py first.",
+        )
+    summary = import_network_bytes(database, GITHUB_NETWORK.read_bytes())
+    return {
+        **summary,
+        "source": "github",
+        "note": "Real repositories and pull requests; trust edges and records are synthetic.",
+    }
+
+
 def load_simulation(database: Database, params: SimulateIn) -> dict:
+    if params.preset == "github":
+        return load_github_network(database)
     if params.preset == "demo":
         params = SimulateIn(seed=params.seed)
     net = generate_network(
@@ -95,6 +119,11 @@ async def import_network(request: Request, database: Database = Depends(db)):
     if declared and declared.isdigit() and int(declared) > MAX_IMPORT_BYTES:
         raise HTTPException(status_code=413, detail="Network file is larger than 5 MB")
     raw = await request.body()
+    return import_network_bytes(database, raw)
+
+
+def import_network_bytes(database: Database, raw: bytes) -> dict:
+    """Validate and load a network file. Used by the upload endpoint and the GitHub preset."""
     if len(raw) > MAX_IMPORT_BYTES:
         raise HTTPException(status_code=413, detail="Network file is larger than 5 MB")
     try:

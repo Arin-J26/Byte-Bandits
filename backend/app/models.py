@@ -118,7 +118,7 @@ class SimulateIn(BaseModel):
     newcomers: int = Field(default=8, ge=0, le=60)
     campaign_size: int = Field(default=38, ge=0, le=80, alias="campaignSize")
     seed: int = Field(default=2026, ge=0, le=2**31 - 1)
-    preset: Literal["demo"] | None = None
+    preset: Literal["demo", "github"] | None = None
 
 
 class ClusterVerdict(BaseModel):
