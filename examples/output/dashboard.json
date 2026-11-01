@@ -1,0 +1,37 @@
+{
+  "login": "Arin-J26",
+  "projects": [
+    {
+      "id": "d1",
+      "name": "D1 (oppia)",
+      "github": "oppia/oppia",
+      "prs_total": 30,
+      "merged_prs": 1,
+      "vouchers": 30,
+      "denounces": 0,
+      "trust_edges": 21,
+      "flagged_accounts": 0,
+      "campaigns": 0,
+      "classified": 30,
+      "spam_weight": 0,
+      "unclassified": 0,
+      "source": "oppia-develop.zip (7380 files); PRs from GitHub public API"
+    },
+    {
+      "id": "d2",
+      "name": "D2 (synthetic)",
+      "github": "test-org/synthetic-d2",
+      "prs_total": 254,
+      "merged_prs": 162,
+      "vouchers": 216,
+      "denounces": 38,
+      "trust_edges": 21,
+      "flagged_accounts": 0,
+      "campaigns": 1,
+      "classified": 254,
+      "spam_weight": 15,
+      "unclassified": 0,
+      "source": "synthetic-d2.zip (2 files); PRs from zip (prs.json)"
+    }
+  ]
+}
