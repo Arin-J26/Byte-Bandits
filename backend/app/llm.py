@@ -24,7 +24,7 @@ from typing import Any
 import httpx
 from pydantic import ValidationError
 
-from .models import ClusterVerdict
+from .models import ClusterVerdict, PrVerdict
 
 DEFAULT_MODEL = "gemma4:e2b"
 DEFAULT_HOST = "http://localhost:11434"
@@ -175,6 +175,30 @@ UNCLEAR = ClusterVerdict(
 # ---------------------------------------------------------------- client
 
 
+def pr_prompt(pr: dict) -> str:
+    """One pull request for the spam decision. Everything from the contributor is wrapped in <data> tags."""
+    age = pr.get("account_age_days")
+    return "\n".join(
+        [
+            "Decide whether this pull request is spam: low-effort, unwanted or automated contributions made to farm",
+            "reputation, such as empty or reworded typo fixes, template PRs that change nothing meaningful, or",
+            "unrelated promotional edits. Routine maintenance and genuine fixes are NOT spam, even when automated.",
+            'Answer with strict JSON only: {"spam": true | false, "reason": "<one short sentence>"}',
+            f"Account age (days): {age if age is not None else 'unknown'}",
+            f"Title: {data(pr.get('title'), 200)}",
+            f"Description: {data(pr.get('body'), 600)}",
+            f"Diff excerpt: {data(pr.get('diff_text'), 1200)}",
+        ]
+    )
+
+
+def github_template(stats: dict) -> str:
+    return (
+        f"GitHub shows merged pull requests from this contributor in {stats['repos_with_merged_prs']} other "
+        f"repositories ({stats['merged_prs_found']} found), on an account {stats['account_age_days']} days old."
+    )
+
+
 class LLM:
     def __init__(
         self,
@@ -302,6 +326,48 @@ class LLM:
 
         value, ai = self._cached("classify", prompt, compute)
         return (ClusterVerdict(**value), True) if ai and value else (UNCLEAR, False)
+
+    def classify_pr(self, pr: dict) -> tuple[PrVerdict | None, bool]:
+        """Is this pull request spam? Returns (verdict, ai). verdict is None when the model could not answer."""
+        prompt = pr_prompt(pr)
+
+        def compute():
+            for _ in range(2):  # invalid JSON: retry once
+                text = self._chat(prompt, json_mode=True)
+                if text is None:
+                    return None
+                try:
+                    return PrVerdict.model_validate_json(_json_object(text)).model_dump()
+                except (ValidationError, ValueError):
+                    continue
+            return None
+
+        value, ai = self._cached("pr", prompt, compute)
+        return (PrVerdict(**value), True) if ai and value else (None, False)
+
+    def summarize_github(self, login: str, stats: dict) -> tuple[str, bool]:
+        """Plain-language reading of GitHub's public numbers. The numbers themselves come from GitHub."""
+        prompt = "\n".join(
+            [
+                "Summarise these public GitHub facts about a contributor for a project maintainer, in 2 sentences.",
+                "Use only these numbers. Do not guess motives and do not call the person good or bad.",
+                f"Contributor: {data(login, 60)}",
+                f"Other repositories with merged pull requests from them: {stats['repos_with_merged_prs']}",
+                f"Merged pull requests found: {stats['merged_prs_found']}"
+                + (" (capped at 100 by GitHub search)" if stats.get("search_capped") else ""),
+                f"Account age (days): {stats['account_age_days']}",
+                f"Public repositories: {stats['public_repos']}",
+            ]
+        )
+
+        def compute():
+            text = self._chat(prompt, json_mode=False)
+            return clean(text, 500) if text else None
+
+        value, ai = self._cached("github", prompt, compute)
+        if ai and value:
+            return value, True
+        return github_template(stats), False
 
     def summarize_campaign(self, cluster: dict) -> tuple[str, bool]:
         prompt = campaign_prompt(cluster)

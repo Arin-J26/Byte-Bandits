@@ -6,3 +6,4 @@ __pycache__/
 sniffer.db
 sniffer.db-*
 *.db
+demo_credentials.json

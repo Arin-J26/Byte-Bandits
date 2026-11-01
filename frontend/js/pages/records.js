@@ -1,117 +1,85 @@
-// Records page: searchable, sortable, filterable, paginated table of signed vouch/denounce records.
+// Records: search one contributor and see each of their PRs as PR1, PR2, ... with a spam label, a type
+// (denounced or voucher), and the reason, evidence and timestamp for spam PRs.
 
-import { h, clear, skeleton, errorBox, emptyState, pill, debounce, download, copyText, toast } from '../dom.js';
-import { api, syncTrustSettings } from '../api.js';
-import { prefs, trustOptions } from '../state.js';
-import { filterRecords, sortRecords, paginate, toCSV, denounceCounts } from '../lib/recordFilter.js';
-import { computeTrust } from '../lib/trustMath.js';
-import { recordTypeStyle, signatureStyle } from '../lib/decision.js';
-import { fmtTime } from '../lib/format.js';
-import { openRecordDrawer, term } from '../ui.js';
+import { h, clear, pill, toast, errorBox, emptyState } from '../dom.js';
+import { meter, decisionBadge, decisionControls } from '../widgets.js';
+import { api } from '../api.js';
 
-const COLS = [
-  ['issuer', 'Issuer'], ['subject_handle', 'Subject'], ['type', 'Type'], ['reason', 'Reason'],
-  [null, 'Evidence'], ['timestamp', 'Timestamp'], ['signature_valid', 'Signature'],
-];
-const PAGE_SIZE = 10;
+const SUBJECT = { spam: { tone: 'bad', icon: '✕', label: 'spam' }, 'not spam': { tone: 'ok', icon: '✓', label: 'not spam' }, pending: { tone: 'warn', icon: '…', label: 'pending' } };
+const TYPE = { denounced: { tone: 'bad', icon: '✕', label: 'denounced' }, voucher: { tone: 'ok', icon: '✓', label: 'voucher' }, pending: { tone: 'warn', icon: '…', label: 'pending' } };
 
-export async function mount(root) {
-  clear(root, h('section', { class: 'page' }, skeleton(8)));
-  let records, edges;
+export async function mount(root, ctx) {
+  const handleIn = h('input', { class: 'input mono', id: 'rec-handle', list: 'rec-handles', placeholder: 'GitHub username', maxlength: '39', autocomplete: 'off', 'data-search': '' });
+  const datalist = h('datalist', { id: 'rec-handles' });
+  const typeSel = h('select', { class: 'input', id: 'rec-type', 'aria-label': 'Filter by type' },
+    [['', 'Denounced and voucher'], ['denounced', 'Denounced only'], ['voucher', 'Voucher only']].map(([v, t]) => h('option', { value: v }, t)));
+  const subjSel = h('select', { class: 'input', id: 'rec-subject', 'aria-label': 'Filter by subject' },
+    [['', 'Spam and not spam'], ['spam', 'Spam only'], ['not spam', 'Not spam only']].map(([v, t]) => h('option', { value: v }, t)));
+  const result = h('div', { class: 'stack', 'aria-live': 'polite' });
+  let rows = [];
+
   try {
-    [records, edges] = await Promise.all([api.records(), api.trustEdges(), syncTrustSettings(prefs.perspective)]);
-  } catch (err) {
-    clear(root, errorBox(`Could not load records: ${err.message}`, () => mount(root)));
-    return null;
-  }
-  if (!records.length) {
-    clear(root, h('section', { class: 'page' }, emptyState({ icon: '☰', title: 'No records yet', text: 'Load a synthetic network to see signed vouch and denounce records.', actionLabel: 'Go to Simulate', href: '#/simulate' })));
-    return null;
-  }
-  const trusted = new Set(computeTrust(edges, prefs.perspective, trustOptions()).trust.keys());
-  const denounced = denounceCounts(records, trusted);
-  const state = { q: '', type: '', sig: '', issuer: '', sort: 'timestamp', dir: 'desc', page: 1 };
+    const names = await api.contributors(ctx.id);
+    datalist.append(...names.map((n) => h('option', { value: n })));
+  } catch { /* the search still works without suggestions */ }
 
-  const q = h('input', { class: 'input', type: 'search', placeholder: 'Search issuer, handle, reason, URL…', 'data-search': '', aria: { label: 'Search records' } });
-  const typeSel = h('select', { class: 'input', aria: { label: 'Filter by type' } },
-    [['', 'All types'], ['vouch', '✓ Vouches'], ['denounce', '✕ Denounces'], ['contest', '↩ Contests']].map(([v, t]) => h('option', { value: v }, t)));
-  const sigSel = h('select', { class: 'input', aria: { label: 'Filter by signature' } },
-    [['', 'Any signature'], ['valid', '✓ Valid'], ['invalid', '✕ Invalid']].map(([v, t]) => h('option', { value: v }, t)));
-  const issuerSel = h('select', { class: 'input', aria: { label: 'Filter by issuer' } }, h('option', { value: '' }, 'All issuers'),
-    [...new Set(records.map((r) => r.issuer))].sort().map((i) => h('option', { value: i }, i)));
-  const exportJson = h('button', { class: 'btn btn-sm', type: 'button' }, '⇩ JSON');
-  const exportCsv = h('button', { class: 'btn btn-sm', type: 'button' }, '⇩ CSV');
-  const count = h('p', { class: 'hint', aria: { live: 'polite' } });
-  const thead = h('thead');
-  const tbody = h('tbody');
-  const pager = h('nav', { class: 'row pager', aria: { label: 'Pagination' } });
-
-  clear(root, h('section', { class: 'page page-records' },
-    h('div', { class: 'page-head' }, h('div', {}, h('h1', {}, 'Signed records'),
-      h('p', {}, 'Every ', term('vouch'), ' and ', term('denounce'), ' is signed by the issuing project. A single denounce is only a soft signal; FLAG needs at least two independent trusted projects.'))),
-    h('div', { class: 'panel row filters' }, q, typeSel, sigSel, issuerSel, h('span', { style: { flex: 1 } }), exportJson, exportCsv),
-    count,
-    h('div', { class: 'table-wrap' }, h('table', {}, h('caption', { class: 'sr-only' }, 'Signed records. Activate a row to open details.'), thead, tbody)),
-    pager));
-
-  const filtered = () => sortRecords(filterRecords(records, state), state.sort, state.dir);
-
-  function renderHead() {
-    clear(thead, h('tr', {}, COLS.map(([key, label]) => {
-      if (!key) return h('th', { scope: 'col' }, label);
-      const active = state.sort === key;
-      return h('th', { scope: 'col', 'aria-sort': active ? (state.dir === 'asc' ? 'ascending' : 'descending') : 'none' },
-        h('button', { type: 'button', on: { click: () => { state.dir = active && state.dir === 'asc' ? 'desc' : 'asc'; state.sort = key; state.page = 1; render(); } } },
-          label, h('span', { 'aria-hidden': 'true', class: 'dim' }, active ? (state.dir === 'asc' ? '▲' : '▼') : '↕')));
-    })));
+  let meta = { spam_weight: null, decision: null };
+  const summary = h('div', { class: 'panel stack', 'aria-live': 'polite' });
+  function paintSummary(handle) {
+    clear(summary,
+      h('div', { class: 'row' }, h('h2', { class: 'mono' }, `@${handle}`), h('span', { class: 'spacer' }), decisionBadge(meta.decision)),
+      meter(meta.spam_weight, { label: 'Spam weight (share of their classified PRs)' }),
+      h('p', { class: 'hint' }, 'Your decision is yours: block or accept only when you choose. Nothing is blocked automatically.'),
+      decisionControls(ctx.id, handle, meta.decision, (decision) => { meta.decision = decision; paintSummary(handle); }));
   }
 
-  function row(r) {
-    const n = denounced.get(String(r.subject_handle).toLowerCase()) || 0;
-    const open = () => openRecordDrawer(r, { denouncers: n });
-    const ev = r.evidence_urls || [];
-    return h('tr', { tabindex: '0', aria: { label: `${r.type} of ${r.subject_handle} by ${r.issuer}. Open details.` }, on: { click: open, keydown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } } } },
-      h('td', { class: 'mono' }, r.issuer),
-      h('td', { class: 'mono' }, `@${r.subject_handle}`,
-        n ? h('div', { class: `hint ${n >= 2 ? 'tone-bad' : 'tone-warn'}` }, `denounced by ${n} independent trusted project${n === 1 ? '' : 's'}${n === 1 ? ' (soft signal)' : ''}`) : null),
-      h('td', {}, pill(recordTypeStyle(r.type))),
-      h('td', { class: 'reason' }, r.reason || '—'),
-      h('td', {}, ev.length ? h('ul', { class: 'plain stack' }, ev.slice(0, 2).map((u) => h('li', { class: 'row nowrap' },
-        h('code', { class: 'url' }, String(u)),
-        h('button', { class: 'btn btn-sm btn-icon', type: 'button', aria: { label: `Copy ${u}` }, on: { click: (e) => { e.stopPropagation(); copyText(String(u)); } } }, '⧉'))))
-        : h('span', { class: 'dim' }, '—'), ev.length > 2 ? h('span', { class: 'dim' }, `+${ev.length - 2} more`) : null),
-      h('td', { class: 'mono nowrap' }, fmtTime(r.timestamp)),
-      h('td', {}, pill(signatureStyle(r.signature_valid))));
+  function paint() {
+    const shown = rows.filter((r) => (!typeSel.value || r.type === typeSel.value) && (!subjSel.value || r.subject === subjSel.value));
+    clear(result, shown.length ? h('div', { class: 'table-wrap' }, h('table', {},
+      h('thead', {}, h('tr', {}, ['PR', 'Title', 'Subject', 'Type', 'Reason', 'Evidence', 'Timestamp'].map((c) => h('th', { scope: 'col' }, c)))),
+      h('tbody', {}, shown.map((r) => h('tr', {},
+        h('td', { class: 'mono nowrap' }, r.tag),
+        h('td', {}, h('a', { class: 'link', href: r.url, target: '_blank', rel: 'noopener noreferrer' }, `#${r.number} ${r.title}`)),
+        h('td', {}, pill(SUBJECT[r.subject] || SUBJECT.pending)),
+        h('td', {}, pill(TYPE[r.type] || TYPE.pending)),
+        h('td', { class: 'reason' }, r.reason || ''),
+        h('td', {}, r.evidence ? h('a', { class: 'link mono', href: r.evidence, target: '_blank', rel: 'noopener noreferrer' }, r.evidence) : ''),
+        h('td', { class: 'mono nowrap' }, r.timestamp || ''))))))
+      : emptyState({ icon: '⌕', title: 'No pull requests to show', text: rows.length ? 'No PRs match these filters.' : 'Search a contributor, or classify the project first.' }));
   }
 
-  function render() {
-    const all = filtered();
-    const pg = paginate(all, state.page, PAGE_SIZE);
-    state.page = pg.page;
-    renderHead();
-    clear(tbody, pg.items.length ? pg.items.map(row)
-      : h('tr', {}, h('td', { colspan: String(COLS.length) }, emptyState({ icon: '⌕', title: 'No records match', text: 'Try a different search or clear the filters.', actionLabel: 'Clear filters', onAction: reset }))));
-    count.textContent = `${pg.total} of ${records.length} records · page ${pg.page} of ${pg.pages}`;
-    exportJson.textContent = `⇩ JSON (${pg.total})`;
-    exportCsv.textContent = `⇩ CSV (${pg.total})`;
-    clear(pager,
-      h('button', { class: 'btn btn-sm', type: 'button', disabled: pg.page <= 1, on: { click: () => { state.page--; render(); } } }, '← Prev'),
-      h('span', { class: 'mono' }, `${pg.page} / ${pg.pages}`),
-      h('button', { class: 'btn btn-sm', type: 'button', disabled: pg.page >= pg.pages, on: { click: () => { state.page++; render(); } } }, 'Next →'));
+  async function search() {
+    const handle = handleIn.value.trim().replace(/^@/, '');
+    if (!handle) { handleIn.focus(); return; }
+    clear(result, h('div', { class: 'skeleton', style: { height: '120px' } }));
+    try {
+      const data = await api.records(ctx.id, handle);
+      rows = data.prs;
+      meta = { spam_weight: data.spam_weight, decision: data.decision };
+      paintSummary(data.handle);
+      history.replaceState(null, '', `#/p/${encodeURIComponent(ctx.id)}/records?handle=${encodeURIComponent(handle)}`);
+      paint();
+      if (!rows.length) toast(`No PRs by @${handle} in this project.`, 'warn', 3500);
+    } catch (err) {
+      clear(result, errorBox(err.message));
+    }
   }
 
-  function reset() {
-    Object.assign(state, { q: '', type: '', sig: '', issuer: '', page: 1 });
-    q.value = ''; typeSel.value = ''; sigSel.value = ''; issuerSel.value = '';
-    render();
-  }
+  const form = h('form', { class: 'panel row', role: 'search', aria: { label: 'Search records' } },
+    h('div', { class: 'field', style: { flex: '1 1 240px' } }, h('label', { for: 'rec-handle' }, 'Contributor handle'), handleIn, datalist),
+    h('div', { class: 'field' }, h('label', { for: 'rec-type' }, 'Type'), typeSel),
+    h('div', { class: 'field' }, h('label', { for: 'rec-subject' }, 'Subject'), subjSel),
+    h('button', { class: 'btn btn-primary', type: 'submit' }, 'Search'));
+  form.addEventListener('submit', (e) => { e.preventDefault(); search(); });
+  typeSel.addEventListener('change', paint);
+  subjSel.addEventListener('change', paint);
 
-  q.addEventListener('input', debounce(() => { state.q = q.value; state.page = 1; render(); }, 150));
-  typeSel.addEventListener('change', () => { state.type = typeSel.value; state.page = 1; render(); });
-  sigSel.addEventListener('change', () => { state.sig = sigSel.value; state.page = 1; render(); });
-  issuerSel.addEventListener('change', () => { state.issuer = issuerSel.value; state.page = 1; render(); });
-  exportJson.addEventListener('click', () => { download('sniffer-records.json', JSON.stringify(filtered(), null, 2)); toast('Exported filtered records as JSON', 'ok'); });
-  exportCsv.addEventListener('click', () => { download('sniffer-records.csv', toCSV(filtered()), 'text/csv'); toast('Exported filtered records as CSV', 'ok'); });
-  render();
-  return null;
+  clear(root, h('section', { class: 'page' },
+    h('div', { class: 'page-head' }, h('div', {}, h('h1', {}, 'Records'),
+      h('p', {}, 'Each pull request by one contributor, numbered PR1, PR2, and so on. Spam PRs show the reason, evidence and time; not-spam PRs leave those blank.'))),
+    form, summary, result));
+
+  const preset = ctx.query.get('handle');
+  if (preset) { handleIn.value = preset; search(); }
+  else clear(result, emptyState({ icon: '⌕', title: 'Search a contributor', text: 'Type a GitHub username above to see their pull requests.' }));
 }

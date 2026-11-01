@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { decisionStyle, recordTypeStyle, signatureStyle } from '../js/lib/decision.js';
+import { decisionStyle, recordTypeStyle } from '../js/lib/decision.js';
 
 test('each decision maps to colour, icon and label', () => {
   assert.deepEqual(
@@ -21,10 +21,9 @@ test('decision lookup is case-insensitive and unknown values fall back to REVIEW
 });
 
 test('record type and signature styles always carry an icon and text', () => {
-  for (const s of [recordTypeStyle('vouch'), recordTypeStyle('denounce'), signatureStyle(true), signatureStyle(false)]) {
+  for (const s of [recordTypeStyle('vouch'), recordTypeStyle('denounce')]) {
     assert.ok(s.icon && s.label);
   }
-  assert.equal(signatureStyle(false).tone, 'bad');
 });
 
 test('contest records and Gemma verdicts have their own icon and label', async () => {
