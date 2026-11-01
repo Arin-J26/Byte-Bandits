@@ -1,0 +1,22 @@
+{
+  "decision": "REVIEW",
+  "score": -0.75,
+  "summary": "REVIEW. The score of -0.75 was assigned because project d2 published a denounce record, which has a trust of 1.0, negatively impacting the score by -0.75. This decision is based on the presence of this specific signal from project d2.",
+  "path": [
+    {
+      "project": "d2",
+      "via": [
+        "d2"
+      ],
+      "weight": 1.0,
+      "record_id": "d2:test-spam-01",
+      "effect": -0.75,
+      "type": "denounce"
+    }
+  ],
+  "ignored": [],
+  "ai": true,
+  "handle": "test-spam-01",
+  "spam_weight": 100,
+  "maintainer_decision": null
+}

@@ -1,0 +1,22 @@
+{
+  "decision": "ALLOW",
+  "score": 1.0,
+  "summary": "ALLOW. The decision is based on the vouch record from project d2, which has a trust score of 1.0. This vouch record directly impacts the score by adding 1.0 to the current score. No other signals were present.",
+  "path": [
+    {
+      "project": "d2",
+      "via": [
+        "d2"
+      ],
+      "weight": 1.0,
+      "record_id": "d2:test-spam-09",
+      "effect": 1.0,
+      "type": "vouch"
+    }
+  ],
+  "ignored": [],
+  "ai": true,
+  "handle": "test-spam-09",
+  "spam_weight": 5,
+  "maintainer_decision": null
+}

@@ -1,0 +1,335 @@
+[
+  {
+    "id": "camp-cb616da6",
+    "size": 13,
+    "accounts_min_age_days": 3,
+    "projects_hit": 1,
+    "window_minutes": 107,
+    "similarity_method": "MinHash LSH (128 permutations) on character 5-gram shingles of title + diff, Jaccard \u2265 0.6",
+    "pr_events": [
+      {
+        "id": "d2#101",
+        "handle": "test-spam-01",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:00:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#102",
+        "handle": "test-spam-02",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:03:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#103",
+        "handle": "test-spam-03",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:06:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#104",
+        "handle": "test-spam-04",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:09:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#105",
+        "handle": "test-spam-05",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:12:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#106",
+        "handle": "test-spam-06",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:14:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#107",
+        "handle": "test-spam-07",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:17:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#108",
+        "handle": "test-spam-08",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:20:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#109",
+        "handle": "test-spam-09",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:23:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#110",
+        "handle": "test-spam-10",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:26:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#111",
+        "handle": "test-spam-11",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:29:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#112",
+        "handle": "test-spam-12",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:32:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#113",
+        "handle": "test-spam-13",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:35:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#114",
+        "handle": "test-spam-01",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:38:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#115",
+        "handle": "test-spam-02",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:40:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#116",
+        "handle": "test-spam-03",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:43:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#117",
+        "handle": "test-spam-04",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:46:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#118",
+        "handle": "test-spam-05",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:49:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#119",
+        "handle": "test-spam-06",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:52:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#120",
+        "handle": "test-spam-07",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:55:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#121",
+        "handle": "test-spam-08",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T10:58:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#122",
+        "handle": "test-spam-09",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:01:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#123",
+        "handle": "test-spam-10",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:04:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#124",
+        "handle": "test-spam-11",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:07:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#125",
+        "handle": "test-spam-12",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:09:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#126",
+        "handle": "test-spam-13",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:12:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#127",
+        "handle": "test-spam-01",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:15:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#128",
+        "handle": "test-spam-02",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:18:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#129",
+        "handle": "test-spam-03",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:21:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#130",
+        "handle": "test-spam-04",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:24:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#131",
+        "handle": "test-spam-05",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:27:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#132",
+        "handle": "test-spam-06",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:30:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#133",
+        "handle": "test-spam-07",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:33:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#134",
+        "handle": "test-spam-08",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:35:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#135",
+        "handle": "test-spam-09",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:38:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#136",
+        "handle": "test-spam-10",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:41:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#137",
+        "handle": "test-spam-11",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:44:00Z",
+        "similarity": 1.0
+      },
+      {
+        "id": "d2#138",
+        "handle": "test-spam-12",
+        "project": "d2",
+        "title": "Fix typo in README.md",
+        "timestamp": "2026-12-20T11:47:00Z",
+        "similarity": 1.0
+      }
+    ],
+    "handles": [
+      "test-spam-01",
+      "test-spam-02",
+      "test-spam-03",
+      "test-spam-04",
+      "test-spam-05",
+      "test-spam-06",
+      "test-spam-07",
+      "test-spam-08",
+      "test-spam-09",
+      "test-spam-10",
+      "test-spam-11",
+      "test-spam-12",
+      "test-spam-13"
+    ],
+    "evidence_summary": "The suspected campaign involved 13 accounts, with the youngest account being 3 days old. Within a 107-minute window, these accounts submitted 1 project, exhibiting 38 near-identical pull requests. Similarity was determined using MinHash LSH (128 permutations) on character 5-gram shingles of the title plus difference, with a Jaccard similarity threshold of 0.6 or higher.",
+    "ai_verdict": "spam",
+    "ai_reason": "The pull requests exhibit near-identical titles and diffs, suggesting automated or coordinated submission.",
+    "ai": true
+  }
+]

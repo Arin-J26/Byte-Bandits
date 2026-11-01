@@ -1,0 +1,45 @@
+{
+  "months": [
+    {
+      "month": "2026-09",
+      "genuine": 17,
+      "spam": 0
+    },
+    {
+      "month": "2026-10",
+      "genuine": 60,
+      "spam": 0
+    },
+    {
+      "month": "2026-11",
+      "genuine": 83,
+      "spam": 0
+    },
+    {
+      "month": "2026-12",
+      "genuine": 44,
+      "spam": 38
+    },
+    {
+      "month": "2027-01",
+      "genuine": 12,
+      "spam": 0
+    }
+  ],
+  "stats": {
+    "id": "d2",
+    "name": "D2 (synthetic)",
+    "github": "test-org/synthetic-d2",
+    "prs_total": 254,
+    "merged_prs": 162,
+    "vouchers": 216,
+    "denounces": 38,
+    "trust_edges": 21,
+    "flagged_accounts": 0,
+    "campaigns": 1,
+    "classified": 254,
+    "spam_weight": 15,
+    "unclassified": 0,
+    "source": "synthetic-d2.zip (2 files); PRs from zip (prs.json)"
+  }
+}
