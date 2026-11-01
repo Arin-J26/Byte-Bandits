@@ -1,0 +1,26 @@
+{
+  "request": {
+    "project_id": "lumen-ui",
+    "handle": "solo-denounce-sam"
+  },
+  "response": {
+    "decision": "REVIEW",
+    "score": -0.46,
+    "summary": "REVIEW. The score was lowered because the project `aurora-docs` published a denounce record, which has a trust score of 0.48 related to `lumen-ui`.",
+    "path": [
+      {
+        "project": "aurora-docs",
+        "via": [
+          "lumen-ui",
+          "aurora-docs"
+        ],
+        "weight": 0.48,
+        "record_id": "rec-0006",
+        "effect": -0.46,
+        "type": "denounce"
+      }
+    ],
+    "ignored": [],
+    "ai": true
+  }
+}

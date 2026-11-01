@@ -1,0 +1,14 @@
+{
+  "request": {
+    "project_id": "lumen-ui",
+    "handle": "newbie-nora"
+  },
+  "response": {
+    "decision": "UNKNOWN",
+    "score": 0.0,
+    "summary": "UNKNOWN. There is no history available for this contributor, so this is treated as a normal review. Consequently, no blocks are applied. Normal review, not blocked.",
+    "path": [],
+    "ignored": [],
+    "ai": true
+  }
+}
