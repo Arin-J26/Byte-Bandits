@@ -1,14 +1,11 @@
 # AGENTS.md
 
-Rules for AI coding assistants working on the Sniffer backend.
+Rules for AI coding assistants working on Sniffer.
 
-- **Git:** do not run `git add`, `commit`, `push` or any `gh` command, and do not open PRs unless the user explicitly asks. Only create or edit files.
-- **Scope:** work only in `backend/` (plus `docs/API.md`, `examples/`, this file and README sections).
-- **Stack:** Python 3.11+, FastAPI, Uvicorn, SQLite (stdlib `sqlite3`), PyNaCl, datasketch, the `ollama` package, pytest, httpx, ruff. Dependencies live in `backend/pyproject.toml`.
-- **Model:** the only AI model is `gemma4:e2b`, served by Ollama at http://localhost:11434 (name from `SNIFFER_MODEL`). Never import or call any cloud AI SDK or API, not even as a fallback. No secrets, no API keys, no posting to real GitHub. Synthetic data only.
-- **Model use:** all model calls and prompts live in `backend/app/llm.py`. Wrap every contributor-controlled string in `<data>…</data>` after cleaning and truncating it. If Ollama is unreachable, return deterministic text with `ai: false` and never crash.
-- **Decisions:** the trust engine (`backend/app/trust.py`) is pure and deterministic. The model never makes or changes a decision.
-- **Records:** records are signed with ed25519 over canonical JSON and are append-only. A denounce needs at least one evidence URL. Private keys are never returned by any endpoint.
-- **API:** the API is under `/api` and returns exactly the shapes in `frontend/mock/*.json`; `docs/API.md` wins if it differs. The frontend is mounted as static files last.
-- **Database:** use parameterized queries only. The DB path comes from `SNIFFER_DB` (default `backend/sniffer.db`, git-ignored).
-- **Tests:** keep `ruff check backend` and `pytest backend` green. Tests must not need Ollama; real-model tests use the `live` marker and run only with `SNIFFER_LIVE=1`.
+- **Git:** do not run `git add`, `commit`, `push` or any `gh` command, and do not open PRs unless the user explicitly asks.
+- **Model:** the only AI is `gemma4:e2b` through a local Ollama server. Never import or call any cloud AI SDK or API, not even as a fallback. No API keys or secrets in the code.
+- **Data:** only real data: maintainer uploads and public GitHub data. No synthetic network inside the app code. `examples/input/d1-oppia.zip` is a real repository; `examples/input/synthetic-d2.zip` is a clearly labelled test fixture with fictional accounts.
+- **Decisions:** ALLOW / REVIEW / UNKNOWN / FLAG come from `backend/app/trust.py` and are never changed by the model. Gemma labels PRs, writes summaries, and gives campaign verdicts.
+- **Access:** every project feature checks that the signed-in maintainer is listed on that project.
+- **Frontend:** plain HTML, CSS and ES modules. Build text with `textContent` and `createElement`, never `innerHTML` with data. All backend calls go through `js/api.js`.
+- **Tests:** keep `ruff check backend`, `pytest backend` and `node --test frontend/tests/*.test.js` green.

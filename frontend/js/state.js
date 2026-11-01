@@ -4,7 +4,7 @@
 const KEY = 'sniffer.prefs.v1';
 const listeners = new Map();
 
-const defaults = { muted: false, volume: 0.25, quiet: false, maxDepth: 3, decay: 0.8, perspective: 'lumen-ui', welcomed: false, theme: 'light' };
+const defaults = { muted: false, volume: 0.25, quiet: false, welcomed: false, theme: 'light' };
 
 function load() {
   try { return { ...defaults, ...JSON.parse(localStorage.getItem(KEY) || '{}') }; } catch { return { ...defaults }; }

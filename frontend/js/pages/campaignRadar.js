@@ -25,6 +25,11 @@ export function createRadar(canvas) {
   let binMs = 300_000;
   let binLabel = '5 min';
   let replay = null; // { dots, phase, t, label, resolve }
+  // Nodes on the ring are projects when the events span 3+ projects, otherwise the accounts of one project.
+  let mode = 'project';
+  let hover = null;
+  let onNode = null;
+  const keyOf = (e) => (mode === 'account' ? e.handle : e.project);
 
   const ms = (t) => Date.parse(t);
   // Leave room around the ring for project labels (up to ~14 monospace characters).
@@ -40,11 +45,20 @@ export function createRadar(canvas) {
     draw();
   }
 
-  function setData(evts) {
-    // Only the recent window: old records would otherwise stretch the timeline over months.
-    const win = timelineWindow(evts.filter((e) => Number.isFinite(ms(e.timestamp))));
-    events = win ? evts.filter((e) => ms(e.timestamp) >= win.start && ms(e.timestamp) <= win.end) : [];
-    projects = [...new Set(events.map((e) => e.project).filter(Boolean))].slice(0, 24);
+  /** focus: a timestamp the 12-hour timeline should end shortly after (a campaign's last PR).
+      first: node keys placed on the ring first (a campaign's accounts). */
+  function setData(evts, { focus = null, first = [] } = {}) {
+    const valid = evts.filter((e) => Number.isFinite(ms(e.timestamp)));
+    mode = new Set(valid.map((e) => e.project)).size >= 3 ? 'project' : 'account';
+    // Only a 12-hour window: old records would otherwise stretch the timeline over months.
+    const end = focus ? focus + 90 * 60_000 : null;
+    const win = focus ? { start: end - 12 * 3600_000, end, binMinutes: 15 } : timelineWindow(valid);
+    events = win ? valid.filter((e) => ms(e.timestamp) >= win.start && ms(e.timestamp) <= win.end) : [];
+    const counts = new Map();
+    for (const e of events) counts.set(keyOf(e), (counts.get(keyOf(e)) || 0) + 1);
+    const ranked = [...counts.keys()].sort((a, b) => counts.get(b) - counts.get(a));
+    projects = [...new Set([...first, ...ranked])].filter(Boolean).slice(0, 24);
+    replay = null;
     bins = win ? binEvents(events, { binMinutes: win.binMinutes, start: win.start, end: win.end }) : [];
     binMs = (win?.binMinutes || 5) * 60_000;
     binLabel = win && win.binMinutes >= 60 ? `${win.binMinutes / 60} h` : `${win?.binMinutes || 5} min`;
@@ -81,25 +95,65 @@ export function createRadar(canvas) {
     const tMin = events.length ? Math.min(...events.map((e) => ms(e.timestamp))) : 0;
     const tMax = events.length ? Math.max(...events.map((e) => ms(e.timestamp))) : 1;
     for (const e of events.slice(0, 200)) {
-      const a = angleOf(e.project);
-      if (!projects.includes(e.project)) continue;
+      const key = keyOf(e);
+      if (!projects.includes(key)) continue;
+      const a = angleOf(key);
       const f = 0.2 + 0.72 * ((ms(e.timestamp) - tMin) / Math.max(1, tMax - tMin));
       const burst = isBurst(e);
       ctx.fillStyle = e.kind === 'denounce' ? C.bad : e.kind === 'vouch' ? C.ok : burst ? C.bad : C.cyan;
-      ctx.globalAlpha = burst ? 0.95 : 0.6;
+      ctx.globalAlpha = (burst ? 0.95 : 0.6) * (hover && hover !== key ? 0.25 : 1);
       ctx.beginPath(); ctx.arc(cx + Math.cos(a) * R * f, cy + Math.sin(a) * R * f, burst ? 3.5 : 2.5, 0, Math.PI * 2); ctx.fill();
     }
     ctx.globalAlpha = 1;
     // project nodes
     for (const p of projects) {
       const { x, y } = nodePos(p);
-      ctx.fillStyle = C.node; ctx.strokeStyle = C.cyan; ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      const on = p === hover;
+      ctx.fillStyle = on ? C.cyan : C.node; ctx.strokeStyle = C.cyan; ctx.lineWidth = on ? 3 : 2;
+      ctx.beginPath(); ctx.arc(x, y, on ? 9 : 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     }
     drawLabels(cx, cy, R);
     drawReplay(cx, cy);
+    drawTooltip();
     drawTimeline();
   }
+
+  /** Hover card for a node: its PRs in the window and how many fall in a burst. */
+  function drawTooltip() {
+    if (!hover) return;
+    const mine = events.filter((e) => keyOf(e) === hover);
+    const inBurst = mine.filter(isBurst).length;
+    const lines = [hover, `${mine.length} PR${mine.length === 1 ? '' : 's'} in this window`, `${inBurst} in a burst`];
+    if (onNode) lines.push(mode === 'account' ? 'click: open records' : 'click: open project');
+    ctx.font = '11px ui-monospace, Menlo, monospace';
+    const bw = Math.max(...lines.map((l) => ctx.measureText(l).width)) + 16, bh = lines.length * 15 + 10;
+    const n = nodePos(hover);
+    const x = Math.min(w - bw - 4, Math.max(4, n.x + 14)), y = Math.min(hgt - TIMELINE_H - bh, Math.max(4, n.y - bh / 2));
+    ctx.fillStyle = C.node; ctx.strokeStyle = C.cyan; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, bw, bh, 6) : ctx.rect(x, y, bw, bh); ctx.fill(); ctx.stroke();
+    ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+    lines.forEach((l, i) => { ctx.fillStyle = i === 0 ? C.text : i === 2 && inBurst ? C.bad : C.dim; ctx.fillText(l, x + 8, y + 6 + i * 15); });
+    ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'center';
+  }
+
+  function nodeAt(x, y) {
+    for (const p of projects) { const n = nodePos(p); if (Math.hypot(n.x - x, n.y - y) < 13) return p; }
+    return null;
+  }
+  function onMove(ev) {
+    const r = canvas.getBoundingClientRect();
+    const k = nodeAt(ev.clientX - r.left, ev.clientY - r.top);
+    if (k === hover) return;
+    hover = k;
+    canvas.style.cursor = k && onNode ? 'pointer' : 'default';
+    if (k) sound.tick();
+    draw();
+  }
+  function onLeave() { if (hover) { hover = null; draw(); } }
+  function onClick() { if (hover && onNode) onNode(hover, mode); }
+  canvas.addEventListener('mousemove', onMove);
+  canvas.addEventListener('mouseleave', onLeave);
+  canvas.addEventListener('click', onClick);
 
   /**
    * Project labels placed radially outside the ring, aligned away from the centre, and pushed
@@ -139,6 +193,14 @@ export function createRadar(canvas) {
 
   function drawReplay(cx, cy) {
     if (!replay) return;
+    for (const d of replay.dots) {
+      d.trail.forEach(([tx, ty], i) => {
+        ctx.fillStyle = replay.phase === 'flag' ? C.bad : C.warn;
+        ctx.globalAlpha = (i + 1) / (d.trail.length + 1) * 0.35;
+        ctx.beginPath(); ctx.arc(tx, ty, 2.5, 0, Math.PI * 2); ctx.fill();
+      });
+    }
+    ctx.globalAlpha = 1;
     for (const d of replay.dots) {
       ctx.fillStyle = replay.phase === 'flag' ? C.bad : C.warn;
       ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 10;
@@ -201,20 +263,31 @@ export function createRadar(canvas) {
     raf = requestAnimationFrame(loop);
   }
 
-  /* ----- replay ----- */
+  /* ----- replay -----
+     Each PR of the campaign is a ball that leaves its project node and flies to the centre, one after another in
+     time order. Each arrival pings. When every ball has arrived they gather into a ring and the campaign is flagged. */
+  const FLIGHT_MS = 720;   // time one ball takes to fly to the centre
+  const LAUNCH_MS = 150;   // gap between one ball leaving and the next
   function stepReplay(dt) {
     replay.t += dt;
     const { cx, cy } = geo();
     if (replay.phase === 'fly') {
       let arrived = 0;
       for (const d of replay.dots) {
-        const k = Math.min(1, Math.max(0, (replay.t - d.delay) / 600));
-        if (k > 0 && !d.ticked) { d.ticked = true; sound.tick(); }
-        const target = nodePos(d.project);
-        d.x = d.sx + (target.x - d.sx) * k; d.y = d.sy + (target.y - d.sy) * k;
-        if (k >= 1) arrived++;
+        const k = Math.min(1, Math.max(0, (replay.t - d.delay) / FLIGHT_MS));
+        const from = nodePos(d.project);
+        const ease = k * k * (3 - 2 * k);
+        d.x = from.x + (cx - from.x) * ease;
+        d.y = from.y + (cy - from.y) * ease;
+        if (k > 0 && k < 1) { d.trail.push([d.x, d.y]); if (d.trail.length > 7) d.trail.shift(); }
+        if (k >= 1) {
+          arrived++;
+          if (!d.arrived) { d.arrived = true; sound.ping(520 + (arrived % 12) * 40); }
+        } else if (k > 0 && !d.launched) {
+          d.launched = true; sound.tick();
+        }
       }
-      if (arrived === replay.dots.length) { replay.phase = 'gather'; replay.t = 0; for (const d of replay.dots) { d.sx = d.x; d.sy = d.y; } }
+      if (arrived === replay.dots.length) { replay.phase = 'gather'; replay.t = 0; for (const d of replay.dots) { d.sx = d.x; d.sy = d.y; d.trail = []; } }
     } else if (replay.phase === 'gather') {
       const k = Math.min(1, replay.t / 900);
       const e = 1 - Math.pow(1 - k, 3);
@@ -230,18 +303,16 @@ export function createRadar(canvas) {
     }
   }
 
-  /** Animate a campaign's PR events flying to project nodes, clustering, and flagging. */
+  /** Animate a campaign: its PRs fly in one by one from their projects, gather, and flag. */
   function playReplay(campaign, { onFlag } = {}) {
-    const evts = (campaign.pr_events || []).slice(0, MAX_DOTS);
-    for (const e of evts) if (!projects.includes(e.project) && projects.length < 24) projects.push(e.project);
+    const evts = [...(campaign.pr_events || [])].sort((a, b) => (a.timestamp < b.timestamp ? -1 : 1)).slice(0, MAX_DOTS);
+    for (const e of evts) if (!projects.includes(keyOf(e)) && projects.length < 24) projects.push(keyOf(e));
     const { cx, cy } = geo();
     const label = `${campaign.id} · ${campaign.size} accounts · ${campaign.window_minutes} min`;
-    const dots = evts.map((e, i) => {
-      const a = Math.random() * Math.PI * 2;
-      return { project: e.project, sx: cx + Math.cos(a) * 12, sy: cy + Math.sin(a) * 12, x: cx, y: cy, delay: i * 140 };
-    });
+    const dots = evts.filter((e) => projects.includes(keyOf(e)))
+      .map((e, i) => ({ project: keyOf(e), x: cx, y: cy, delay: i * LAUNCH_MS, trail: [] }));
     if (reducedMotion() || document.hidden) {
-      replay = { dots: dots.map((d, i) => ({ ...d, x: cx + Math.cos((i / dots.length) * 6.283) * 28, y: cy + Math.sin((i / dots.length) * 6.283) * 28 })), phase: 'flag', t: 0, label };
+      replay = { dots: dots.map((d, i) => ({ ...d, x: cx + Math.cos((i / dots.length) * 6.283) * 28, y: cy + Math.sin((i / dots.length) * 6.283) * 28, trail: [] })), phase: 'flag', t: 0, label };
       draw();
       onFlag?.();
       sound.alarm();
@@ -263,7 +334,11 @@ export function createRadar(canvas) {
   return {
     setData,
     playReplay,
+    /** fn(key, mode) runs when a node is clicked; mode is 'account' or 'project'. */
+    setOnNode(fn) { onNode = fn; },
     restart: start,
-    destroy() { cancelAnimationFrame(raf); ro.disconnect(); offTheme(); document.removeEventListener('visibilitychange', start); },
+    destroy() {
+      cancelAnimationFrame(raf); ro.disconnect();
+      canvas.removeEventListener('mousemove', onMove); canvas.removeEventListener('mouseleave', onLeave); canvas.removeEventListener('click', onClick); offTheme(); document.removeEventListener('visibilitychange', start); },
   };
 }

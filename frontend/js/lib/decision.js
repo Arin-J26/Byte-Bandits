@@ -31,9 +31,3 @@ export function aiVerdictStyle(verdict) {
   return { tone: 'warn', icon: '!', label: 'AI: unclear' };
 }
 
-/** Signature status -> style. */
-export function signatureStyle(valid) {
-  return valid === false
-    ? { tone: 'bad', icon: '✕', label: 'Invalid signature' }
-    : { tone: 'ok', icon: '✓', label: 'Signature valid' };
-}
