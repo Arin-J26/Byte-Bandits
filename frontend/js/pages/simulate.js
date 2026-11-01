@@ -30,7 +30,7 @@ function numberField(id, label, min, max, value, hint) {
 export async function mount(root) {
   const projects = numberField('sim-projects', 'Projects', 20, 50, 30, 'How many open-source projects take part.');
   const newcomers = numberField('sim-new', 'Honest newcomers', 0, 30, 8, 'First-time contributors with no history. They must come out UNKNOWN, never blocked.');
-  const campaign = numberField('sim-camp', 'Campaign size', 0, 40, 12, 'Accounts in a coordinated spam wave (0 = no campaign).');
+  const campaign = numberField('sim-camp', 'Spam PRs', 0, 60, 38, 'Near-identical PRs in the coordinated wave, about 3 per account (0 = no campaign; detection needs 5 or more).');
   const seed = h('input', { class: 'input mono', id: 'sim-seed', type: 'number', value: '2026', min: '1', max: '999999' });
   const demoBtn = h('button', { class: 'btn btn-primary', type: 'button', id: 'sim-demo' }, '★ Load demo network');
   const genBtn = h('button', { class: 'btn', type: 'button', id: 'sim-gen' }, '⚙ Generate network');
@@ -117,15 +117,24 @@ export async function mount(root) {
       sound.review();
       return;
     }
-    api.importNetwork(res.network);
-    await showSummary(`Imported ${file.name}`);
-    toast('Imported. The badge now shows Mock because this data lives only in your browser.', 'ok', 5000);
+    try {
+      const out = await api.importNetwork(data, res.network);
+      await showSummary(`Imported ${file.name}`);
+      if (out.local) toast('Imported into this browser (mock mode). The badge shows Mock.', 'ok', 5000);
+      else toast(`Imported into the backend: ${out.records} records, ${out.invalid_signatures} with invalid signatures (kept but ignored).`, 'ok', 6000);
+    } catch (err) {
+      clear(summary, h('div', { class: 'error-box', role: 'alert' }, h('strong', {}, '✕ The backend rejected this file. '),
+        err.message, h('p', { class: 'hint' }, 'The live backend needs a network exported from Sniffer (with public keys and signatures).')));
+      sound.review();
+    }
   });
 
   exportBtn.addEventListener('click', async () => {
     try {
-      const n = await api.network();
+      const n = await api.exportNetwork();
       download(`sniffer-network-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(n, null, 2));
+      toast(status.mode === 'live' ? 'Downloaded from the backend (public keys and signatures included, no private keys).'
+        : 'Downloaded the network held in this browser.', 'ok');
     } catch (err) { toast(`Export failed: ${err.message}`, 'bad'); }
   });
 

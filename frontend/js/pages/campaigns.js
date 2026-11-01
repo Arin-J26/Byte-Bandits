@@ -3,8 +3,8 @@
 import { h, clear, skeleton, errorBox, emptyState, pill, toast } from '../dom.js';
 import { api, status } from '../api.js';
 import { prefs, reducedMotion, on } from '../state.js';
-import { filterCampaigns, campaignFacts, burstScore, binEvents } from '../lib/campaignStats.js';
-import { signatureStyle } from '../lib/decision.js';
+import { filterCampaigns, campaignFacts, burstScore, binEvents, timelineWindow } from '../lib/campaignStats.js';
+import { signatureStyle, aiVerdictStyle } from '../lib/decision.js';
 import { fmtAgo, fmtTime } from '../lib/format.js';
 import { createRadar } from './campaignRadar.js';
 
@@ -20,6 +20,7 @@ const KIND = {
   pr: { tone: 'cyan', icon: '⇡', label: 'PR' },
   vouch: { tone: 'ok', icon: '✓', label: 'Vouch' },
   denounce: { tone: 'bad', icon: '✕', label: 'Denounce' },
+  contest: { tone: 'cyan', icon: '↩', label: 'Contest' },
 };
 
 export async function mount(root) {
@@ -81,7 +82,10 @@ export async function mount(root) {
   function render() {
     const { camps, evts } = visible();
     radar.setData(evts);
-    radarStat.textContent = `${evts.length} events · burst score ${burstScore(binEvents(evts, { binMinutes: 5 }))} (how far the busiest 5-minute window stands above normal)`;
+    const win = timelineWindow(evts);
+    const recent = win ? evts.filter((e) => Date.parse(e.timestamp) >= win.start) : [];
+    const score = win ? burstScore(binEvents(recent, { binMinutes: win.binMinutes, start: win.start, end: win.end })) : 0;
+    radarStat.textContent = `${recent.length} recent events · burst score ${score} (how far the busiest ${win?.binMinutes || 5}-minute window stands above normal)`;
     replayBtn.disabled = !camps.length;
     clear(cards, camps.length ? camps.map(card) : emptyState({
       icon: '⌖', title: 'No campaigns match these filters', text: 'Loosen the filters, or generate a network with a spam campaign.',
@@ -95,7 +99,10 @@ export async function mount(root) {
     return h('article', { class: 'panel campaign-card', aria: { labelledby: `cc-${c.id}` } },
       h('div', { class: 'panel-title' }, h('h3', { id: `cc-${c.id}`, class: 'mono' }, c.id), h('span', { class: 'spacer' }),
         pill({ tone: 'bad', icon: '✕', label: 'Coordinated' })),
+      aiBlock(c),
       h('p', {}, c.evidence_summary || ''),
+      h('p', { class: 'hint' }, c.ai ? '✦ Verdict and summary written by Gemma (local model). Detection itself is deterministic.'
+        : '≡ Template text: the model was not consulted (mock mode or Ollama unavailable).'),
       h('dl', { class: 'facts' },
         fact('Near-identical PRs', f.prCount), fact('Accounts', f.accounts), fact('Min account age', `${f.minAge} days`),
         fact('Projects hit', f.projectsHit), fact('Time window', `${f.window} min`)),
@@ -106,19 +113,26 @@ export async function mount(root) {
       h('button', { class: 'btn btn-sm', type: 'button', on: { click: () => suggest(c) } }, '✎ Suggest denounce records'));
   }
 
-  /** Only displays proposals. Nothing is signed or sent. */
-  function suggest(c) {
-    const me = prefs.perspective;
-    const handles = [...new Set((c.pr_events || []).map((e) => e.handle))];
-    const drafts = handles.map((handle) => ({
-      issuer: me, subject_handle: handle, type: 'denounce',
-      reason: `Part of coordinated campaign ${c.id}: ${c.size} accounts, ${c.window_minutes}-minute window`,
-      evidence_urls: [],
-    }));
+  function aiBlock(c) {
+    if (!c.ai_verdict) return null;
+    return h('div', { class: 'ai-verdict' }, pill(aiVerdictStyle(c.ai_verdict)), h('span', {}, c.ai_reason || ''));
+  }
+
+  /** Asks the backend (or the mock) for unsigned proposals. Nothing is signed, stored or sent. */
+  async function suggest(c) {
+    clear(proposals, h('div', { class: 'panel' }, skeleton(3)));
+    let res;
+    try {
+      res = await api.suggestDenounce(c.id, prefs.perspective);
+    } catch (err) {
+      clear(proposals, errorBox(`Could not get proposals: ${err.message}`, () => suggest(c)));
+      return;
+    }
+    const drafts = res.proposals || [];
     clear(proposals, h('div', { class: 'panel' },
       h('div', { class: 'panel-title' }, h('h2', {}, `Proposed denounce records (${drafts.length})`), h('span', { class: 'spacer' }),
         h('button', { class: 'btn btn-sm btn-ghost', type: 'button', aria: { label: 'Close proposals' }, on: { click: () => clear(proposals) } }, '✕')),
-      h('p', { class: 'tone-warn' }, '! Nothing has been sent or signed. These are drafts for a maintainer to review; each project decides on its own.'),
+      h('p', { class: 'tone-warn' }, `! ${res.note || 'Proposals only.'} Nothing has been sent or signed (issuer: ${res.issuer}).`),
       h('pre', { class: 'mono code-block', tabindex: '0' }, JSON.stringify(drafts, null, 2))));
     proposals.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'nearest' });
   }

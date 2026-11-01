@@ -2,7 +2,7 @@
 // with an animated explanation path, ignored records, and what-if trust sliders.
 
 import { h, svg, clear, debounce, skeleton, errorBox, pill, toast, copyText } from '../dom.js';
-import { api, status } from '../api.js';
+import { api, status, syncTrustSettings } from '../api.js';
 import { prefs, setPref, reducedMotion, trustOptions } from '../state.js';
 import { decisionStyle, recordTypeStyle } from '../lib/decision.js';
 import { fmtWeight, fmtSigned, viaList } from '../lib/format.js';
@@ -49,7 +49,8 @@ export async function mount(root) {
   clear(root, h('section', { class: 'page' }, skeleton(5)));
   let projects, edges, records, events;
   try {
-    [projects, edges, records, events] = await Promise.all([api.projects(), api.trustEdges(), api.records(), api.events().catch(() => [])]);
+    [projects, edges, records, events] = await Promise.all([api.projects(), api.trustEdges(), api.records(), api.events().catch(() => []),
+      syncTrustSettings(prefs.perspective)]);
   } catch (err) {
     clear(root, errorBox(`Could not load data: ${err.message}`, () => mount(root)));
     return null;
@@ -164,7 +165,11 @@ export async function mount(root) {
           h('div', { class: 'muted' }, 'Score ', score, h('span', { class: 'dim' }, '  (−1 … +1)')),
           st.note ? h('p', { class: 'verdict-note' }, st.note) : null)),
       gauge(res.score, animate && !reducedMotion()),
-      typed, full);
+      typed, full,
+      h('p', { class: 'summary-source' },
+        res.ai ? pill({ tone: 'cyan', icon: '✦', label: 'Summary by Gemma' }) : pill({ tone: 'dim', icon: '≡', label: 'Template summary' }),
+        h('span', { class: 'hint' }, res.ai ? ' Local model, rewording the facts above. The decision comes from the trust engine.'
+          : ' Written by code (mock mode, Ollama off, or Gemma still thinking: evaluate again in a moment).')));
     const card = verdict.firstElementChild;
     if (animate && !reducedMotion()) {
       card.classList.add(`fx-${st.key.toLowerCase()}`);
@@ -256,8 +261,9 @@ export async function mount(root) {
     if (!handle) { handleIn.focus(); toast('Type a contributor handle first.', 'warn'); return; }
     evaluateNow(handle);
   });
-  projectSel.addEventListener('change', () => {
+  projectSel.addEventListener('change', async () => {
     setPref('perspective', projectSel.value);
+    await syncTrustSettings(projectSel.value);
     renderWhatIf();
     if (lastHandle) evaluateNow(lastHandle);
   });

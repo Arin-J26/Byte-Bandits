@@ -85,6 +85,8 @@ def main() -> None:
         )
     call("GET", "/api/events")
     call("PUT", "/api/trust", {"project_id": "lumen-ui", "peer_id": "pyforge", "weight": 0.8})
+    call("GET", "/api/trust/settings?project_id=lumen-ui")
+    call("PUT", "/api/trust/settings", {"project_id": "lumen-ui", "max_depth": 3, "decay": 0.8})
 
     rec = {
         "id": "rec-example-1",
@@ -120,6 +122,10 @@ DOC_NOTES = {
     "GET /api/campaigns": "Clusters found by MinHash/LSH + burst + young-account filters, with Gemma's verdict.",
     "GET /api/events": "PR and record events, newest first. `?limit=` (1-1000, default 100).",
     "PUT /api/trust": "Set (or create) a trust edge.",
+    "GET /api/trust/settings?project_id=lumen-ui": "How far (`max_depth`, 1-6) and how fast (`decay`, 0.5-1) trust "
+    "travels when this project evaluates someone.",
+    "PUT /api/trust/settings": "Save `max_depth` and `decay` for a project. "
+    "Every evaluation from its perspective uses them.",
     "POST /api/records": "Append a signed record. 400 on a bad signature, 409 on a duplicate id, 422 when a "
     "denounce has no evidence URL, 404 for an unknown issuer. No update or delete endpoints exist.",
     "GET /api/network/export": "Full network for backup or sharing. Private keys are never included.",

@@ -6,7 +6,7 @@
   "response": {
     "decision": "REVIEW",
     "score": 0.34,
-    "summary": "REVIEW. The score reflects a positive vouch from `nebula-db` (trust 0.8) and a contest record from `nebula-db` (trust 0.8), balanced by a denounce from `aurora-docs` (trust 0.48) and a denounce from `orbit-ml` (trust 0.46).",
+    "summary": "REVIEW. The score of 0.34 reflects a positive vouch from `nebula-db` (trust 0.8) and a contest record from `nebula-db` (trust 0.8). However, there are negative signals from `aurora-docs` and `orbit-ml` that pull the score down.",
     "path": [
       {
         "project": "nebula-db",

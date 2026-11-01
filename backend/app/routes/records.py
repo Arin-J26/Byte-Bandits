@@ -41,7 +41,11 @@ def add_record(body: RecordIn, database: Database = Depends(db)):
 def evaluate(body: EvaluateIn, database: Database = Depends(db), model: LLM = Depends(llm)):
     project = require_project(database, body.project_id)
     result = run_evaluation(
-        database.edges(), database.records(), body.project_id, body.handle, trust_config(project["max_depth"])
+        database.edges(),
+        database.records(),
+        body.project_id,
+        body.handle,
+        trust_config(project["max_depth"], project["decay"]),
     )
     summary, ai = within_budget(
         lambda: model.summarize_decision(result, body.handle, body.project_id), ai_budget(), (result["summary"], False)

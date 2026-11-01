@@ -34,7 +34,7 @@ export function validateNetwork(data) {
   });
   records.forEach((r, i) => {
     if (!r || !isStr(r.id) || !isStr(r.issuer) || !isStr(r.subject_handle)) errors.push(`records[${i}] needs "id", "issuer" and "subject_handle".`);
-    else if (r.type !== 'vouch' && r.type !== 'denounce') errors.push(`records[${i}].type must be "vouch" or "denounce".`);
+    else if (!['vouch', 'denounce', 'contest'].includes(r.type)) errors.push(`records[${i}].type must be "vouch", "denounce" or "contest".`);
   });
   if (errors.length > 8) errors.splice(8, errors.length, `…and ${errors.length - 8} more problems.`);
   if (errors.length) return { ok: false, errors };

@@ -139,7 +139,7 @@ export function createEvalGraph(canvas) {
       ctx.beginPath(); ctx.arc(n.x, n.y, n.me ? 12 : 10, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
       ctx.shadowBlur = 0; ctx.setLineDash([]);
       // icon inside node so colour is not the only signal
-      const icon = n.state === 'vouch' ? '✓' : n.state === 'denounce' ? '✕' : n.state === 'ignored' ? '–' : '';
+      const icon = n.state === 'vouch' ? '✓' : n.state === 'denounce' ? '✕' : n.state === 'contest' ? '↩' : n.state === 'ignored' ? '–' : '';
       if (icon) { ctx.fillStyle = color; ctx.font = 'bold 11px system-ui'; ctx.fillText(icon, n.x, n.y + 4); }
       ctx.font = '11px ui-monospace, Menlo, monospace';
       ctx.fillStyle = n.state === 'ignored' ? C.dim : C.text;
@@ -151,7 +151,7 @@ export function createEvalGraph(canvas) {
 
   function settle(hop) {
     const node = scene.nodes.get(hop.issuer);
-    node.state = hop.type === 'denounce' ? 'denounce' : 'vouch';
+    node.state = hop.type === 'denounce' ? 'denounce' : hop.type === 'contest' ? 'contest' : 'vouch';
   }
 
   function frame(ts) {

@@ -30,6 +30,15 @@ def create_app(db_path: str | Path | None = None, llm: LLM | None = None, seed_d
     if seed_demo and database.is_empty():
         load_simulation(database, SimulateIn(preset="demo"))  # so a fresh checkout has data to show
 
+    @app.middleware("http")
+    async def no_stale_frontend(request: Request, call_next):
+        """Browsers must revalidate the frontend on every load, so an update never mixes old and new JS.
+        (Unchanged files still answer 304 Not Modified, so this stays cheap.)"""
+        response = await call_next(request)
+        if not request.url.path.startswith("/api/"):
+            response.headers["Cache-Control"] = "no-cache"
+        return response
+
     @app.exception_handler(HTTPException)
     async def http_error(_: Request, exc: HTTPException):
         return JSONResponse(status_code=exc.status_code, content={"error": exc.detail})
@@ -42,7 +51,8 @@ def create_app(db_path: str | Path | None = None, llm: LLM | None = None, seed_d
     @app.get("/api/health")
     def health(request: Request):
         model: LLM = request.app.state.llm
-        return {"status": "ok", "model": model.model, "ollama_available": model.available()}
+        running, ready = model.status()
+        return {"status": "ok", "model": model.model, "ollama_available": ready, "ollama_running": running}
 
     app.include_router(network.router)
     app.include_router(records.router)

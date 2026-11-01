@@ -23,6 +23,7 @@ export async function mount(root) {
   let draft = new Map();   // peer -> weight being edited
   let depth = Number(prefs.maxDepth) || DEFAULTS.maxDepth;
   let decay = Number(prefs.decay) || DEFAULTS.decay;
+  let savedSettings = { depth, decay };
 
   const meSel = h('select', { class: 'input', id: 'tr-me' }, projects.map((p) => h('option', { value: p.id, selected: p.id === me() }, p.name || p.id)));
   const peersBox = h('div', { class: 'stack' });
@@ -53,7 +54,7 @@ export async function mount(root) {
           h('div', { class: 'slider-row' }, h('label', { for: 'tr-depth' }, 'Max ', term('depth')), depthIn, depthOut), depthText,
           h('div', { class: 'slider-row' }, h('label', { for: 'tr-decay' }, term('decay', 'Decay')), decayIn, decayOut), decayText,
           h('p', { class: 'hint' }, status.mode === 'live'
-            ? 'Peer weights are saved to the backend. Depth and decay are preview settings stored in this browser.'
+            ? 'Saved to the backend for this project: every evaluation from its perspective uses these values.'
             : 'Mock mode: everything is stored in this browser and used for local evaluation.'))),
       h('div', { class: 'panel' }, h('div', { class: 'panel-title' }, h('h2', {}, 'Effective transitive trust'), h('span', { class: 'hint' }, 'Live preview of your settings')), chart))));
 
@@ -63,7 +64,20 @@ export async function mount(root) {
   }
 
   const isDirty = () => draft.size !== saved.size || [...draft].some(([k, v]) => saved.get(k) !== v)
-    || depth !== (Number(prefs.maxDepth) || DEFAULTS.maxDepth) || decay !== (Number(prefs.decay) || DEFAULTS.decay);
+    || depth !== savedSettings.depth || decay !== savedSettings.decay;
+
+  async function loadSettings() {
+    try {
+      const s = await api.trustSettings(me());
+      depth = Number(s.max_depth) || DEFAULTS.maxDepth;
+      decay = Number(s.decay) || DEFAULTS.decay;
+      savedSettings = { depth, decay };
+      setPref('maxDepth', depth); // keeps the Evaluate page's depth line in sync
+      setPref('decay', decay);
+    } catch (err) {
+      toast(`Could not load depth/decay: ${err.message}`, 'warn');
+    }
+  }
 
   function renderPeers() {
     clear(peersBox, draft.size ? [...draft].map(([peer, w]) => {
@@ -101,7 +115,7 @@ export async function mount(root) {
     saveBtn.disabled = !isDirty();
   }
 
-  meSel.addEventListener('change', () => { setPref('perspective', meSel.value); loadFromEdges(); renderPeers(); update(); });
+  meSel.addEventListener('change', async () => { setPref('perspective', meSel.value); loadFromEdges(); await loadSettings(); renderPeers(); update(); });
   depthIn.addEventListener('input', () => { depth = Number(depthIn.value); update(); });
   decayIn.addEventListener('input', () => { decay = Number(decayIn.value); update(); });
   addBtn.addEventListener('click', () => { if (addSel.value) { draft.set(addSel.value, 0.5); renderPeers(); update(); } });
@@ -116,6 +130,8 @@ export async function mount(root) {
     const changed = [...draft].filter(([k, v]) => saved.get(k) !== v);
     try {
       for (const [peer, w] of changed) await api.putTrust(me(), peer, w);
+      await api.putTrustSettings(me(), depth, decay);
+      savedSettings = { depth, decay };
       setPref('maxDepth', depth);
       setPref('decay', decay);
       edges = await api.trustEdges();
@@ -129,6 +145,7 @@ export async function mount(root) {
   });
 
   loadFromEdges();
+  await loadSettings();
   renderPeers();
   update();
   return null;

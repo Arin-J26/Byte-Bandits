@@ -46,8 +46,15 @@ export function term(key, label = key) {
 }
 
 /* ---------- banner ---------- */
+export function hideBanner() {
+  const b = document.getElementById('banner');
+  b.hidden = true;
+  delete b.dataset.kind;
+}
+
 export function showBanner(message, action) {
   const b = document.getElementById('banner');
+  b.dataset.kind = /Ollama|Gemma|gemma/.test(message) ? 'ai' : 'other';
   clear(b, h('span', { 'aria-hidden': 'true', class: 'tone-warn' }, '!'), h('span', {}, message),
     action ? h('button', { class: 'btn btn-sm', type: 'button', style: { marginLeft: 'auto' }, on: { click: action.onClick } }, action.label) : null,
     h('button', { class: 'btn btn-sm btn-ghost', type: 'button', aria: { label: 'Dismiss banner' }, on: { click: () => { b.hidden = true; } } }, '✕'));

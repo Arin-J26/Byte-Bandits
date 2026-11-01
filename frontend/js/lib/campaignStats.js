@@ -32,13 +32,32 @@ export function burstScore(bins = []) {
   return Math.round(((Math.max(...counts) - mean) / sd) * 100) / 100;
 }
 
-/** Indices of bins whose own z-score is at least `threshold`. */
-export function burstBins(bins = [], threshold = 2) {
+/**
+ * Indices of bins whose own z-score is at least `threshold` AND that hold at least `minCount`
+ * events (in sparse data a single event would otherwise look like a burst).
+ */
+export function burstBins(bins = [], threshold = 2, minCount = 3) {
   if (bins.length < 2) return [];
   const counts = bins.map((b) => b.count);
   const mean = counts.reduce((a, b) => a + b, 0) / counts.length;
   const sd = Math.sqrt(counts.reduce((a, c) => a + (c - mean) ** 2, 0) / counts.length) || 1;
-  return counts.flatMap((c, i) => ((c - mean) / sd >= threshold ? [i] : []));
+  return counts.flatMap((c, i) => (c >= minCount && (c - mean) / sd >= threshold ? [i] : []));
+}
+
+const NICE_MINUTES = [5, 10, 15, 30, 60, 120, 240, 480, 720, 1440];
+
+/**
+ * Pick a display window and bin size for a timeline: at most `maxSpanHours` ending at the newest
+ * event, and a "nice" bin size so there are no more than `maxBins` bins.
+ */
+export function timelineWindow(events = [], { maxSpanHours = 12, maxBins = 48 } = {}) {
+  const times = events.map((e) => toMs(e.timestamp)).filter(Number.isFinite);
+  if (!times.length) return null;
+  const end = Math.max(...times);
+  const start = Math.max(Math.min(...times), end - maxSpanHours * 3600_000);
+  const spanMin = Math.max(1, (end - start) / 60_000);
+  const binMinutes = NICE_MINUTES.find((m) => spanMin / m <= maxBins) || NICE_MINUTES[NICE_MINUTES.length - 1];
+  return { start, end, binMinutes };
 }
 
 /** Filters for the Campaigns page. windowMinutes=0 means any window. */
@@ -65,5 +84,25 @@ export function campaignFacts(c) {
     method: c.similarity_method || 'Normalised PR title + diff shingles, Jaccard similarity ≥ 0.85',
     sampleTitles: titles.slice(0, 4),
     sampleHandles: handles.slice(0, 6),
+  };
+}
+
+/** Unsigned denounce proposals for a campaign (same shape as the backend endpoint). Sends nothing. */
+export function suggestDenounces(c, issuer) {
+  const events = c.pr_events || [];
+  const handles = [...new Set(events.map((e) => e.handle).filter(Boolean))];
+  return {
+    campaign_id: c.id,
+    issuer,
+    sent: false,
+    note: 'Proposals only. Review them, then sign and publish from your own project if you agree.',
+    proposals: handles.map((handle) => ({
+      issuer,
+      subject_handle: handle,
+      type: 'denounce',
+      reason: `Part of coordinated campaign ${c.id}: ${c.size} accounts, ${c.projects_hit} projects, ${c.window_minutes}-minute window`,
+      evidence_urls: events.filter((e) => e.handle === handle).map((e) => `urn:sniffer:pr-event:${e.id}`).slice(0, 10),
+      signed: false,
+    })),
   };
 }

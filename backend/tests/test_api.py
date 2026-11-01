@@ -36,7 +36,7 @@ def client(tmp_path):
 
 def test_health(client):
     body = client.get("/api/health").json()
-    assert body == {"status": "ok", "model": "gemma4:e2b", "ollama_available": False}
+    assert body == {"status": "ok", "model": "gemma4:e2b", "ollama_available": False, "ollama_running": False}
 
 
 def test_projects_and_edges_match_fixtures(client):
@@ -204,3 +204,34 @@ def test_root_serves_frontend(client):
     assert r.status_code == 200
     assert (MOCK.parent / "index.html").read_text() == r.text
     assert client.get("/js/api.js").status_code == 200
+
+
+def test_trust_settings_roundtrip_and_effect(client):
+    s = client.get("/api/trust/settings", params={"project_id": "lumen-ui"}).json()
+    assert s == {"project_id": "lumen-ui", "max_depth": 3, "decay": 0.8}
+    ev = lambda: client.post("/api/evaluate", json={"project_id": "lumen-ui", "handle": "ada-commits"}).json()  # noqa: E731
+    assert ev()["path"][0]["weight"] == 0.8
+    r = client.put("/api/trust/settings", json={"project_id": "lumen-ui", "max_depth": 1, "decay": 0.9})
+    assert r.status_code == 200
+    body = ev()
+    assert body["path"][0]["weight"] == 0.9 and len(body["path"]) == 1  # quasar-cli is now beyond depth 1
+    assert any("beyond depth limit (1 hops)" == i["reason"] for i in body["ignored"])
+    assert (
+        client.put("/api/trust/settings", json={"project_id": "lumen-ui", "max_depth": 9, "decay": 0.9}).status_code
+        == 422
+    )
+    assert client.get("/api/trust/settings", params={"project_id": "nope"}).status_code == 404
+
+
+def test_import_rejects_duplicate_ids_with_422_not_500(client):
+    exported = client.get("/api/network/export").json()
+    dup = dict(exported, projects=exported["projects"] + [exported["projects"][0]])
+    r = client.post("/api/network/import", json=dup)
+    assert r.status_code == 422 and "unique" in json.dumps(r.json())
+    dup_ev = dict(exported, pr_events=exported["pr_events"] + [exported["pr_events"][0]])
+    assert client.post("/api/network/import", json=dup_ev).status_code == 422
+
+
+def test_frontend_is_never_served_stale(client):
+    assert client.get("/js/api.js").headers["cache-control"] == "no-cache"
+    assert "cache-control" not in client.get("/api/health").headers

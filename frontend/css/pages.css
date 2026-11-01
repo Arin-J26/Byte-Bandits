@@ -28,6 +28,17 @@
   background: radial-gradient(circle at 1px 1px, var(--canvas-grid) 1px, transparent 0) 0 0 / 22px 22px, var(--surface-2);
 }
 .graph-side { max-height: min(68vh, 700px); overflow-y: auto; }
+.graph-canvas:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.map-controls {
+  position: absolute; right: 18px; top: 18px; z-index: 2; display: flex; flex-direction: column;
+  border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--border);
+}
+.map-controls .map-btn { border: 0; border-radius: 0; width: 40px; min-height: 40px; font-size: 1.25rem; box-shadow: none; }
+.map-controls .map-btn + .map-btn { border-top: 1px solid var(--border); }
+.map-controls .map-btn:hover { transform: none; }
+.map-hint { position: absolute; left: 18px; top: 14px; z-index: 2; margin: 0; padding: 3px 9px; border-radius: 999px;
+  background: var(--surface-glass); border: 1px solid var(--border); pointer-events: none; font-size: .74rem; }
+@media (max-width: 760px) { .map-hint { display: none; } }
 .graph-side h2 { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; }
 .graph-side h3 { margin-top: 16px; font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
 .legend { list-style: none; padding: 10px 8px 4px; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .8rem; color: var(--muted); }
@@ -116,3 +127,14 @@ progress { width: 100%; accent-color: var(--accent); height: 8px; }
   .campaign-cards { grid-template-columns: 1fr; }
   .filters .input { min-width: 0; width: 100%; }
 }
+
+/* AI provenance */
+.ai-verdict { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 12px; margin-bottom: 10px;
+  border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border); font-size: .88rem; }
+.summary-source { margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+
+/* Offline start screen */
+.offline-panel { max-width: 760px; }
+.offline-steps { padding-left: 1.2rem; }
+.offline-steps li { color: var(--text); }
+.offline-steps .code-block { margin-top: 6px; }

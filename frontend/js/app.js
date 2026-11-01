@@ -2,11 +2,11 @@
 
 import { h, clear, toast, errorBox } from './dom.js';
 import { prefs, setPref, on, applyMotionAttr } from './state.js';
-import { init as initApi, status } from './api.js';
+import { init as initApi, status, api, backendUp } from './api.js';
 import * as sound from './sound.js';
 import { startBackground } from './background.js';
 import { applyTheme, toggleTheme, currentTheme } from './theme.js';
-import { initTooltips, showBanner, openShortcuts, showWelcome } from './ui.js';
+import { initTooltips, showBanner, hideBanner, openShortcuts, showWelcome } from './ui.js';
 import { startDemo, isDemoRunning } from './demo.js';
 import { openPalette, isPaletteOpen } from './palette.js';
 import * as home from './pages/home.js';
@@ -70,6 +70,7 @@ function render({ focus = false } = {}) {
       else a.removeAttribute('aria-current');
     }
     if (focus) main.focus({ preventScroll: true });
+    if (status.mode === 'offline') { renderOffline(); return; }
     try {
       const fn = await ROUTES[name].mount(main);
       if (my !== token) fn?.(); // navigated away while loading
@@ -120,30 +121,89 @@ function initHeader() {
   });
   document.getElementById('help-btn').addEventListener('click', openShortcuts);
   document.getElementById('palette-btn').addEventListener('click', showPalette);
-  document.getElementById('demo-btn').addEventListener('click', () => startDemo({ go, pages: ROUTES }));
+  document.getElementById('demo-btn').addEventListener('click', () => {
+    if (status.mode === 'offline') { toast('Start the backend first: the demo runs on live data.', 'warn'); return; }
+    startDemo({ go, pages: ROUTES });
+  });
   on('prefs', syncHeader);
   syncHeader();
 }
 
 function renderBadge() {
   const badge = document.getElementById('mode-badge');
-  badge.className = `badge badge-mode ${status.mode}`;
-  if (status.mode === 'live') {
+  const mode = status.mode === 'live' && !status.connected ? 'offline' : status.mode;
+  badge.className = `badge badge-mode ${mode === 'live' ? 'live' : mode === 'offline' ? 'offline' : 'mock'}`;
+  if (mode === 'live') {
     clear(badge, h('span', { 'aria-hidden': 'true' }, '●'), 'Live');
-    badge.title = 'Connected to the Sniffer backend at /api';
+    badge.title = 'Connected to the Sniffer backend';
+  } else if (mode === 'offline') {
+    clear(badge, h('span', { 'aria-hidden': 'true' }, '✕'), status.mode === 'live' ? 'Reconnecting' : 'Offline');
+    badge.title = 'The Sniffer backend is not reachable';
   } else {
-    const why = { forced: 'forced with ?mock=1', unreachable: 'backend unreachable', imported: 'imported file' }[status.reason] || '';
-    clear(badge, h('span', { 'aria-hidden': 'true' }, '◐'), 'Mock', h('span', { class: 'sr-only' }, `: ${why}`));
-    badge.title = `Synthetic data (${why})`;
+    clear(badge, h('span', { 'aria-hidden': 'true' }, '◐'), 'Demo data');
+    badge.title = 'Synthetic demo data in this browser (?mock=1): no backend, no Gemma';
   }
+}
+
+/** Header chip: is the local Gemma model ready in Ollama? Live mode only. */
+async function renderAiBadge() {
+  const chip = document.getElementById('ai-badge');
+  if (status.mode !== 'live') { chip.hidden = true; return; }
+  let hlt;
+  try { hlt = await api.health(); } catch { hlt = null; }
+  if (status.mode !== 'live') { chip.hidden = true; return; } // mode changed while waiting
+  const ready = Boolean(hlt?.ollama_available);
+  const running = hlt ? hlt.ollama_running !== false : false;
+  chip.className = `badge badge-mode ${ready ? 'live' : 'mock'}`;
+  const label = !hlt ? 'Gemma ?' : ready ? 'Gemma' : running ? 'Gemma not pulled' : 'Ollama off';
+  clear(chip, h('span', { 'aria-hidden': 'true' }, ready ? '✦' : '!'), label);
+  chip.title = ready ? `Local model ${hlt.model} via Ollama: writes summaries and campaign verdicts`
+    : running ? `Ollama is running but ${hlt.model} is not installed. Run: ollama pull ${hlt.model}`
+      : 'Ollama is not running. Start the Ollama app (or run: ollama serve). Until then summaries use templates.';
+  chip.setAttribute('aria-label', chip.title);
+  chip.hidden = false;
+  if (hlt && !ready) showBanner(chip.title, { label: 'Check again', onClick: () => renderAiBadge() });
+  else if (ready && document.getElementById('banner').dataset.kind === 'ai') hideBanner();
+}
+
+/** Full-page screen when the backend is not running at startup. Polls and reloads when it comes up. */
+let offlinePoll = 0;
+function renderOffline() {
+  const cmd = (text) => h('pre', { class: 'code-block mono', tabindex: '0' }, text);
+  clear(main, h('section', { class: 'page' }, h('div', { class: 'panel offline-panel' },
+    h('p', { class: 'eyebrow' }, 'Backend not running'),
+    h('h1', {}, 'Start Sniffer to continue'),
+    h('p', { class: 'muted' }, 'Sniffer runs on its local backend with the Gemma model in Ollama. Start them from the repository root:'),
+    h('ol', { class: 'stack offline-steps' },
+      h('li', {}, 'Start Ollama (open the Ollama app, or run ', h('code', {}, 'ollama serve'), ') and pull the model once:', cmd('ollama pull gemma4:e2b')),
+      h('li', {}, 'Start the backend, which also serves this page:', cmd('backend/.venv/bin/uvicorn app.main:app --app-dir backend --port 8000')),
+      h('li', {}, 'Open ', h('code', {}, 'http://localhost:8000'), '. This page reconnects automatically.')),
+    h('div', { class: 'row' },
+      h('button', { class: 'btn btn-primary', type: 'button', on: { click: () => location.reload() } }, '↻ Retry now'),
+      h('a', { class: 'btn btn-ghost', href: '?mock=1' }, 'Explore with demo data instead')))));
+  clearInterval(offlinePoll);
+  offlinePoll = setInterval(async () => { if (await backendUp()) location.reload(); }, 3000);
 }
 
 function onMode() {
   renderBadge();
-  if (status.mode === 'mock' && status.reason === 'unreachable') {
-    showBanner('The Sniffer backend is unreachable, so you are seeing synthetic mock data. Nothing you do here is sent anywhere.', {
-      label: 'Retry live', onClick: () => location.reload(),
+  renderAiBadge();
+  if (status.mode === 'mock') {
+    showBanner('Demo data mode: synthetic data in this browser, no backend and no Gemma. Nothing is sent anywhere.', {
+      label: 'Switch to live', onClick: () => { location.href = location.pathname + location.hash; },
     });
+  }
+}
+
+function onConnection(ok) {
+  renderBadge();
+  if (ok) {
+    hideBanner();
+    toast('Reconnected to the Sniffer backend.', 'ok');
+    renderAiBadge();
+    render();
+  } else {
+    showBanner('Lost the connection to the Sniffer backend. Reconnecting automatically…', { label: 'Retry now', onClick: () => location.reload() });
   }
 }
 
@@ -183,10 +243,12 @@ async function boot() {
   initHeader();
   initKeys();
   on('mode', onMode);
+  on('connection', onConnection);
   await initApi();
   onMode();
+  setInterval(() => { if (!document.hidden) renderAiBadge(); }, 30_000);
   await render();
-  showWelcome(() => startDemo({ go, pages: ROUTES }));
+  if (status.mode !== 'offline') showWelcome(() => startDemo({ go, pages: ROUTES }));
 }
 
 boot().catch((err) => {

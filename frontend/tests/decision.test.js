@@ -26,3 +26,11 @@ test('record type and signature styles always carry an icon and text', () => {
   }
   assert.equal(signatureStyle(false).tone, 'bad');
 });
+
+test('contest records and Gemma verdicts have their own icon and label', async () => {
+  const { aiVerdictStyle } = await import('../js/lib/decision.js');
+  assert.deepEqual([recordTypeStyle('contest').icon, recordTypeStyle('contest').label], ['↩', 'Contest']);
+  assert.equal(aiVerdictStyle('spam').tone, 'bad');
+  assert.equal(aiVerdictStyle('legit').tone, 'ok');
+  assert.equal(aiVerdictStyle(undefined).label, 'AI: unclear');
+});

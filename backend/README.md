@@ -42,7 +42,7 @@ backend/.venv/bin/python backend/scripts/make_examples.py # regenerate examples/
 | `SNIFFER_DB` | `backend/sniffer.db` | SQLite file (git-ignored) |
 | `SNIFFER_MODEL` | `gemma4:e2b` | Ollama model name |
 | `OLLAMA_HOST` | `http://localhost:11434` | Ollama server |
-| `SNIFFER_AI_BUDGET` | `1.5` | Seconds a request waits for the model before answering with deterministic text. The model keeps going in the background and caches the answer, so the next request is instant. Keep it below the frontend's 2.5 s request timeout. |
+| `SNIFFER_AI_BUDGET` | `6` | Seconds a request waits for Gemma before answering with deterministic text (warm replies take about 0.5–1.5 s; the first call after Ollama starts can take longer). The model keeps going in the background and caches the answer. Keep it below the frontend's 8 s request timeout. |
 | `SNIFFER_DECAY` | `0.8` | Trust decay per hop |
 | `SNIFFER_MAX_DEPTH` | `3` | Default max hops (per project `max_depth` overrides) |
 | `SNIFFER_ALLOW_THRESHOLD` / `SNIFFER_FLAG_THRESHOLD` | `0.5` / `-0.5` | Decision thresholds |
@@ -62,7 +62,8 @@ database and no endpoint ever returns them.
 
 ### Trust engine (`app/trust.py`, pure and deterministic, no AI)
 1. **Transitive trust.** From the evaluating project (trust 1.0), each hop multiplies by edge weight × decay, keeping
-   the strongest path within `max_depth` hops: two full-trust hops give 0.8, then 0.64. This is the same model as the
+   the strongest path within `max_depth` hops: two full-trust hops give 0.8, then 0.64. Each project can set its own
+   `max_depth` and `decay` with `PUT /api/trust/settings` (the Trust page does this). This is the same model as the
    frontend's mock mode (`frontend/js/lib/trustMath.js`).
 2. **Filtering.** Records are ignored, each with a reason: invalid signature, issuer not in your trust graph, issuer
    beyond the depth limit, superseded by a newer record from the same project, or a contest from a non-sponsor.

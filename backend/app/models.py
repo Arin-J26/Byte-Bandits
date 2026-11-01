@@ -29,6 +29,14 @@ class TrustUpdate(BaseModel):
     weight: float = Field(ge=0, le=1)
 
 
+class TrustSettings(BaseModel):
+    """Per-project evaluation settings (how far and how fast trust travels)."""
+
+    project_id: str = Id
+    max_depth: int = Field(ge=1, le=6)
+    decay: float = Field(ge=0.5, le=1)
+
+
 class RecordIn(BaseModel):
     """A signed record submitted by a project. Unknown fields are rejected."""
 
@@ -124,6 +132,7 @@ class ProjectExport(BaseModel):
     name: str = Field(min_length=1, max_length=200)
     public_key: str = Field(min_length=64, max_length=64, pattern=r"^[0-9a-fA-F]+$")
     max_depth: int = Field(default=3, ge=1, le=6)
+    decay: float | None = Field(default=None, ge=0.5, le=1)
 
 
 class RecordExport(BaseModel):

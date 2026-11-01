@@ -165,3 +165,45 @@ def test_ignored_records_are_reported_deterministically():
     text, ai = LLM(client=fake).summarize_decision(ev, "ada", "lumen-ui")
     assert text.endswith("2 records ignored: not in your trust graph (1); invalid signature (1).")
     assert "r9" not in fake.last["messages"][1]["content"]
+
+
+def test_model_must_be_installed_not_just_ollama_running(monkeypatch):
+    import httpx
+
+    class Resp:
+        status_code = 200
+
+        def json(self):
+            return {"models": [{"name": "llama3:8b"}]}
+
+    monkeypatch.setattr(httpx, "get", lambda *a, **k: Resp())
+    llm = LLM(host="http://ollama.test")
+    assert llm.status() == (True, False)
+    assert llm.available() is False
+    assert llm.summarize_campaign(cluster())[1] is False
+    Resp.json = lambda self: {"models": [{"name": "gemma4:e2b"}]}
+    assert LLM(host="http://ollama.test").status() == (True, True)
+
+
+def test_concurrent_identical_requests_call_the_model_once(tmp_path):
+    import threading
+
+    db = Database(tmp_path / "c.db")
+    gate = threading.Event()
+
+    class SlowClient(FakeClient):
+        def chat(self, **kw):
+            gate.wait(2)
+            return super().chat(**kw)
+
+    fake = SlowClient("A burst of identical PRs.", "second answer")
+    llm = LLM(client=fake, cache=db)
+    results = []
+    threads = [threading.Thread(target=lambda: results.append(llm.summarize_campaign(cluster()))) for _ in range(3)]
+    for t in threads:
+        t.start()
+    gate.set()
+    for t in threads:
+        t.join()
+    assert fake.calls == 1
+    assert all(r == ("A burst of identical PRs.", True) for r in results)

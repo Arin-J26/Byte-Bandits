@@ -190,22 +190,32 @@ class LLM:
         self.cache = cache
         self._client = client
         self._injected = client is not None
-        self._avail: tuple[float, bool] = (0.0, False)
+        self._avail: tuple[float, tuple[bool, bool]] = (-1e9, (False, False))
         self._lock = threading.Lock()
+        self._inflight: dict[str, threading.Lock] = {}
 
     # -- connectivity
-    def available(self) -> bool:
+    def status(self) -> tuple[bool, bool]:
+        """(ollama_running, model_ready). Cached for 15 s so health checks stay cheap."""
         if self._injected:
-            return True
-        ts, ok = self._avail
+            return True, True
+        ts, state = self._avail
         if time.monotonic() - ts < 15:
-            return ok
+            return state
         try:
-            ok = httpx.get(f"{self.host}/api/tags", timeout=1.5).status_code == 200
-        except httpx.HTTPError:
-            ok = False
-        self._avail = (time.monotonic(), ok)
-        return ok
+            r = httpx.get(f"{self.host}/api/tags", timeout=1.5)
+            running = r.status_code == 200
+            names = {m.get("name", "") for m in r.json().get("models", [])} if running else set()
+            # "gemma4:e2b" must match exactly; a bare "gemma4" also matches "gemma4:latest".
+            ready = self.model in names or (":" not in self.model and f"{self.model}:latest" in names)
+        except (httpx.HTTPError, ValueError):
+            running, ready = False, False
+        self._avail = (time.monotonic(), (running, ready))
+        return running, ready
+
+    def available(self) -> bool:
+        """True only when Ollama answers AND the configured model is installed."""
+        return self.status()[1]
 
     def _get_client(self):
         with self._lock:
@@ -242,16 +252,20 @@ class LLM:
 
     def _cached(self, task: str, payload: Any, compute: Callable[[], Any]) -> tuple[Any, bool]:
         key = self._key(task, payload)
-        if self.cache is not None:
-            hit = self.cache.cache_get(key)
-            if hit is not None:
-                return json.loads(hit), True
-        value = compute()
-        if value is None:
-            return None, False
-        if self.cache is not None:
-            self.cache.cache_put(key, json.dumps(value))
-        return value, True
+        with self._lock:
+            key_lock = self._inflight.setdefault(key, threading.Lock())
+        # Identical concurrent requests wait for the first one instead of asking Gemma twice.
+        with key_lock:
+            if self.cache is not None:
+                hit = self.cache.cache_get(key)
+                if hit is not None:
+                    return json.loads(hit), True
+            value = compute()
+            if value is not None and self.cache is not None:
+                self.cache.cache_put(key, json.dumps(value))
+        with self._lock:
+            self._inflight.pop(key, None)
+        return (value, True) if value is not None else (None, False)
 
     # -- tasks
     def summarize_decision(self, evaluation: dict, handle: str, project_id: str) -> tuple[str, bool]:

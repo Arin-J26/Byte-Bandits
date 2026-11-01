@@ -56,8 +56,10 @@ export function generateNetwork({ projectCount = 25, newcomers = 8, campaignSize
     });
   }
   const start = now - 2 * 3600e3;
+  // campaignSize = number of near-identical PRs (about 3 per account), as in the backend.
+  const accounts = Math.max(1, Math.ceil(campaignSize / 3));
   const prEvents = Array.from({ length: Math.max(0, campaignSize) }, (_, i) => ({
-    id: `sim-pr${i + 1}`, handle: `bulk-acct-${String(i + 1).padStart(2, '0')}`, project: pick(projects).id,
+    id: `sim-pr${i + 1}`, handle: `bulk-acct-${String((i % accounts) + 1).padStart(2, '0')}`, project: pick(projects).id,
     title: pick(SPAM_TITLES), timestamp: iso(start + i * 60e3 + r() * 30e3),
   }));
   // A few projects already denounced the noisiest campaign accounts.
@@ -71,9 +73,9 @@ export function generateNetwork({ projectCount = 25, newcomers = 8, campaignSize
     }
   }
   const campaigns = campaignSize > 1 ? [{
-    id: 'sim-camp-1', size: campaignSize, accounts_min_age_days: 1 + Math.floor(r() * 3),
+    id: 'sim-camp-1', size: new Set(prEvents.map((e) => e.handle)).size, accounts_min_age_days: 1 + Math.floor(r() * 3),
     projects_hit: new Set(prEvents.map((e) => e.project)).size, window_minutes: campaignSize + 2,
-    evidence_summary: `${campaignSize} new accounts opened near-identical README typo PRs within ${campaignSize + 2} minutes.`,
+    evidence_summary: `${accounts} new accounts opened ${campaignSize} near-identical README typo PRs within ${campaignSize + 2} minutes.`,
     pr_events: prEvents,
   }] : [];
   const events = [

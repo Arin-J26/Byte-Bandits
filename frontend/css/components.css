@@ -63,6 +63,7 @@
 .badge-mode { font-family: var(--mono); letter-spacing: .04em; color: var(--muted); border-color: var(--border); background: var(--surface); }
 .badge-mode.live { color: var(--ok); background: var(--ok-bg); border-color: rgba(var(--ok-rgb), .3); }
 .badge-mode.mock { color: var(--warn); background: var(--warn-bg); border-color: rgba(var(--warn-rgb), .3); }
+.badge-mode.offline { color: var(--bad); background: var(--bad-bg); border-color: rgba(var(--bad-rgb), .3); }
 .tone-ok { color: var(--ok); }
 .tone-warn { color: var(--warn); }
 .tone-bad { color: var(--bad); }

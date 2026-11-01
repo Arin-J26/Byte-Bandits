@@ -4,241 +4,281 @@
       "id": "lumen-ui",
       "name": "Lumen UI",
       "public_key": "4c4c17a65898efef0f5232a5d5abd266ebd53867de9b62c0739cd1c0dc4a637d",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": 0.8
     },
     {
       "id": "nebula-db",
       "name": "Nebula DB",
       "public_key": "e85c0f74e12444fbe6222b7f1e114c60cb936fc5173ce8f843a9ed8c88fff39d",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "pyforge",
       "name": "PyForge",
       "public_key": "b1d634e851685f55c7a5d88b8acbdbe79796637c5a0deef9c74665448ccab3ee",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "quasar-cli",
       "name": "quasar-cli",
       "public_key": "aec90001ed742d9ee417846f13b6d8122db573474eaac9f8bcbe4a7be8117122",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "orbit-ml",
       "name": "orbit-ml",
       "public_key": "c6e274cd4e827103bef768bdd313bf9d5d7ee11215720fff0214643a70780bd0",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "helix-auth",
       "name": "helix-auth",
       "public_key": "f94663e596061b0ebd539650209808b213aa33255e8afbca32fc13f43d0fa63e",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "zenith-web",
       "name": "zenith-web",
       "public_key": "532b534a27592f3d589bd0b7032837cc8da2da5261e9a4136106d180814916c0",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "shadow-registry",
       "name": "Shadow Registry",
       "public_key": "85537e83b6543a97925f305d5c940ab90a793e2bac40c2b6bb4a83a8ea836196",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "aurora-docs",
       "name": "aurora-docs",
       "public_key": "74938aaa624d7a8fe4e415f82b40bba3c27d1a70fbec67984dd4af334ba0743f",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "mosaic-css",
       "name": "mosaic-css",
       "public_key": "f53e7be7530998f093ba2d386a4666c48f1e1daefc20eaaaa5f28abb977f7e84",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "kepler-maps",
       "name": "kepler-maps",
       "public_key": "0201e760b2c4ac1c80311a9e8e304596677471532089c49830b40d480f98ed6c",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "prism-lint",
       "name": "prism-lint",
       "public_key": "d755d2931d5f8fc6135302f104248939951501d6a2fb530318761a678a89c848",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "tidal-sched",
       "name": "tidal-sched",
       "public_key": "cca5411565a3ad666a723115ecdf2901b7f67a8ed3a65b8e54952cb4cdc98c70",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "jade-logs",
       "name": "jade-logs",
       "public_key": "e9ace1029b4ebece7b4be8e56dd10c3f387bd59745c1271104f73dfef920109a",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "ion-tests",
       "name": "ion-tests",
       "public_key": "321107abbdcb12bcf4c182061c0587f7c2e18a024a8a935d14873307efaf5a7d",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "krypton-ui",
       "name": "krypton-ui",
       "public_key": "a763a6c538f636ab56b918f7ddb44bbb40f80300fb81c97adc948283a305ca81",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "pebble-ui",
       "name": "pebble-ui",
       "public_key": "918af3ba1fc64ecce1d0bc01f479a1e84a8c3de469687dc993f0ba479c12ec81",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "meadow-tests",
       "name": "meadow-tests",
       "public_key": "2e2b33025a0efbbcbf6f38758a9671d5a5e5048da24317110844c6fdf982341a",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "cobalt-cli",
       "name": "cobalt-cli",
       "public_key": "681447a1113e7f72f6a48173bd429abcb61df9beafe059a9789248eaf6b44a98",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "harbor-lang",
       "name": "harbor-lang",
       "public_key": "4e80d1cb35e910d936ccb3edab92e2d2ba211cef120af59e506ac842b3934566",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "birch-lang",
       "name": "birch-lang",
       "public_key": "93e50fb5a529e85dd2143790b1c992dfe2fc5b824e84cf4c95ffb97adc27680e",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "meadow-router",
       "name": "meadow-router",
       "public_key": "7fad2855b4d036efe4ad40f9b4402e623f406d5b681403b1217e8a4b55899dae",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "pebble-logs",
       "name": "pebble-logs",
       "public_key": "2f16f527797ae5a5720c3b27b02a1df9848c8fcc82c1233f6cd00d6b0535a6d5",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "willow-http",
       "name": "willow-http",
       "public_key": "be3e2d3d87eaf3b1ab3c90bc84e3dd00a4d6beb6e5bd100f0187528cfdce80c8",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "zephyr-shell",
       "name": "zephyr-shell",
       "public_key": "f5d7ca7f6025d68534775609735c3da46ed1dc20a7400e378a9164b0d28ce170",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "glacier-http",
       "name": "glacier-http",
       "public_key": "e0981ade41c4ae5cdf125ac0ef711f35da058ffc847ff4856188ed5db0b972bf",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "granite-logs",
       "name": "granite-logs",
       "public_key": "c8f0d6c7eb9e312dff4d3c05d262571a0e9e195e439c89775fbfae420e4dcda3",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "harbor-db",
       "name": "harbor-db",
       "public_key": "c631226a1cfff1340766a9074375094465c04131668ee1bc6bf25690d8a8fc8c",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "birch-queue",
       "name": "birch-queue",
       "public_key": "28d9eb54f50ab7ca8d69bae8bfd02733d1ca8e23df7dd2e00362a4fcaa6a26e3",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "nectar-fs",
       "name": "nectar-fs",
       "public_key": "4dd86455fb56b83c6e022b83106474dd075db481cd4f48bcb24103ae03eb187d",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "cinder-router",
       "name": "cinder-router",
       "public_key": "e8e10524d0b6c6ff41b5d76a79feb1bd08a42857a12ba68e957381ca021168dc",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "haze-shell",
       "name": "haze-shell",
       "public_key": "5e4b1c71074d5afd4931da13f37ada03a8f1d83f34eff18d13596e2321a2da30",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "nectar-orm",
       "name": "nectar-orm",
       "public_key": "492a2dbdeed7cd4f68ddd2b273779e13532802d970d71d04c4837a38e2d8497c",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "harbor-http",
       "name": "harbor-http",
       "public_key": "2a43f98c8442e912af69ee5a26ad3e6ed6d9730737faf6a9e84507c8182e7282",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "pebble-lang",
       "name": "pebble-lang",
       "public_key": "88616b7074e72c14ea2a35d894cb4cd6569826825847b9854400b3037dc5943b",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "lumen-kit",
       "name": "lumen-kit",
       "public_key": "8a0a1d237c1b6cbe2827acdd5a038ff64b9963f19c93d36d1c4b18e07e8e5029",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "pebble-http",
       "name": "pebble-http",
       "public_key": "0310469b98ab2f700792898c39e0abef779edeab8b7f402af7952e923161d11e",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "zephyr-orm",
       "name": "zephyr-orm",
       "public_key": "1dfb0e49c69381a944164a8683da6a70eacdda578f909e2bc19d2d4afc8b282d",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "onyx-kit",
       "name": "onyx-kit",
       "public_key": "5ca78f1874e0fb6ee7887ad8a684af6c2bced660959644ecdb2a9f132565a9ee",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     },
     {
       "id": "drift-ui",
       "name": "drift-ui",
       "public_key": "12110a6fe1d1cf8ed2634a3585d9c4e1c34cf203e8938571513ed74e564ec6d5",
-      "max_depth": 3
+      "max_depth": 3,
+      "decay": null
     }
   ],
   "trust_edges": [
