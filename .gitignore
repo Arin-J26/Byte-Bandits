@@ -6,3 +6,6 @@ CLAUDE.md
 /Byte-Bandits/
 backend/demo_credentials.json
 *.db
+# Local settings (copy backend/.env.example to backend/.env)
+.env
+!.env.example

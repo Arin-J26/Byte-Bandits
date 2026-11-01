@@ -132,6 +132,8 @@ backend/.venv/bin/python backend/scripts/load_project.py examples/input/d1-oppia
   --as <your-github-login> --id d1 --name "D1 (oppia)" --github oppia/oppia
 backend/.venv/bin/python backend/scripts/load_project.py examples/input/synthetic-d2.zip --as <your-github-login>
 
+# Optional settings: cp backend/.env.example backend/.env (model, Ollama host, database, GitHub token)
+
 # 4. Run, then open http://localhost:8000 and sign up with that GitHub login
 backend/.venv/bin/uvicorn app.main:app --app-dir backend --port 8000
 ```
@@ -153,6 +155,7 @@ Byte-Bandits/
 │
 ├── backend/                      FastAPI + SQLite + local Gemma
 │   ├── pyproject.toml            dependencies and tool settings
+│   ├── .env.example              optional settings: model, Ollama host, database, GitHub token (no secrets)
 │   ├── README.md                 backend details and API list
 │   ├── app/
 │   │   ├── main.py               app factory, /api/health, no-cache headers, serves frontend/
