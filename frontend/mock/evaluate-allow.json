@@ -1,0 +1,42 @@
+{
+  "project_id": "lumen-ui",
+  "handle": "ada-commits",
+  "decision": "ALLOW",
+  "score": 1,
+  "summary": "@ada-commits is vouched for by 2 trusted projects. 2 records ignored.",
+  "path": [
+    {
+      "project": "nebula-db",
+      "via": [
+        "lumen-ui",
+        "nebula-db"
+      ],
+      "weight": 0.8,
+      "record_id": "rec-001",
+      "effect": 0.8,
+      "type": "vouch"
+    },
+    {
+      "project": "quasar-cli",
+      "via": [
+        "lumen-ui",
+        "nebula-db",
+        "quasar-cli"
+      ],
+      "weight": 0.64,
+      "record_id": "rec-002",
+      "effect": 0.64,
+      "type": "vouch"
+    }
+  ],
+  "ignored": [
+    {
+      "record_id": "rec-003",
+      "reason": "not in your trust graph"
+    },
+    {
+      "record_id": "rec-004",
+      "reason": "beyond depth limit (3 hops)"
+    }
+  ]
+}

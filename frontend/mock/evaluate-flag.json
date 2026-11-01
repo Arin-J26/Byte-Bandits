@@ -1,0 +1,53 @@
+{
+  "project_id": "lumen-ui",
+  "handle": "spam-bot-7731",
+  "decision": "FLAG",
+  "score": -1,
+  "summary": "@spam-bot-7731 was denounced by 3 independent trusted projects. Flagged for maintainer attention. 2 records ignored.",
+  "path": [
+    {
+      "project": "nebula-db",
+      "via": [
+        "lumen-ui",
+        "nebula-db"
+      ],
+      "weight": 0.8,
+      "record_id": "rec-006",
+      "effect": -0.8,
+      "type": "denounce"
+    },
+    {
+      "project": "pyforge",
+      "via": [
+        "lumen-ui",
+        "pyforge"
+      ],
+      "weight": 0.64,
+      "record_id": "rec-007",
+      "effect": -0.64,
+      "type": "denounce"
+    },
+    {
+      "project": "orbit-ml",
+      "via": [
+        "lumen-ui",
+        "pyforge",
+        "orbit-ml"
+      ],
+      "weight": 0.46,
+      "record_id": "rec-008",
+      "effect": -0.46,
+      "type": "denounce"
+    }
+  ],
+  "ignored": [
+    {
+      "record_id": "rec-017",
+      "reason": "beyond depth limit (3 hops)"
+    },
+    {
+      "record_id": "rec-032",
+      "reason": "beyond depth limit (3 hops)"
+    }
+  ]
+}
