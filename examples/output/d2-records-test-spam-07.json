@@ -1,0 +1,55 @@
+{
+  "handle": "test-spam-07",
+  "spam_weight": 75,
+  "decision": null,
+  "prs": [
+    {
+      "tag": "PR1",
+      "number": 182,
+      "title": "Add unit tests for date parsing",
+      "url": "https://github.com/test-org/synthetic-d2/pull/182",
+      "subject": "not spam",
+      "type": "voucher",
+      "reason": "",
+      "evidence": "",
+      "timestamp": "",
+      "ai": true
+    },
+    {
+      "tag": "PR2",
+      "number": 107,
+      "title": "Fix typo in README.md",
+      "url": "https://github.com/test-org/synthetic-d2/pull/107",
+      "subject": "spam",
+      "type": "denounced",
+      "reason": "The pull request only fixes a minor typo, indicating low-effort contribution.",
+      "evidence": "https://github.com/test-org/synthetic-d2/pull/107",
+      "timestamp": "2026-12-20T10:17:00Z",
+      "ai": true
+    },
+    {
+      "tag": "PR3",
+      "number": 120,
+      "title": "Fix typo in README.md",
+      "url": "https://github.com/test-org/synthetic-d2/pull/120",
+      "subject": "spam",
+      "type": "denounced",
+      "reason": "The pull request only fixes a minor typo, indicating low-effort contribution.",
+      "evidence": "https://github.com/test-org/synthetic-d2/pull/120",
+      "timestamp": "2026-12-20T10:55:00Z",
+      "ai": true
+    },
+    {
+      "tag": "PR4",
+      "number": 133,
+      "title": "Fix typo in README.md",
+      "url": "https://github.com/test-org/synthetic-d2/pull/133",
+      "subject": "spam",
+      "type": "denounced",
+      "reason": "The pull request only fixes a minor typo, indicating low-effort contribution.",
+      "evidence": "https://github.com/test-org/synthetic-d2/pull/133",
+      "timestamp": "2026-12-20T11:33:00Z",
+      "ai": true
+    }
+  ]
+}

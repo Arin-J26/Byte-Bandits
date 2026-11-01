@@ -1,0 +1,216 @@
+{
+  "trusted": [
+    {
+      "handle": "dipesh-svg",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 4,
+      "genuine": 4,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "sreecharan-desu",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 4,
+      "genuine": 4,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "ayandevofficial",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 2,
+      "genuine": 2,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "harshitraj1236",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 2,
+      "genuine": 2,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "Sanketmis208",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 2,
+      "genuine": 2,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "Aditya22-smart",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "AmiyaPiyush1",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "Dante-Navaza2005",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "Gracy769",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "guibeira",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "JevsJevs",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "lakshykaura07-tech",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "Mahin-Touqeer",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "oceankumar",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "parvarh26",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "RohitMunnuru9",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "ronakrai0829-create",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "sahaja9707",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "Shubham-Padkonde",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "tanmaygoyal2007",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    },
+    {
+      "handle": "Varadskulkarni2005",
+      "trusted_by": 1,
+      "not_trusted_by": 0,
+      "prs": 1,
+      "genuine": 1,
+      "spam": 0,
+      "spam_weight": 0,
+      "decision": null
+    }
+  ],
+  "not_trusted": [],
+  "contributors": 21
+}

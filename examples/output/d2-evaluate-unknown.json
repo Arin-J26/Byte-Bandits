@@ -1,0 +1,11 @@
+{
+  "decision": "UNKNOWN",
+  "score": 0.0,
+  "summary": "UNKNOWN. There is no history available for this contributor, so this is treated as a normal review. Consequently, no signals were present, and the contributor is not blocked.",
+  "path": [],
+  "ignored": [],
+  "ai": true,
+  "handle": "never-seen-before",
+  "spam_weight": null,
+  "maintainer_decision": null
+}

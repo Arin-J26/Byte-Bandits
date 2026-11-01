@@ -1,0 +1,6 @@
+{
+  "status": "ok",
+  "model": "gemma4:e2b",
+  "ollama_available": true,
+  "ollama_running": true
+}

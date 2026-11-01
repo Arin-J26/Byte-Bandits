@@ -1,0 +1,7 @@
+{
+  "name": "sniffer-frontend",
+  "private": true,
+  "type": "module",
+  "description": "Sniffer frontend. No dependencies; run tests with node --test.",
+  "scripts": { "test": "node --test tests/" }
+}

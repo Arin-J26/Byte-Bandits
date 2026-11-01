@@ -1,0 +1,16 @@
+{
+  "id": "d1",
+  "name": "D1 (oppia)",
+  "github": "oppia/oppia",
+  "prs_total": 30,
+  "merged_prs": 1,
+  "vouchers": 30,
+  "denounces": 0,
+  "trust_edges": 21,
+  "flagged_accounts": 0,
+  "campaigns": 0,
+  "classified": 30,
+  "spam_weight": 0,
+  "unclassified": 0,
+  "source": "oppia-develop.zip (7380 files); PRs from GitHub public API"
+}
