@@ -13,5 +13,9 @@ if ! curl -s -m 2 "${OLLAMA_HOST:-http://localhost:11434}/api/tags" >/dev/null; 
   echo "Ollama is not reachable: Sniffer still works, with deterministic summaries (ai=false)."
 fi
 cd "$BACKEND/.."
+if [ -f "$BACKEND/.env" ]; then  # optional local settings, see backend/.env.example
+  set -a; . "$BACKEND/.env"; set +a
+  [ -n "${GITHUB_TOKEN:-}" ] || unset GITHUB_TOKEN
+fi
 exec "$BACKEND/.venv/bin/uvicorn" app.main:app --app-dir backend --host 127.0.0.1 --port "${PORT:-8000}" --reload \
   --reload-dir backend/app
